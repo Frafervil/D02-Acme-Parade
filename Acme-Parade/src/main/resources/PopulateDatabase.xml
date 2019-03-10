@@ -210,7 +210,7 @@
 
 	<bean id="customisation" class="domain.Customisation">
 		<property name="systemName" value="Acme Parade" />
-		<property name="welcomeBanner" value="https://tinyurl.com/acme-parade" />
+		<property name="welcomeBanner" value="https://tinyurl.com/acme-parade-banner" />
 		<property name="welcomeMessageEn" value="Welcome to Acme Madrugá, the site to organise your processions." />
 		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Madrugá! Tu sitio para organizar procesiones." />
 		<property name="countryCode" value="+34" />
