@@ -10,7 +10,6 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 import domain.Area;
@@ -34,7 +33,6 @@ public class BrotherhoodForm {
 
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getName() {
 		return this.name;
 	}
@@ -44,7 +42,6 @@ public class BrotherhoodForm {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -54,7 +51,6 @@ public class BrotherhoodForm {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSurname() {
 		return this.surname;
 	}
@@ -64,7 +60,6 @@ public class BrotherhoodForm {
 	}
 
 	@URL
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhoto() {
 		return this.photo;
 	}
@@ -75,7 +70,6 @@ public class BrotherhoodForm {
 
 	@NotBlank
 	@Pattern(regexp = "^[a-zA-Z0-9 ]*[<]?\\w+[@][a-zA-Z0-9.]+[>]?$")
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getEmail() {
 		return this.email;
 	}
@@ -84,7 +78,6 @@ public class BrotherhoodForm {
 		this.email = email;
 	}
 
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -94,7 +87,6 @@ public class BrotherhoodForm {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getAddress() {
 		return this.address;
 	}
@@ -104,7 +96,6 @@ public class BrotherhoodForm {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTitle() {
 		return this.title;
 	}
@@ -125,7 +116,6 @@ public class BrotherhoodForm {
 	@NotBlank
 	@Size(min = 5, max = 32)
 	@Column(unique = true)
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getUsername() {
 		return this.username;
 	}
@@ -136,7 +126,6 @@ public class BrotherhoodForm {
 
 	@NotBlank
 	@Size(min = 5, max = 32)
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPassword() {
 		return this.password;
 	}
@@ -170,7 +159,6 @@ public class BrotherhoodForm {
 
 	@NotBlank
 	@Size(min = 5, max = 32)
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPasswordChecker() {
 		return this.passwordChecker;
 	}

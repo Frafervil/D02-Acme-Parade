@@ -6,7 +6,6 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -17,7 +16,6 @@ public class Position extends DomainEntity {
 
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSpanishName() {
 		return this.spanishName;
 	}
@@ -26,7 +24,6 @@ public class Position extends DomainEntity {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getEnglishName() {
 		return this.englishName;
 	}

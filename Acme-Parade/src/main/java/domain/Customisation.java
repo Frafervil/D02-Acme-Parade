@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -22,7 +21,6 @@ public class Customisation extends DomainEntity {
 
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSystemName() {
 		return this.systemName;
 	}
@@ -33,7 +31,6 @@ public class Customisation extends DomainEntity {
 
 	@NotBlank
 	@URL
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getWelcomeBanner() {
 		return this.welcomeBanner;
 	}
@@ -43,7 +40,6 @@ public class Customisation extends DomainEntity {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getWelcomeMessageEn() {
 		return this.welcomeMessageEn;
 	}
@@ -53,7 +49,6 @@ public class Customisation extends DomainEntity {
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getWelcomeMessageEs() {
 		return this.welcomeMessageEs;
 	}
@@ -63,7 +58,6 @@ public class Customisation extends DomainEntity {
 	}
 
 	@Pattern(regexp = "^\\+?\\d{1,3}$")
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getCountryCode() {
 		return this.countryCode;
 	}
