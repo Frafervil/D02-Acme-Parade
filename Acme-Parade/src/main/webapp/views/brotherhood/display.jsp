@@ -19,7 +19,7 @@
 			<img src="${brotherhood.photo}" class="ui mini rounded image" >
 			<div class="content">
 				<spring:message code="brotherhood.profile.title" />
-				${brotherhood.name}
+				<jstl:out value="${brotherhood.name}" />
 			</div>
 
 		</tr>
@@ -27,31 +27,31 @@
 	<tbody>
 		<tr>
 			<td><spring:message code="brotherhood.name" />
-			<td data-label="name">${brotherhood.name}</td>
+			<td data-label="name"><jstl:out value="${brotherhood.name}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.middleName" />
-			<td data-label="MiddleName">${brotherhood.middleName}</td>
+			<td data-label="MiddleName"><jstl:out value="${brotherhood.middleName}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.surname" />
-			<td data-label="surname">${brotherhood.surname}</td>
+			<td data-label="surname"><jstl:out value="${brotherhood.surname}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.email" />
-			<td data-label="email">${brotherhood.email}</td>
+			<td data-label="email"><jstl:out value="${brotherhood.email}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.phone" />
-			<td data-label="phone">${brotherhood.phone}</td>
+			<td data-label="phone"><jstl:out value="${brotherhood.phone}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.address" />
-			<td data-label="address">${brotherhood.address}</td>
+			<td data-label="address"><jstl:out value="${brotherhood.address}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="brotherhood.area" />
-			<td data-label="area">${brotherhood.area.name}</td>
+			<td data-label="area"><jstl:out value="${brotherhood.area.name}" /></td>
 		</tr>
 	</tbody>
 </table>

@@ -38,7 +38,7 @@ public class Request extends DomainEntity {
 	public void setStatus(final String status) {
 		this.status = status;
 	}
-
+	
 	public String getRejectionReason() {
 		return this.rejectionReason;
 	}
