@@ -63,7 +63,7 @@
 
 <%-- La lista de mensajes de la caja de mensaje seleccionada: --%>
 
-<h3> <spring:message code="messageBox.listMessages" /> ${currentMessageBox.name}</h3>
+<h3> <spring:message code="messageBox.listMessages" /> <jstl:out value="${currentMessageBox.name}" /></h3>
 
 <jstl:if test="${empty messages}">
 <spring:message code="messageBox.messages.empty" var="messagesEmpty"/>

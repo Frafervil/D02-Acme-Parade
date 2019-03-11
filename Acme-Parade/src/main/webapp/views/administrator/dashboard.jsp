@@ -32,10 +32,10 @@
 		
 		<tr>
 			<td><spring:message code="administrator.memberPerBrotherhood" /></td>
-			<td>${avgMemberPerBrotherhood }</td>
-			<td>${minMemberPerBrotherhood }</td>
-			<td>${maxMemberPerBrotherhood }</td>
-			<td>${stddevMemberPerBrotherhood }</td>
+			<td><jstl:out value="${avgMemberPerBrotherhood }" /></td>
+			<td><jstl:out value="${minMemberPerBrotherhood }" /></td>
+			<td><jstl:out value="${maxMemberPerBrotherhood }" /></td>
+			<td><jstl:out value="${stddevMemberPerBrotherhood }" /></td>
 		</tr>
 		
 	</table>
@@ -54,15 +54,15 @@
 		
 		<tr>
 			<td><spring:message code="administrator.ratioStatusPENDING" /></td>
-			<td>${ratioPendingRequest }</td>
+			<td><jstl:out value="${ratioPendingRequest }" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="administrator.ratioStatusAPPROVED" /></td>
-			<td>${ratioapprovedRequest }</td>
+			<td><jstl:out value="${ratioapprovedRequest }" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="administrator.ratioStatusPENDING" /></td>
-			<td>${ratioRejectedRequest }</td>
+			<td><jstl:out value="${ratioRejectedRequest }" /></td>
 		</tr>
 
 

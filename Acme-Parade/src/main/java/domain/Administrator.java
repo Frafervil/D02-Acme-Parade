@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -17,6 +18,7 @@ public class Administrator extends Actor {
 
 	@NotBlank
 	@Pattern(regexp = "^[a-zA-Z0-9 ]*[<]?\\w+[@]")
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getEmail() {
 		return this.email;
 	}

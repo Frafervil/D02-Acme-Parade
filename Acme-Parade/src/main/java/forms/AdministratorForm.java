@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 public class AdministratorForm {
@@ -35,6 +36,7 @@ public class AdministratorForm {
 	// --- Getters y Setters ---------------------------------------
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getName() {
 		return this.name;
 	}
@@ -44,6 +46,7 @@ public class AdministratorForm {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -53,6 +56,7 @@ public class AdministratorForm {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSurname() {
 		return this.surname;
 	}
@@ -62,6 +66,7 @@ public class AdministratorForm {
 	}
 
 	@URL
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhoto() {
 		return this.photo;
 	}
@@ -72,6 +77,7 @@ public class AdministratorForm {
 
 	@NotBlank
 	@Pattern(regexp = "^[a-zA-Z0-9 ]*[<]?\\w+[@]")
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getEmail() {
 		return this.email;
 	}
@@ -80,6 +86,7 @@ public class AdministratorForm {
 		this.email = email;
 	}
 
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -89,6 +96,7 @@ public class AdministratorForm {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getAddress() {
 		return this.address;
 	}
@@ -108,6 +116,7 @@ public class AdministratorForm {
 	@NotBlank
 	@Size(min = 5, max = 32)
 	@Column(unique = true)
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getUsername() {
 		return this.username;
 	}
@@ -118,6 +127,7 @@ public class AdministratorForm {
 
 	@NotBlank
 	@Size(min = 5, max = 32)
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPassword() {
 		return this.password;
 	}
@@ -143,6 +153,7 @@ public class AdministratorForm {
 
 	@NotBlank
 	@Size(min = 5, max = 32)
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPasswordChecker() {
 		return this.passwordChecker;
 	}

@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 import security.UserAccount;
@@ -32,6 +33,7 @@ public class Actor extends DomainEntity implements Cloneable {
 
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getName() {
 		return this.name;
 	}
@@ -41,6 +43,7 @@ public class Actor extends DomainEntity implements Cloneable {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -50,6 +53,7 @@ public class Actor extends DomainEntity implements Cloneable {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getSurname() {
 		return this.surname;
 	}
@@ -59,6 +63,7 @@ public class Actor extends DomainEntity implements Cloneable {
 	}
 
 	@URL
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhoto() {
 		return this.photo;
 	}
@@ -67,6 +72,7 @@ public class Actor extends DomainEntity implements Cloneable {
 		this.photo = photo;
 	}
 
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPhone() {
 		return this.phone;
 	}
@@ -76,6 +82,7 @@ public class Actor extends DomainEntity implements Cloneable {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getAddress() {
 		return this.address;
 	}

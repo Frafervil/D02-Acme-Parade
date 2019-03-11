@@ -25,7 +25,7 @@
 			<img src="${member.photo}" class="ui mini rounded image">
 			<div class="content">
 				<spring:message code="member.profile.title" />
-				${member.name}
+				<jstl:out value="${member.name}" />
 			</div>
 
 		</tr>
@@ -33,27 +33,27 @@
 	<tbody>
 		<tr>
 			<td><spring:message code="member.name" />
-			<td data-label="name">${member.name}</td>
+			<td data-label="name"><jstl:out value="${member.name}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="member.middleName" />
-			<td data-label="MiddleName">${member.middleName}</td>
+			<td data-label="MiddleName"><jstl:out value="${member.middleName}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="member.surname" />
-			<td data-label="surname">${member.surname}</td>
+			<td data-label="surname"><jstl:out value="${member.surname}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="member.email" />
-			<td data-label="email">${member.email}</td>
+			<td data-label="email"><jstl:out value="${member.email}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="member.phone" />
-			<td data-label="phone">${member.phone}</td>
+			<td data-label="phone"><jstl:out value="${member.phone}" /></td>
 		</tr>
 		<tr>
 			<td><spring:message code="member.address" />
-			<td data-label="address">${member.address}</td>
+			<td data-label="address"><jstl:out value="${member.address}" /></td>
 		</tr>
 	</tbody>
 </table>

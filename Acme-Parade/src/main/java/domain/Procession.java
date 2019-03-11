@@ -18,6 +18,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -37,6 +38,7 @@ public class Procession extends DomainEntity {
 
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTitle() {
 		return this.title;
 	}
@@ -46,6 +48,7 @@ public class Procession extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getDescription() {
 		return this.description;
 	}
@@ -68,6 +71,7 @@ public class Procession extends DomainEntity {
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|31(?!(?: 0[2469]|11))|30(?!02))-[A-Z0-9]{6}$")
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getTicker() {
 		return this.ticker;
 	}

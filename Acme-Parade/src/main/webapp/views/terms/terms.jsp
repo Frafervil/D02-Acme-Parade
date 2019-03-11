@@ -20,11 +20,11 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <h2 style="text-align: center;">
-	<strong>POLÍTICA DE PRIVACIDAD</strong>
+	<strong><jstl:out value="POLÍTICA DE PRIVACIDAD" /></strong>
 </h2>
 <p>&nbsp;</p>
-<p>La presente Política de Privacidad establece los términos en que
-	Acme-Madrugá usa y protege la información que es proporcionada por sus
+<p><jstl:out value="La presente Política de Privacidad establece los términos en que
+	Acme-Parade usa y protege la información que es proporcionada por sus
 	usuarios al momento de utilizar su sitio web. Esta compañía está
 	comprometida con la seguridad de los datos de sus usuarios. Cuando le
 	pedimos llenar los campos de información personal con la cual usted
@@ -32,39 +32,39 @@
 	acuerdo con los términos de este documento. Sin embargo esta Política
 	de Privacidad puede cambiar con el tiempo o ser actualizada por lo que
 	le recomendamos y enfatizamos revisar continuamente esta página para
-	asegurarse que está de acuerdo con dichos cambios.</p>
+	asegurarse que está de acuerdo con dichos cambios." /></p>
 <p>
-	<strong>Información que es recogida</strong>
+	<strong><jstl:out value="Información que es recogida" /></strong>
 </p>
-<p>Nuestro sitio web podrá recoger información personal por ejemplo:
-	Nombre,&nbsp; información de contacto como&nbsp; su dirección de correo
-	electrónica e información demográfica.</p>
+<p><jstl:out value="Nuestro sitio web podrá recoger información personal por ejemplo:
+	Nombre," />&nbsp;<jstl:out value="información de contacto como" />&nbsp;<jstl:out value="su dirección de correo
+	electrónica e información demográfica." /></p>
 <p>
-	<strong>Uso de la información recogida</strong>
+	<strong><jstl:out value="Uso de la información recogida" /></strong>
 </p>
-<p>Nuestro sitio web emplea la información con el fin de
+<p><jstl:out value="Nuestro sitio web emplea la información con el fin de
 	proporcionar el mejor servicio posible, particularmente para mantener
-	un registro de usuarios y mejorar servicios. &nbsp;Es posible que sean
+	un registro de usuarios y mejorar servicios." />&nbsp;<jstl:out value="Es posible que sean
 	enviados correos electrónicos periódicamente a través de nuestro sitio
 	con información publicitaria que consideremos relevante para usted o
 	que pueda brindarle algún beneficio, estos correos electrónicos serán
 	enviados a la dirección que usted proporcione y podrán ser cancelados
-	en cualquier momento.</p>
-<p>Acme-Madrugá está altamente comprometido para cumplir con el
+	en cualquier momento." /></p>
+<p><jstl:out value="Acme-Parade está altamente comprometido para cumplir con el
 	compromiso de mantener su información segura. Usamos los sistemas más
 	avanzados y los actualizamos constantemente para asegurarnos que no
-	exista ningún acceso no autorizado.</p>
+	exista ningún acceso no autorizado." /></p>
 <p>
-	<strong>Cookies</strong>
+	<strong><jstl:out value="Cookies" /></strong>
 </p>
-<p>Una cookie se refiere a un fichero que es enviado con la
+<p><jstl:out value="Una cookie se refiere a un fichero que es enviado con la
 	finalidad de solicitar permiso para almacenarse en su ordenador, al
 	aceptar dicho fichero se crea y la cookie sirve entonces para tener
 	información respecto al tráfico web, y también facilita las futuras
 	visitas a una web recurrente. Otra función que tienen las cookies es
 	que con ellas las web pueden reconocerle individualmente y por tanto
-	brindarle el mejor servicio personalizado de su web.</p>
-<p>Nuestro sitio web emplea las cookies para poder identificar las
+	brindarle el mejor servicio personalizado de su web." /></p>
+<p><jstl:out value="Nuestro sitio web emplea las cookies para poder identificar las
 	páginas que son visitadas y su frecuencia. Esta información es empleada
 	únicamente para análisis estadístico y después la información se
 	elimina de forma permanente. Usted puede eliminar las cookies en
@@ -76,26 +76,26 @@
 	automáticamente pues sirve para tener un mejor servicio web. También
 	usted puede cambiar la configuración de su ordenador para declinar las
 	cookies. Si se declinan es posible que no pueda utilizar algunos de
-	nuestros servicios.</p>
+	nuestros servicios." /></p>
 <p>
-	<strong>Enlaces a Terceros</strong>
+	<strong><jstl:out value="Enlaces a Terceros" /></strong>
 </p>
-<p>Este sitio web podrían contener enlaces a otros sitios que
+<p><jstl:out value="Este sitio web podrían contener enlaces a otros sitios que
 	podrían ser de su interés. Una vez que usted de click en estos enlaces
 	y abandone nuestra página, ya no tenemos control sobre al sitio al que
 	es redirigido y por lo tanto no somos responsables de los términos o
 	privacidad ni de la protección de sus datos en esos otros sitios
 	terceros. Dichos sitios están sujetos a sus propias políticas de
 	privacidad por lo cual es recomendable que los consulte para confirmar
-	que usted está de acuerdo con estas.</p>
+	que usted está de acuerdo con estas." /></p>
 <p>
-	<strong>Control de su información personal</strong>
+	<strong><jstl:out value="Control de su información personal" /></strong>
 </p>
-<p>En cualquier momento usted puede restringir la recopilación o el
+<p><jstl:out value="En cualquier momento usted puede restringir la recopilación o el
 	uso de la información personal que es proporcionada a nuestro sitio
-	web.&nbsp;</p>
-<p>Esta compañía no venderá, cederá ni distribuirá la información
+	web" />.&nbsp;</p>
+<p><jstl:out value="Esta compañía no venderá, cederá ni distribuirá la información
 	personal que es recopilada sin su consentimiento, salvo que sea
-	requerido por un juez con un orden judicial.</p>
-<p>Acme-Madrugá Se reserva el derecho de cambiar los términos de la
-	presente Política de Privacidad en cualquier momento.</p>
+	requerido por un juez con un orden judicial." /></p>
+<p><jstl:out value="Acme-Parade Se reserva el derecho de cambiar los términos de la
+	presente Política de Privacidad en cualquier momento." /></p>
