@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.List;
@@ -21,15 +20,14 @@ import security.UserAccount;
 @Access(AccessType.PROPERTY)
 public class Actor extends DomainEntity implements Cloneable {
 
-	private String				name;
-	private String				middleName;
-	private String				surname;
-	private String				photo;
-	private String				phone;
-	private String				address;
-	private List<MessageBox>	messageBoxes;
-	private UserAccount			userAccount;
-
+	private String name;
+	private String middleName;
+	private String surname;
+	private String photo;
+	private String phone;
+	private String address;
+	private List<MessageBox> messageBoxes;
+	private UserAccount userAccount;
 
 	@NotBlank
 	public String getName() {

@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Collection;
@@ -8,7 +7,9 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -20,13 +21,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = { @Index(columnList = "area") })
 public class Brotherhood extends Actor {
 
-	private String				title;
-	private Date				establishmentDate;
-	private Collection<String>	pictures;
-	private String				email;
-
+	private String title;
+	private Date establishmentDate;
+	private Collection<String> pictures;
+	private String email;
 
 	@NotBlank
 	public String getTitle() {
@@ -67,11 +68,9 @@ public class Brotherhood extends Actor {
 		this.email = email;
 	}
 
-
 	// Relationships----------------------------------------------
 
-	private Area	area;
-
+	private Area area;
 
 	@Valid
 	@ManyToOne(optional = false)
