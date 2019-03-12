@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Date;
@@ -22,19 +21,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = {
-	@Index(columnList = "isDraft")
-})
+@Table(indexes = { @Index(columnList = "isDraft, moment") })
 public class Parade extends DomainEntity {
 
-	private String	title;
-	private String	description;
-	private Date	moment;
-	private String	ticker;
-	private boolean	isDraft;
-	private int		maxRow;
-	private int		maxColumn;
-
+	private String title;
+	private String description;
+	private Date moment;
+	private String ticker;
+	private boolean isDraft;
+	private int maxRow;
+	private int maxColumn;
 
 	@NotBlank
 	public String getTitle() {
@@ -104,11 +100,9 @@ public class Parade extends DomainEntity {
 		this.maxColumn = maxColumn;
 	}
 
-
 	// Relationships----------------------------------------------
 
-	private Brotherhood	brotherhood;
-
+	private Brotherhood brotherhood;
 
 	@NotNull
 	@Valid
