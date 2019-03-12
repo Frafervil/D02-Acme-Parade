@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BrotherhoodService;
-import services.ProcessionService;
+import services.ParadeService;
 import services.RequestService;
 import controllers.AbstractController;
 import domain.Brotherhood;
-import domain.Procession;
+import domain.Parade;
 import domain.Request;
 
 @Controller
@@ -35,7 +35,7 @@ public class RequestBrotherhoodController extends AbstractController {
 	private RequestService		requestService;
 
 	@Autowired
-	private ProcessionService	processionService;
+	private ParadeService	paradeService;
 
 	@Autowired
 	private BrotherhoodService	brotherhoodService;
@@ -47,17 +47,17 @@ public class RequestBrotherhoodController extends AbstractController {
 	public ModelAndView list() {
 		final ModelAndView result;
 		final Collection<Request> requests;
-		Collection<Procession> processions;
+		Collection<Parade> parades;
 		Brotherhood brotherhood;
 
 		brotherhood = this.brotherhoodService.findByPrincipal();
 
 		requests = this.requestService.findAllByBrotherhood(brotherhood.getId());
-		processions = this.processionService.findAllFinal();
+		parades = this.paradeService.findAllFinal();
 
 		result = new ModelAndView("request/list");
 		result.addObject("requests", requests);
-		result.addObject("processions", processions);
+		result.addObject("parades", parades);
 		result.addObject("requestURI", "request/brotherhood/list.do");
 
 		return result;
@@ -123,7 +123,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		request = this.requestService.findOne(requestId);
 		Assert.notNull(request);
 
-		if (request.getProcession().getBrotherhood().getId() == principal.getId() && request.getStatus().equals("PENDING"))
+		if (request.getParade().getBrotherhood().getId() == principal.getId() && request.getStatus().equals("PENDING"))
 			result = this.createEditModelAndView(request, false);
 		else
 			result = new ModelAndView("redirect:list.do");
@@ -163,7 +163,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		request = this.requestService.findOne(requestId);
 		Assert.notNull(request);
 
-		if (request.getProcession().getBrotherhood().getId() == principal.getId() && request.getStatus().equals("PENDING"))
+		if (request.getParade().getBrotherhood().getId() == principal.getId() && request.getStatus().equals("PENDING"))
 			result = this.createEditModelAndView(request, true);
 		else
 			result = new ModelAndView("redirect:list.do");
@@ -207,7 +207,7 @@ public class RequestBrotherhoodController extends AbstractController {
 
 		principal = this.brotherhoodService.findByPrincipal();
 
-		if (request.getProcession().getBrotherhood().getId() == principal.getId())
+		if (request.getParade().getBrotherhood().getId() == principal.getId())
 			permission = true;
 
 		result = new ModelAndView("request/edit");

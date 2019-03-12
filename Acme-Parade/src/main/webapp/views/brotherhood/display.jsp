@@ -96,25 +96,25 @@
 	</jstl:if>
 </security:authorize>
 
-<!-- Processions -->
-<h3> <spring:message code="brotherhood.processions" /> </h3>
+<!-- Parades -->
+<h3> <spring:message code="brotherhood.parades" /> </h3>
 <jstl:choose>
-<jstl:when test="${not empty processions}">
-<display:table pagesize="5" class="displaytag" name="processions" requestURI="brotherhood/display.do" id="processions">
-		<spring:message code="brotherhood.processions.title" var="title" />
+<jstl:when test="${not empty parades}">
+<display:table pagesize="5" class="displaytag" name="parades" requestURI="brotherhood/display.do" id="parades">
+		<spring:message code="brotherhood.parades.title" var="title" />
 		<display:column property="title" title="${title}" sortable="true"/>
 	
-		<spring:message code="brotherhood.processions.moment" var="moment" />
+		<spring:message code="brotherhood.parades.moment" var="moment" />
 		<display:column property="moment" title="${moment}" sortable="true"/>
 			
 </display:table>
 </jstl:when>
 
 <jstl:otherwise>
-<spring:message code="brotherhood.processions.empty" /> 
+<spring:message code="brotherhood.parades.empty" /> 
 </jstl:otherwise>
 </jstl:choose>
-<acme:button url="procession/brotherhood/create.do" code="procession.create"/>
+<acme:button url="parade/brotherhood/create.do" code="parade.create"/>
 <!-- Floats -->
 <h3> <spring:message code="brotherhood.floats" /> </h3>
 <jstl:choose>

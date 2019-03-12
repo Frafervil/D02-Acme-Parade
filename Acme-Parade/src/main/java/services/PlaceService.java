@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 
 import repositories.PlaceRepository;
 import domain.Place;
-import domain.Procession;
+import domain.Parade;
 
 @Service
 @Transactional
@@ -25,25 +25,25 @@ public class PlaceService {
 	@Autowired
 	RequestService		requestService;
 	@Autowired
-	ProcessionService	processionService;
+	ParadeService	paradeService;
 
 
 	public void delete(final Place place) {
 		this.placeRepository.delete(place);
 	}
-	public Place create(final int processionId) {
+	public Place create(final int paradeId) {
 		final Place result = new Place();
 		int rowMax;
 		int columMax;
 		int r = 1;
 		int c = 1;
-		Procession procession;
+		Parade parade;
 		Collection<Place> placesInUse;
 
-		placesInUse = this.findByProcessionId(processionId);
-		procession = this.processionService.findOne(processionId);
-		rowMax = procession.getMaxRow();
-		columMax = procession.getMaxColumn();
+		placesInUse = this.findByParadeId(paradeId);
+		parade = this.paradeService.findOne(paradeId);
+		rowMax = parade.getMaxRow();
+		columMax = parade.getMaxColumn();
 
 		if (placesInUse != null && (placesInUse.size() != 0))
 			outerloop: for (r = 1; r <= rowMax; r++)
@@ -57,9 +57,9 @@ public class PlaceService {
 		return result;
 	}
 
-	public Collection<Place> findByProcessionId(final int processionId) {
+	public Collection<Place> findByParadeId(final int paradeId) {
 		Collection<Place> result;
-		result = this.placeRepository.findPlacesByProcession(processionId);
+		result = this.placeRepository.findPlacesByParade(paradeId);
 		return result;
 	}
 	public void save(final Place place) {

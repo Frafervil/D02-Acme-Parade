@@ -123,7 +123,7 @@ public class FloatService {
 		result.setTitle(floatB.getTitle());
 		result.setDescription(floatB.getDescription());
 		result.setPictures(floatB.getPictures());
-		result.setProcession(floatB.getProcession());
+		result.setParade(floatB.getParade());
 		result.setBrotherhood(this.brotherhoodService.findByPrincipal());
 		this.validator.validate(result, binding);
 		this.floatRepository.flush();

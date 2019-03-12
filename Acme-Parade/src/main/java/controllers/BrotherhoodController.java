@@ -22,10 +22,10 @@ import services.BrotherhoodService;
 import services.CustomisationService;
 import services.FloatService;
 import services.MemberService;
-import services.ProcessionService;
+import services.ParadeService;
 import domain.Brotherhood;
 import domain.Member;
-import domain.Procession;
+import domain.Parade;
 import forms.BrotherhoodForm;
 
 @Controller
@@ -38,7 +38,7 @@ public class BrotherhoodController extends AbstractController {
 	private BrotherhoodService		brotherhoodService;
 
 	@Autowired
-	private ProcessionService		processionService;
+	private ParadeService		paradeService;
 
 	@Autowired
 	private FloatService			floatService;
@@ -83,14 +83,14 @@ public class BrotherhoodController extends AbstractController {
 
 		Collection<Member> members;
 		members = this.memberService.findAllMembersOfOneBrotherhood(brotherhood.getId());
-		Collection<Procession> processions;
-		processions = this.processionService.findAllProcessionsOfOneBrotherhood(brotherhood.getId());
+		Collection<Parade> parades;
+		parades = this.paradeService.findAllParadesOfOneBrotherhood(brotherhood.getId());
 		Collection<domain.Float> floats;
 		floats = this.floatService.findByBrotherhoodId(brotherhood.getId());
 
 		result = new ModelAndView("brotherhood/display");
 		result.addObject("brotherhood", brotherhood);
-		result.addObject("processions", processions);
+		result.addObject("parades", parades);
 		result.addObject("members", members);
 		result.addObject("floats", floats);
 

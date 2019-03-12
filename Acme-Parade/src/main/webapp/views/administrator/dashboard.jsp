@@ -75,16 +75,16 @@
 	<jstl:out value="${smallestBroterhood.title}"></jstl:out>
 	
 	
-	<h3><spring:message code="administrator.startingSoonProcession" /></h3>
+	<h3><spring:message code="administrator.startingSoonParade" /></h3>
 	
 	<display:table pagesize="10" class="displaytag" 
-	name="startingSoonProcession" requestURI="dashboard/administrator/display.do" id="procession">
+	name="startingSoonParade" requestURI="dashboard/administrator/display.do" id="parade">
 		
-		<spring:message code="administrator.procession.title" var="title" />
+		<spring:message code="administrator.parade.title" var="title" />
 		<display:column property="title" title="${title }" sortable="true"/>
 
 		<display:column>
-			<a href="procession/display.do?processionId=${procession.id }"><spring:message code="administrator.display"  /></a>
+			<a href="parade/display.do?paradeId=${parade.id }"><spring:message code="administrator.display"  /></a>
 		</display:column>
 	</display:table>
 	

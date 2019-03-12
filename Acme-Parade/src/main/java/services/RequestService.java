@@ -16,7 +16,7 @@ import repositories.RequestRepository;
 import domain.Brotherhood;
 import domain.Member;
 import domain.Place;
-import domain.Procession;
+import domain.Parade;
 import domain.Request;
 
 @Service
@@ -37,7 +37,7 @@ public class RequestService {
 	private PlaceService		placeService;
 
 	@Autowired
-	private ProcessionService	processionService;
+	private ParadeService	paradeService;
 
 	@Autowired
 	private BrotherhoodService	brotherhoodService;
@@ -53,11 +53,11 @@ public class RequestService {
 		return result;
 	}
 
-	public Request create(final int processionId) {
+	public Request create(final int paradeId) {
 		Request result;
 		Member principal;
 		Place place;
-		Procession procession;
+		Parade parade;
 
 		result = new Request();
 
@@ -65,11 +65,11 @@ public class RequestService {
 		Assert.notNull(principal);
 		result.setMember(principal);
 
-		procession = this.processionService.findOne(processionId);
-		Assert.notNull(procession);
-		result.setProcession(procession);
+		parade = this.paradeService.findOne(paradeId);
+		Assert.notNull(parade);
+		result.setParade(parade);
 
-		place = this.placeService.create(processionId);
+		place = this.placeService.create(paradeId);
 		Assert.notNull(place);
 		result.setPlace(place);
 
@@ -91,14 +91,14 @@ public class RequestService {
 
 	}
 
-	public Collection<Request> findByPrincipalBrotherhood(final Procession procession) {
+	public Collection<Request> findByPrincipalBrotherhood(final Parade parade) {
 		Brotherhood principal;
 
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
 
 		Collection<Request> result;
-		result = this.requestRepository.findAllByProcession(procession.getId());
+		result = this.requestRepository.findAllByParade(parade.getId());
 		Assert.notNull(result);
 		return result;
 
@@ -156,10 +156,10 @@ public class RequestService {
 		return result;
 	}
 
-	public Collection<Request> findAllByProcession(final int processionId) {
+	public Collection<Request> findAllByParade(final int paradeId) {
 		Collection<Request> result;
 
-		result = this.requestRepository.findAllByProcession(processionId);
+		result = this.requestRepository.findAllByParade(paradeId);
 		Assert.notNull(result);
 
 		return result;
@@ -196,13 +196,13 @@ public class RequestService {
 	public Collection<Request> findAllByBrotherhood(final int brotherhoodId) {
 		final Collection<Request> result;
 		Collection<Request> requests;
-		final Collection<Procession> processions;
+		final Collection<Parade> parades;
 
 		result = new ArrayList<Request>();
-		processions = this.processionService.findAllProcessionsOfOneBrotherhood(brotherhoodId);
+		parades = this.paradeService.findAllParadesOfOneBrotherhood(brotherhoodId);
 
-		for (final Procession p : processions) {
-			requests = this.findAllByProcession(p.getId());
+		for (final Parade p : parades) {
+			requests = this.findAllByParade(p.getId());
 			result.addAll(requests);
 		}
 
@@ -222,7 +222,7 @@ public class RequestService {
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
 
-		Assert.isTrue(this.findByPrincipalBrotherhood(r.getProcession()).contains(r));
+		Assert.isTrue(this.findByPrincipalBrotherhood(r.getParade()).contains(r));
 		Assert.isTrue(r.getStatus().equals("PENDING"));
 
 		Assert.isTrue(!reason.isEmpty());
@@ -241,7 +241,7 @@ public class RequestService {
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
 
-		Assert.isTrue(this.findByPrincipalBrotherhood(r.getProcession()).contains(r));
+		Assert.isTrue(this.findByPrincipalBrotherhood(r.getParade()).contains(r));
 		Assert.isTrue(r.getStatus().equals("PENDING"));
 
 		r.setStatus("APPROVED");
@@ -253,9 +253,9 @@ public class RequestService {
 		this.requestRepository.flush();
 	}
 
-	public Integer findRepeated(final int memberId, final int processionId) {
+	public Integer findRepeated(final int memberId, final int paradeId) {
 		Integer result;
-		result = this.requestRepository.findRepeated(memberId, processionId);
+		result = this.requestRepository.findRepeated(memberId, paradeId);
 
 		return result;
 	}

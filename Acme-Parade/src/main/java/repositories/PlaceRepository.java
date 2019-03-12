@@ -12,7 +12,7 @@ import domain.Place;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
-	@Query("select p.place from Request p where p.procession.id = ?1")
-	Collection<Place> findPlacesByProcession(int processionId);
+	@Query("select p.place from Request p where p.parade.id = ?1")
+	Collection<Place> findPlacesByParade(int paradeId);
 
 }

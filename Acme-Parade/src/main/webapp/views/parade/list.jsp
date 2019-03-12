@@ -22,35 +22,35 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<display:table name="processions" id="row" pagesize="5" requestURI="${requestURI}" 
+<display:table name="parades" id="row" pagesize="5" requestURI="${requestURI}" 
 class="displaytag" keepStatus="true">
 
 	<!-- Display -->
 	<security:authorize access = "hasRole('BROTHERHOOD')">
 	<jstl:if test = "${row.brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 	<display:column>
-		<a href="procession/display.do?processionId=${row.id}"><spring:message code="procession.display"/></a>
+		<a href="parade/display.do?paradeId=${row.id}"><spring:message code="parade.display"/></a>
 	</display:column>
 	</jstl:if>
 	</security:authorize>
 	
 	<!-- Title -->
-	<spring:message code="procession.title" var="titleHeader" />
+	<spring:message code="parade.title" var="titleHeader" />
 	<display:column  property="title" title="${titleHeader}" />
 	
 	<!-- Description -->
-	<spring:message code="procession.description" var="descriptionHeader" />
+	<spring:message code="parade.description" var="descriptionHeader" />
 	<display:column  property="description" title="${descriptionHeader}" />
 	
 </display:table>
 
 
-<!-- Create procession -->
+<!-- Create parade -->
 <security:authorize access="hasRole('BROTHERHOOD')">
 <jstl:if test = "${row.brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 	
 		
-		<acme:button url="procession/brotherhood/create.do" code="procession.create"/>
+		<acme:button url="parade/brotherhood/create.do" code="parade.create"/>
 	
 	</jstl:if>
 </security:authorize> 

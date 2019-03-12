@@ -15,12 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import services.BrotherhoodService;
 import services.MemberService;
 import services.PositionService;
-import services.ProcessionService;
+import services.ParadeService;
 import services.RequestService;
 import controllers.AbstractController;
 import domain.Brotherhood;
 import domain.Member;
-import domain.Procession;
+import domain.Parade;
 
 @Controller
 @RequestMapping("/dashboard/administrator")
@@ -35,7 +35,7 @@ public class DashboardAdministratorController extends AbstractController {
 	private BrotherhoodService	brotherhoodService;
 
 	@Autowired
-	private ProcessionService	processionService;
+	private ParadeService	paradeService;
 
 	@Autowired
 	private RequestService		requestService;
@@ -54,7 +54,7 @@ public class DashboardAdministratorController extends AbstractController {
 		final Brotherhood largestBrotherhood;
 		final Brotherhood smallestBroterhood;
 
-		final Collection<Procession> startingSoonProcession;
+		final Collection<Parade> startingSoonParade;
 
 		final Double ratioPendingRequest, ratioapprovedRequest, ratioRejectedRequest;
 
@@ -83,7 +83,7 @@ public class DashboardAdministratorController extends AbstractController {
 		smallestBroterhood = this.brotherhoodService.smallestBrotherhood();
 
 		// Starting Soon
-		startingSoonProcession = this.processionService.startingSoonProcessions();
+		startingSoonParade = this.paradeService.startingSoonParades();
 
 		// Ratios
 		ratioPendingRequest = this.requestService.ratioPendingRequest();
@@ -116,7 +116,7 @@ public class DashboardAdministratorController extends AbstractController {
 		result.addObject("largestBrotherhood", largestBrotherhood);
 		result.addObject("smallestBroterhood", smallestBroterhood);
 
-		result.addObject("startingSoonProcession", startingSoonProcession);
+		result.addObject("startingSoonParade", startingSoonParade);
 
 		result.addObject("ratioPendingRequest", ratioPendingRequest);
 		result.addObject("ratioapprovedRequest", ratioapprovedRequest);

@@ -15,26 +15,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ProcessionService;
+import services.ParadeService;
 import controllers.AbstractController;
-import domain.Procession;
+import domain.Parade;
 
 @Controller
-@RequestMapping("/procession/brotherhood")
-public class ProcessionBrotherhoodController extends AbstractController {
+@RequestMapping("/parade/brotherhood")
+public class ParadeBrotherhoodController extends AbstractController {
 
 	@Autowired
-	private ProcessionService	processionService;
+	private ParadeService	paradeService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int brotherhoodId) {
 		ModelAndView result;
-		final Collection<Procession> processions = this.processionService.findAllFinalOfOneBrotherhood(brotherhoodId);
+		final Collection<Parade> parades = this.paradeService.findAllFinalOfOneBrotherhood(brotherhoodId);
 
-		result = new ModelAndView("procession/list");
-		result.addObject("processions", processions);
-		result.addObject("requestURI", "procession/brotherhood/list.do");
+		result = new ModelAndView("parade/list");
+		result.addObject("parades", parades);
+		result.addObject("requestURI", "parade/brotherhood/list.do");
 
 		return result;
 	}
@@ -42,130 +42,130 @@ public class ProcessionBrotherhoodController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		Procession procession;
+		Parade parade;
 
-		procession = this.processionService.create();
-		result = this.createModelAndView(procession);
+		parade = this.paradeService.create();
+		result = this.createModelAndView(parade);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int processionId) {
+	public ModelAndView edit(@RequestParam final int paradeId) {
 		ModelAndView result;
-		Procession procession;
+		Parade parade;
 
-		procession = this.processionService.findOne(processionId);
-		Assert.notNull(procession);
-		result = this.createEditModelAndView(procession);
+		parade = this.paradeService.findOne(paradeId);
+		Assert.notNull(parade);
+		result = this.createEditModelAndView(parade);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@ModelAttribute("procession") Procession procession, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("parade") Parade parade, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			procession = this.processionService.reconstruct(procession, binding);
+			parade = this.paradeService.reconstruct(parade, binding);
 			if (binding.hasErrors()) {
-				result = this.createModelAndView(procession);
+				result = this.createModelAndView(parade);
 				for (final ObjectError e : binding.getAllErrors())
 					System.out.println(e.getObjectName() + " error [" + e.getDefaultMessage() + "] " + Arrays.toString(e.getCodes()));
 			} else {
-				procession = this.processionService.save(procession);
+				parade = this.paradeService.save(parade);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			}
 
 		} catch (final Throwable oops) {
-			result = this.createModelAndView(procession, "procession.commit.error");
+			result = this.createModelAndView(parade, "parade.commit.error");
 		}
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveDraft")
-	public ModelAndView saveDraft(@ModelAttribute("procession") Procession procession, final BindingResult binding) {
+	public ModelAndView saveDraft(@ModelAttribute("parade") Parade parade, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			procession = this.processionService.reconstruct(procession, binding);
+			parade = this.paradeService.reconstruct(parade, binding);
 			if (binding.hasErrors()) {
-				result = this.createEditModelAndView(procession);
+				result = this.createEditModelAndView(parade);
 				for (final ObjectError e : binding.getAllErrors())
 					System.out.println(e.getObjectName() + " error [" + e.getDefaultMessage() + "] " + Arrays.toString(e.getCodes()));
 			} else {
-				procession = this.processionService.saveAsDraft(procession);
+				parade = this.paradeService.saveAsDraft(parade);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			}
 
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(procession, "procession.commit.error");
+			result = this.createEditModelAndView(parade, "parade.commit.error");
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveFinal")
-	public ModelAndView saveFinal(@ModelAttribute("procession") Procession procession, final BindingResult binding) {
+	public ModelAndView saveFinal(@ModelAttribute("parade") Parade parade, final BindingResult binding) {
 		ModelAndView result;
 
 		try {
-			procession = this.processionService.reconstruct(procession, binding);
+			parade = this.paradeService.reconstruct(parade, binding);
 			if (binding.hasErrors()) {
 				System.out.println(binding.getAllErrors());
-				result = this.createEditModelAndView(procession);
+				result = this.createEditModelAndView(parade);
 			} else {
-				this.processionService.save(procession);
+				this.paradeService.save(parade);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			}
 
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(procession, "procession.commit.error");
+			result = this.createEditModelAndView(parade, "parade.commit.error");
 		}
 
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Procession procession, final BindingResult binding) {
+	public ModelAndView delete(final Parade parade, final BindingResult binding) {
 		ModelAndView result;
 		try {
-			this.processionService.delete(procession);
+			this.paradeService.delete(parade);
 			result = new ModelAndView("redirect:/welcome/index.do");
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(procession, "procession.commit.error");
+			result = this.createEditModelAndView(parade, "parade.commit.error");
 		}
 		return result;
 	}
 
 	// -------------------
-	protected ModelAndView createEditModelAndView(final Procession procession) {
+	protected ModelAndView createEditModelAndView(final Parade parade) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(procession, null);
+		result = this.createEditModelAndView(parade, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Procession procession, final String messageCode) {
+	protected ModelAndView createEditModelAndView(final Parade parade, final String messageCode) {
 		ModelAndView result;
 
-		result = new ModelAndView("procession/edit");
-		result.addObject("procession", procession);
+		result = new ModelAndView("parade/edit");
+		result.addObject("parade", parade);
 
 		result.addObject("message", messageCode);
 
 		return result;
 	}
 
-	private ModelAndView createModelAndView(final Procession procession) {
+	private ModelAndView createModelAndView(final Parade parade) {
 		ModelAndView result;
 
-		result = this.createModelAndView(procession, null);
+		result = this.createModelAndView(parade, null);
 		return result;
 	}
 
-	private ModelAndView createModelAndView(final Procession procession, final String messageCode) {
+	private ModelAndView createModelAndView(final Parade parade, final String messageCode) {
 		ModelAndView result;
-		result = new ModelAndView("procession/create");
-		result.addObject("procession", procession);
+		result = new ModelAndView("parade/create");
+		result.addObject("parade", parade);
 		result.addObject("message", messageCode);
 		return result;
 	}

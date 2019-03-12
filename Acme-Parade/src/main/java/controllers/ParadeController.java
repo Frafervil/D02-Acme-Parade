@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import repositories.FloatRepository;
-import services.ProcessionService;
-import domain.Procession;
+import services.ParadeService;
+import domain.Parade;
 
 @Controller
-@RequestMapping("/procession")
-public class ProcessionController extends AbstractController {
+@RequestMapping("/parade")
+public class ParadeController extends AbstractController {
 
 	// Servicios
 
 	@Autowired
-	private ProcessionService processionService;
+	private ParadeService paradeService;
 
 	// Repositorios
 
@@ -29,23 +29,23 @@ public class ProcessionController extends AbstractController {
 	private FloatRepository floatRepository;
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int processionId) {
+	public ModelAndView display(@RequestParam final int paradeId) {
 		// Inicializa resultado
 		ModelAndView result;
-		Procession procession;
+		Parade parade;
 		Collection<domain.Float> floats;
 
 		// Busca en el repositorio
-		procession = this.processionService.findOne(processionId);
-		Assert.notNull(procession);
+		parade = this.paradeService.findOne(paradeId);
+		Assert.notNull(parade);
 
-		floats = this.floatRepository.findByProcessionId(processionId);
+		floats = this.floatRepository.findByParadeId(paradeId);
 		Assert.notNull(floats);
 
 		// Crea y añade objetos a la vista
-		result = new ModelAndView("procession/display");
-		result.addObject("requestURI", "procession/display.do");
-		result.addObject("procession", procession);
+		result = new ModelAndView("parade/display");
+		result.addObject("requestURI", "parade/display.do");
+		result.addObject("parade", parade);
 		result.addObject("floats", floats);
 
 		// Envía la vista

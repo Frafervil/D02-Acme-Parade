@@ -18,33 +18,33 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="procession/brotherhood/edit.do" modelAttribute="procession">
+<form:form action="parade/brotherhood/edit.do" modelAttribute="parade">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
 		
 		
-		<acme:textbox code="procession.title" path="title"/>
+		<acme:textbox code="parade.title" path="title"/>
 		
-		<acme:textarea code="procession.description" path="description"/>
+		<acme:textarea code="parade.description" path="description"/>
 		
-		<acme:textbox code="procession.moment" path="moment" placeholder="dd/MM/yyyy HH:mm" />
+		<acme:textbox code="parade.moment" path="moment" placeholder="dd/MM/yyyy HH:mm" />
 		
-		<acme:textbox code="procession.maxRow" path="maxRow"/>
+		<acme:textbox code="parade.maxRow" path="maxRow"/>
 		
-		<acme:textbox code="procession.maxColumn" path="maxColumn"/>	
+		<acme:textbox code="parade.maxColumn" path="maxColumn"/>	
 		
-		<jstl:if test="${procession.isDraft == true}">
+		<jstl:if test="${parade.isDraft == true}">
 		
-		<acme:submit name="saveDraft" code="procession.saveDraft"/>
+		<acme:submit name="saveDraft" code="parade.saveDraft"/>
 		
 		</jstl:if>
 		
-		<acme:submit name="saveFinal" code="procession.saveFinal"/>
+		<acme:submit name="saveFinal" code="parade.saveFinal"/>
 		
-		<jstl:if test="${procession.id != 0 }">
-			<acme:submit name="delete" code="procession.delete"/>
+		<jstl:if test="${parade.id != 0 }">
+			<acme:submit name="delete" code="parade.delete"/>
 		</jstl:if>
 		
-		<acme:cancel url="welcome/index" code="procession.cancel"/>
+		<acme:cancel url="welcome/index" code="parade.cancel"/>
 		
 </form:form>

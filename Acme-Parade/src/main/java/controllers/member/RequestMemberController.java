@@ -19,11 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.MemberService;
 import services.PlaceService;
-import services.ProcessionService;
+import services.ParadeService;
 import services.RequestService;
 import controllers.AbstractController;
 import domain.Member;
-import domain.Procession;
+import domain.Parade;
 import domain.Request;
 
 @Controller
@@ -39,7 +39,7 @@ public class RequestMemberController extends AbstractController {
 	private MemberService		memberService;
 
 	@Autowired
-	private ProcessionService	processionService;
+	private ParadeService	paradeService;
 
 	@Autowired
 	private PlaceService		placeService;
@@ -51,16 +51,16 @@ public class RequestMemberController extends AbstractController {
 	public ModelAndView list() {
 		final ModelAndView result;
 		final Collection<Request> requests;
-		Collection<Procession> processions;
+		Collection<Parade> parades;
 		Member principal;
 
 		principal = this.memberService.findByPrincipal();
 		requests = this.requestService.findByPrincipal();
-		processions = this.processionService.findAllAvailableRequest(principal.getId());
+		parades = this.paradeService.findAllAvailableRequest(principal.getId());
 
 		result = new ModelAndView("request/list");
 		result.addObject("requests", requests);
-		result.addObject("processions", processions);
+		result.addObject("parades", parades);
 		result.addObject("requestURI", "request/member/list.do");
 
 		return result;
@@ -73,11 +73,11 @@ public class RequestMemberController extends AbstractController {
 		final ModelAndView result;
 		Map<String, List<Request>> groupedRequest;
 		final Collection<Request> requests;
-		Collection<Procession> processions;
+		Collection<Parade> parades;
 		Member principal;
 
 		principal = this.memberService.findByPrincipal();
-		processions = this.processionService.findAllAvailableRequest(principal.getId());
+		parades = this.paradeService.findAllAvailableRequest(principal.getId());
 
 		groupedRequest = this.requestService.groupByStatus(this.requestService.findByPrincipal());
 
@@ -94,7 +94,7 @@ public class RequestMemberController extends AbstractController {
 
 		result = new ModelAndView("request/list");
 		result.addObject("requests", requests);
-		result.addObject("processions", processions);
+		result.addObject("parades", parades);
 		result.addObject("requestURI", "request/member/list.do");
 
 		return result;
@@ -151,11 +151,11 @@ public class RequestMemberController extends AbstractController {
 	// Creation
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int processionId) {
+	public ModelAndView create(@RequestParam final int paradeId) {
 		ModelAndView result;
 		final Request request;
 
-		request = this.requestService.create(processionId);
+		request = this.requestService.create(paradeId);
 
 		result = this.createEditModelAndView(request);
 

@@ -78,9 +78,9 @@
 
 	<!-- Attributes -->
 
-	<spring:message code="request.procession.title"
+	<spring:message code="request.parade.title"
 	var="titleHeader" />
-	<display:column property="procession.title" title="${titleHeader}"
+	<display:column property="parade.title" title="${titleHeader}"
 		sortable="true"/>
 
 
@@ -144,14 +144,14 @@
 <br/>
 <br/>
 <security:authorize access="hasRole('MEMBER')">
-<h3><spring:message code="request.procession.list" /></h3>
-<display:table name="processions" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
-	<spring:message code="request.procession.title" var="titleHeader" />
+<h3><spring:message code="request.parade.list" /></h3>
+<display:table name="parades" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
+	<spring:message code="request.parade.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true"/>
 
 		<display:column>
 		
-				<a href="request/member/create.do?processionId=${row.id}" >
+				<a href="request/member/create.do?paradeId=${row.id}" >
 						<spring:message code="request.create" />
 				</a>					
 				
