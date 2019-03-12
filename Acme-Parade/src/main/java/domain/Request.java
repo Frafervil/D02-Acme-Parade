@@ -25,7 +25,7 @@ public class Request extends DomainEntity {
 	private String		status;
 	private String		rejectionReason;
 	private Place		place;
-	private Procession	procession;
+	private Parade	parade;
 	private Member		member;
 
 
@@ -62,12 +62,12 @@ public class Request extends DomainEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Procession getProcession() {
-		return this.procession;
+	public Parade getParade() {
+		return this.parade;
 	}
 
-	public void setProcession(final Procession procession) {
-		this.procession = procession;
+	public void setParade(final Parade parade) {
+		this.parade = parade;
 	}
 
 	@NotNull

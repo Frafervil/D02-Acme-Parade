@@ -37,8 +37,8 @@
 		<bean class="converters.FloatToStringConverter" />
 		<bean class="converters.StringToFloatConverter" />
 
-		<bean class="converters.ProcessionToStringConverter" />
-		<bean class="converters.StringToProcessionConverter" />
+		<bean class="converters.ParadeToStringConverter" />
+		<bean class="converters.StringToParadeConverter" />
 		
 		<bean class="converters.PositionToStringConverter" />
 		<bean class="converters.StringToPositionConverter" />

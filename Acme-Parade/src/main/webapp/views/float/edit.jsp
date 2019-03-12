@@ -29,8 +29,8 @@
 		<spring:message code = "float.pictures.placeholder" var="picturePlaceholder"/>
 		<acme:textarea code="float.pictures" path="pictures"/>
 		
-		<acme:select code="float.procession" path="procession"
-		items="${processions}" itemLabel="title" id="procession"/>
+		<acme:select code="float.parade" path="parade"
+		items="${parades}" itemLabel="title" id="parade"/>
 		
 		<acme:submit name="save" code="float.save"/>
 		

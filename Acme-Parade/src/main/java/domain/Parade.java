@@ -25,7 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(indexes = {
 	@Index(columnList = "isDraft")
 })
-public class Procession extends DomainEntity {
+public class Parade extends DomainEntity {
 
 	private String	title;
 	private String	description;

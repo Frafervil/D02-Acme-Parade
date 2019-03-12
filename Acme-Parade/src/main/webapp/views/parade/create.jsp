@@ -18,25 +18,25 @@
 
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="procession/brotherhood/create.do" modelAttribute="procession">
+<form:form action="parade/brotherhood/create.do" modelAttribute="parade">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
 		
 		
-		<acme:textbox code="procession.title" path="title" placeholder="El critsto"/>
+		<acme:textbox code="parade.title" path="title" placeholder="El critsto"/>
 		
-		<acme:textarea code="procession.description" path="description"/>
+		<acme:textarea code="parade.description" path="description"/>
 		
-		<acme:textbox code="procession.moment" path="moment" placeholder="dd/MM/yyyy HH:mm" />
+		<acme:textbox code="parade.moment" path="moment" placeholder="dd/MM/yyyy HH:mm" />
 		
-		<acme:textbox code="procession.maxRow" path="maxRow"/>
+		<acme:textbox code="parade.maxRow" path="maxRow"/>
 		
-		<acme:textbox code="procession.maxColumn" path="maxColumn"/>	
-		
-		
-		<acme:submit name="save" code="procession.saveFinal"/>
+		<acme:textbox code="parade.maxColumn" path="maxColumn"/>	
 		
 		
-		<acme:cancel url="welcome/index.do" code="procession.cancel"/>
+		<acme:submit name="save" code="parade.saveFinal"/>
+		
+		
+		<acme:cancel url="welcome/index.do" code="parade.cancel"/>
 		
 </form:form>

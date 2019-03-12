@@ -34,7 +34,7 @@
 	</display:column>
 	
 	<display:column>
-	<a href="procession/brotherhood/list.do?brotherhoodId=${row.id }"> <spring:message code="brotherhood.processions" /></a>
+	<a href="parade/brotherhood/list.do?brotherhoodId=${row.id }"> <spring:message code="brotherhood.parades" /></a>
 	</display:column>
 	
 	

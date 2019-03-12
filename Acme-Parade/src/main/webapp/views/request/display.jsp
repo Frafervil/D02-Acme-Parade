@@ -18,22 +18,22 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-	<b><spring:message code="request.procession.title" /></b>:
-	<jstl:out value="${request.procession.title}"/><br/>
+	<b><spring:message code="request.parade.title" /></b>:
+	<jstl:out value="${request.parade.title}"/><br/>
 	<br>	
-	<b><spring:message code="request.procession.member" /></b>:
+	<b><spring:message code="request.parade.member" /></b>:
 	<jstl:out value="${request.member.name}"/><br/>
 	<br>
-	<b><spring:message code="request.procession.status" /></b>:
+	<b><spring:message code="request.parade.status" /></b>:
 	<jstl:out value="${request.status}"/><br/>
 	
 	<jstl:if test="${request.status == 'REJECTED'}">
-		<b><spring:message code="request.procession.rejection" /></b>:
+		<b><spring:message code="request.parade.rejection" /></b>:
 		<jstl:out value="${request.rejectionReason}"/><br/>
 	</jstl:if>
 	
 	<jstl:if test="${request.status == 'APPROVED'}">
-		<b><spring:message code="request.procession.place" /></b>:
+		<b><spring:message code="request.parade.place" /></b>:
 		<br/>
 		<jstl:out value="Row: ${request.place.rowP}"/><br/>
 		<jstl:out value="Column: ${request.place.columnP}"/><br/>

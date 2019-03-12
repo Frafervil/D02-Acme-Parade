@@ -211,8 +211,8 @@
 	<bean id="customisation" class="domain.Customisation">
 		<property name="systemName" value="Acme Parade" />
 		<property name="welcomeBanner" value="https://tinyurl.com/acme-parade-banner" />
-		<property name="welcomeMessageEn" value="Welcome to Acme Parade, the site to organise your processions." />
-		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Parade! Tu sitio para organizar procesiones." />
+		<property name="welcomeMessageEn" value="Welcome to Acme Parade, the site to organise your parades." />
+		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Parade! Tu sitio para organizar desfiles." />
 		<property name="countryCode" value="+34" />
 	</bean>
 
@@ -255,7 +255,7 @@
 			</list>
 		</property>
 		<property name="brotherhood" ref="brotherhood1" />
-		<property name="procession" ref="procession1" />
+		<property name="parade" ref="parade1" />
 	</bean>
 
 	<bean id="float2" class="domain.Float">
@@ -268,7 +268,7 @@
 			</list>
 		</property>
 		<property name="brotherhood" ref="brotherhood1" />
-		<property name="procession" ref="procession1" />
+		<property name="parade" ref="parade1" />
 	</bean>
 
 	<bean id="float3" class="domain.Float">
@@ -281,7 +281,7 @@
 			</list>
 		</property>
 		<property name="brotherhood" ref="brotherhood2" />
-		<property name="procession" ref="procession2" />
+		<property name="parade" ref="parade2" />
 	</bean>
 
 	<bean id="float4" class="domain.Float">
@@ -306,7 +306,7 @@
 			</list>
 		</property>
 		<property name="brotherhood" ref="brotherhood3" />
-		<property name="procession" ref="procession3" />
+		<property name="parade" ref="parade3" />
 	</bean>
 
 
@@ -375,28 +375,28 @@
 		<property name="member" ref="member1" />
 		<property name="status" value="PENDING" />
 		<property name="place" ref="place1" />
-		<property name="procession" ref="procession1" />
+		<property name="parade" ref="parade1" />
 	</bean>
 
 	<bean class="domain.Request" id="request2">
 		<property name="member" ref="member2" />
 		<property name="status" value="REJECTED" />
 		<property name="rejectionReason" value="Demasiado mayor para desfilar" />
-		<property name="procession" ref="procession2" />
+		<property name="parade" ref="parade2" />
 	</bean>
 
 	<bean class="domain.Request" id="request3">
 		<property name="member" ref="member1" />
 		<property name="status" value="APPROVED" />
 		<property name="place" ref="place3" />
-		<property name="procession" ref="procession1" />
+		<property name="parade" ref="parade1" />
 	</bean>
 
-	<!-- Processions -->
+	<!-- Parades -->
 
-	<bean class="domain.Procession" id="procession1">
-		<property name="title" value="title procession 1" />
-		<property name="description" value="description procession1" />
+	<bean class="domain.Parade" id="parade1">
+		<property name="title" value="title parade 1" />
+		<property name="description" value="description parade1" />
 		<property name="moment" value="01/03/2018 12:00" />
 		<property name="ticker" value="180301-AAAAAA" />
 		<property name="isDraft" value="false" />
@@ -405,9 +405,9 @@
 		<property name="brotherhood" ref="brotherhood1" />
 	</bean>
 
-	<bean class="domain.Procession" id="procession2">
-		<property name="title" value="title procession 2" />
-		<property name="description" value="description procession2" />
+	<bean class="domain.Parade" id="parade2">
+		<property name="title" value="title parade 2" />
+		<property name="description" value="description parade2" />
 		<property name="moment" value="02/03/2018 12:00" />
 		<property name="ticker" value="180302-AAABBB" />
 		<property name="isDraft" value="false" />
@@ -416,9 +416,9 @@
 		<property name="brotherhood" ref="brotherhood2" />
 	</bean>
 
-	<bean class="domain.Procession" id="procession3">
-		<property name="title" value="title procession 3" />
-		<property name="description" value="description procession3" />
+	<bean class="domain.Parade" id="parade3">
+		<property name="title" value="title parade 3" />
+		<property name="description" value="description parade3" />
 		<property name="moment" value="03/03/2018 12:00" />
 		<property name="ticker" value="180303-CCCBBB" />
 		<property name="isDraft" value="true" />
@@ -836,7 +836,7 @@
 		<property name="moment" value="2017/10/01 17:34" />
 		<property name="subject" value="Aviso" />
 		<property name="body"
-			value="El miembro no asistirá a la procesión de este Domingo." />
+			value="El miembro no asistirá al desfile de este Domingo." />
 		<property name="priority" value="NEUTRAL" />
 		<property name="tags">
 			<list>
@@ -869,7 +869,7 @@
 		<property name="moment" value="2018/10/01 16:24" />
 		<property name="subject" value="SEXO" />
 		<property name="body"
-			value="Sexo del sexo que seas, puedes participar en cualquier procesión." />
+			value="Sexo del sexo que seas, puedes participar en cualquier desfile." />
 		<property name="priority" value="NEUTRAL" />
 		<property name="tags">
 			<list>

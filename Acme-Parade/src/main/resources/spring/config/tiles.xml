@@ -29,7 +29,7 @@
 		<value>/views/float/tiles.xml</value>
 		<value>/views/request/tiles.xml</value>
 		<value>/views/enrolment/tiles.xml</value>
-		<value>/views/procession/tiles.xml</value>
+		<value>/views/parade/tiles.xml</value>
 		<value>/views/terms/tiles.xml</value>
 		<value>/views/customisation/tiles.xml</value>
 		<value>/views/position/tiles.xml</value>

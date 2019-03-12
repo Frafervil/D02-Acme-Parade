@@ -19,18 +19,18 @@
 	<form:hidden path="version" />
 	<form:hidden path="status" />
 	<form:hidden path="rejectionReason" />
-	<form:hidden path="procession" />
+	<form:hidden path="parade" />
 	<form:hidden path="member" />
 	
 	
-	<spring:message code="request.procession.title" />: <jstl:out value="${request.procession.title} "></jstl:out>
+	<spring:message code="request.parade.title" />: <jstl:out value="${request.parade.title} "></jstl:out>
 	<br />
 	<br />	
 	<form:label path="place">
-		<spring:message code="request.procession.place" />:<br />
+		<spring:message code="request.parade.place" />:<br />
 	</form:label>
-	<spring:message code="request.procession.place.row" />: <form:input path="place.rowP" placeholder="${request.place.rowP }"/>
-	<spring:message code="request.procession.place.column" />: <form:input path="place.columnP" placeholder="${request.place.columnP }"/>
+	<spring:message code="request.parade.place.row" />: <form:input path="place.rowP" placeholder="${request.place.rowP }"/>
+	<spring:message code="request.parade.place.column" />: <form:input path="place.columnP" placeholder="${request.place.columnP }"/>
 	<form:errors cssClass="error" path="place" />
 	<br />
 	<br />
@@ -55,12 +55,12 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="status" />
-	<form:hidden path="procession" />
+	<form:hidden path="parade" />
 	<form:hidden path="member" />
 	<form:hidden path="place" />
 	
 	<form:label path="rejectionReason">
-	<spring:message code="request.procession.rejection" />:
+	<spring:message code="request.parade.rejection" />:
 	</form:label>
 	<br />
 	<form:textarea path="rejectionReason" />
@@ -89,16 +89,16 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="status" />
-	<form:hidden path="procession" />
+	<form:hidden path="parade" />
 	<form:hidden path="member" />
 	<form:hidden path="place" />
 	<form:hidden path="rejectionReason" />
 	
 	<form:label path="place">
-		<spring:message code="request.procession.place" />:<br />
+		<spring:message code="request.parade.place" />:<br />
 	</form:label>
-	<spring:message code="request.procession.place.row" />: <form:input path="place.rowP" placeholder="${request.place.rowP }"/>
-	<spring:message code="request.procession.place.column" />: <form:input path="place.columnP" placeholder="${request.place.columnP }"/>
+	<spring:message code="request.parade.place.row" />: <form:input path="place.rowP" placeholder="${request.place.rowP }"/>
+	<spring:message code="request.parade.place.column" />: <form:input path="place.columnP" placeholder="${request.place.columnP }"/>
 	<form:errors cssClass="error" path="place" />
 	<br />
 	
