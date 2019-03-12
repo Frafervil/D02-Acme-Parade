@@ -19,6 +19,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<h2 style="text-align: center;">
+	<strong><jstl:out value="PRIVACY POLICY" /></strong>
+</h2>
 
 <p>&nbsp;</p>
 <p><jstl:out value="This Privacy Policy sets forth the terms under which Acme-Parade
@@ -29,7 +32,8 @@
 	ensuring that it will only be used from agree to the terms of this
 	document. However, this Policy Privacy Policy may change over time or
 	be updated by what we recommend and emphasize that you continually
-	review this page to ensure that you agree to such changes." /></p>
+	review this page to ensure that you agree to such changes. It should be noted that 
+	the company providing this service is Acme Madrugá Inc. and its name is Acme Parade." /></p>
 <p>
 	<strong><jstl:out value="Information that is collected" /></strong>
 </p>

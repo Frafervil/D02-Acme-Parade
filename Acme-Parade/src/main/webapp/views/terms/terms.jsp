@@ -32,7 +32,9 @@
 	acuerdo con los términos de este documento. Sin embargo esta Política
 	de Privacidad puede cambiar con el tiempo o ser actualizada por lo que
 	le recomendamos y enfatizamos revisar continuamente esta página para
-	asegurarse que está de acuerdo con dichos cambios." /></p>
+	asegurarse que está de acuerdo con dichos cambios. Cabe destacar que la 
+	compañía que proporciona este servicio es Acme Madrugá Inc. y el nombre 
+	del mismo es Acme Parade." /></p>
 <p>
 	<strong><jstl:out value="Información que es recogida" /></strong>
 </p>
