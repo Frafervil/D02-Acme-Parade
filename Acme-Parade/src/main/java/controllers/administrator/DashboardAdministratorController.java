@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BrotherhoodService;
+import services.HistoryService;
 import services.MemberService;
-import services.PositionService;
 import services.ParadeService;
+import services.PositionService;
 import services.RequestService;
 import controllers.AbstractController;
 import domain.Brotherhood;
@@ -35,13 +36,16 @@ public class DashboardAdministratorController extends AbstractController {
 	private BrotherhoodService	brotherhoodService;
 
 	@Autowired
-	private ParadeService	paradeService;
+	private ParadeService		paradeService;
 
 	@Autowired
 	private RequestService		requestService;
 
 	@Autowired
 	private PositionService		positionService;
+
+	@Autowired
+	private HistoryService		historyService;
 
 
 	// Display
@@ -62,6 +66,11 @@ public class DashboardAdministratorController extends AbstractController {
 
 		final Map<String, Integer> positionStats;
 
+		final Double avgRecordPerHistory, minRecordPerHistory, maxRecordPerHistory, stddevRecordPerHistory;
+
+		final Brotherhood largestBrotherhoodHistory;
+
+		final Collection<Brotherhood> brotherhoodsMoreThanAverage;
 		// Stadistics
 
 		// avg
@@ -106,6 +115,21 @@ public class DashboardAdministratorController extends AbstractController {
 			position.add(entry.getKey());
 			count.add(entry.getValue());
 		}
+
+		// History
+
+		avgRecordPerHistory = this.historyService.avgRecordPerHistory();
+
+		minRecordPerHistory = this.historyService.minRecordPerHistory();
+
+		maxRecordPerHistory = this.historyService.maxRecordPerHistory();
+
+		stddevRecordPerHistory = this.historyService.stddevRecordPerHistory();
+
+		largestBrotherhoodHistory = this.historyService.largestBrotherhood();
+
+		brotherhoodsMoreThanAverage = this.historyService.brotherhoodsMoreThanAverage();
+
 		//
 		result = new ModelAndView("administrator/dashboard");
 		result.addObject("avgMemberPerBrotherhood", avgMemberPerBrotherhood);
@@ -126,6 +150,13 @@ public class DashboardAdministratorController extends AbstractController {
 
 		result.addObject("position", position);
 		result.addObject("count", count);
+
+		result.addObject("avgRecordPerHistory", avgRecordPerHistory);
+		result.addObject("minRecordPerHistory", minRecordPerHistory);
+		result.addObject("maxRecordPerHistory", maxRecordPerHistory);
+		result.addObject("stddevRecordPerHistory", stddevRecordPerHistory);
+		result.addObject("largestBrotherhoodHistory", largestBrotherhoodHistory);
+		result.addObject("brotherhoodsMoreThanAverage", brotherhoodsMoreThanAverage);
 
 		return result;
 

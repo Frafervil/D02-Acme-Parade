@@ -104,6 +104,41 @@
 <jstl:out value="${positionStats}"></jstl:out>
 <canvas id="myChart" width="500px"></canvas>
 
+	<h3><spring:message code="administrator.recordsPerHistory" /></h3>
+	<table class="displayStyle">
+		<tr>
+			<th colspan="5"><spring:message code="administrator.statistics" /></th>
+		</tr>
+		
+		<tr>
+			<th><spring:message code="administrator.metrics" /></th>
+			<th><spring:message code="administrator.average" /></th>
+			<th><spring:message code="administrator.minimum" /></th>
+			<th><spring:message code="administrator.maximum" /></th>
+			<th><spring:message code="administrator.std" /></th>
+		</tr>
+		
+		<tr>
+			<td><spring:message code="administrator.memberPerBrotherhood" /></td>
+			<td><jstl:out value="${avgRecordPerHistory }" /></td>
+			<td><jstl:out value="${minRecordPerHistory }" /></td>
+			<td><jstl:out value="${maxRecordPerHistory }" /></td>
+			<td><jstl:out value="${stddevRecordPerHistory }" /></td>
+		</tr>
+		
+	</table>
+
+	<h3><spring:message code="administrator.brotherhoodLargestHistory" /></h3>
+	<jstl:out value="${largestBrotherhoodHistory.title}"></jstl:out>
+	
+	<h3><spring:message code="administrator.brotherhoodsHistoryMoreAvg" /></h3>
+		<display:table pagesize="10" class="displaytag" 
+	name="brotherhoodsMoreThanAverage" requestURI="dashboard/administrator/display.do" id="brotherhood">
+		
+		<spring:message code="administrator.brotherhood.title" var="title" />
+		<display:column property="title" title="${title }" sortable="true"/>
+	</display:table>
+
 </security:authorize>
 <script>
 window.onload = function() {
