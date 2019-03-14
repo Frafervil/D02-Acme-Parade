@@ -897,4 +897,134 @@
 		</property>
 
 	</bean>
+	
+	<!-- Histories -->
+	
+	<bean class="domain.History" id="history1">
+		<property name="brotherhood" ref="brotherhood1" />
+		<property name="inceptionRecord" ref="inceptionRecord1">
+		</property>
+		<property name="periodRecords">
+			<list>
+				<ref bean="periodRecord1" />
+			</list>
+		</property>
+		<property name="legalRecords">
+			<list>
+				<ref bean="legalRecord1" />
+			</list>
+		</property>
+		<property name="linkRecords">
+			<list>
+				<ref bean="linkRecord1" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<ref bean="miscellaneousRecord1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.History" id="history2">
+		<property name="brotherhood" ref="brotherhood2" />
+		<property name="inceptionRecord" ref="inceptionRecord2">
+		</property>
+		<property name="periodRecords">
+			<list>
+		
+			</list>
+		</property>
+		<property name="legalRecords">
+			<list>
+	
+			</list>
+		</property>
+		<property name="linkRecords">
+			<list>
+				<ref bean="linkRecord2" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+		
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Inception Records -->
+	
+	<bean class="domain.InceptionRecord" id="inceptionRecord1">
+		<property name="title" value="Inception title 1" />
+		<property name="description" value="Inception description 1" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog51.com</value>
+				<value>http://www.fotolog52.com</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.InceptionRecord" id="inceptionRecord2">
+		<property name="title" value="Inception title 2" />
+		<property name="description" value="Inception description 2" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog53.com</value>
+				<value>http://www.fotolog54.com</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Period Records -->
+	
+	<bean class="domain.PeriodRecord" id="periodRecord1">
+		<property name="title" value="Period title 1" />
+		<property name="description" value="Period description 1" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog51.com</value>
+				<value>http://www.fotolog52.com</value>
+			</list>
+		</property>
+		<property name="startYear" value="2015" />
+		<property name="endYear" value="2018" />
+	</bean>
+	
+	<!-- Legal Records -->
+	
+	<bean class="domain.LegalRecord" id="legalRecord1">
+		<property name="title" value="Legal title 1" />
+		<property name="description" value="Legal description 1" />
+		<property name="legalName" value="Legal name 1" />
+		<property name="vatNumber" value="7" />
+		<property name="applicableLaws">
+			<list>
+				<value>Law number 1</value>
+				<value>Law number 2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Link Records -->
+	
+	<bean class="domain.LinkRecord" id="linkRecord1">
+		<property name="title" value="Link title 1" />
+		<property name="description" value="Link description 1" />
+		<property name="linkBrotherhood" value="http://www.linkBrotherhood1.com" />
+	</bean>
+	
+	<bean class="domain.LinkRecord" id="linkRecord2">
+		<property name="title" value="Link title 2" />
+		<property name="description" value="Link description 2" />
+		<property name="linkBrotherhood" value="http://www.linkBrotherhood2.com" />
+	</bean>
+	
+	<!-- Miscellaneous Records -->
+	
+	<bean class="domain.MiscellaneousRecord" id="miscellaneousRecord1">
+		<property name="title" value="Miscellaneous title 1" />
+		<property name="description" value="Miscellaneous description 1" />
+	</bean>
+	
 </beans>
