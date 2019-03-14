@@ -110,6 +110,8 @@
 					<li class="arrow"></li>
 					<li><a href="brotherhood/list.do"><spring:message
 								code="master.page.customer.list.brotherhoods" /></a></li>
+					<li><a href="history/list.do"><spring:message
+								code="master.page.list.histories" /></a></li>
 				</ul></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a>

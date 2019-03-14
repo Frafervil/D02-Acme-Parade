@@ -110,6 +110,14 @@
 		<security:intercept-url pattern="/message/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/messageBox/actor/list.do" access="isAuthenticated()" />
 		<security:intercept-url pattern="/message/administrator/create.do" access="hasRole('ADMIN')" /> 
+		
+		<security:intercept-url pattern="/history/list.do" access="permitAll" />
+		<security:intercept-url pattern="/history/display.do" access="permitAll" />
+		
+		<security:intercept-url pattern="/periodRecord/display.do" access="permitAll" />
+		<security:intercept-url pattern="/legalRecord/display.do" access="permitAll" />
+		<security:intercept-url pattern="/linkRecord/display.do" access="permitAll" />
+		<security:intercept-url pattern="/miscellaneousRecord/display.do" access="permitAll" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
