@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
+import services.MessageBoxService;
 import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
@@ -30,10 +31,13 @@ public class MessageController extends AbstractController {
 	// Services
 
 	@Autowired
-	private MessageService	messageService;
+	private MessageService		messageService;
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService		actorService;
+
+	@Autowired
+	private MessageBoxService	messageBoxService;
 
 
 	// Listing
@@ -110,6 +114,32 @@ public class MessageController extends AbstractController {
 			result = new ModelAndView("redirect:/messageBox/actor/list.do");
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(mensaje, "message.commit.error");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/exportData")
+	public ModelAndView exportData() {
+		ModelAndView result;
+		Message mensaje;
+		Actor principal;
+
+		principal = this.actorService.findByPrincipal();
+
+		try {
+			mensaje = this.messageService.create();
+			mensaje.getRecipients().add(principal);
+			mensaje.setBody("Name: " + principal.getName() + " || Middle name: " + principal.getMiddleName() + " || Surname: " + principal.getSurname() + " || Photo: " + principal.getPhoto() + " || Phone: " + principal.getPhone() + " || Address: "
+				+ principal.getAddress() + " || User name: " + principal.getUserAccount().getUsername());
+			mensaje.setPriority("HIGH");
+			mensaje.setSubject("Your data");
+
+			this.messageService.save(mensaje);
+
+			result = new ModelAndView("redirect:/messageBox/actor/list.do?messageBoxId=" + this.messageBoxService.findInBoxActor(principal).getId());
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/messageBox/actor/list.do");
 		}
 
 		return result;

@@ -110,7 +110,7 @@ public class MessageService {
 		message.setIsSpam(isSpam);
 		message.setSender(principal);
 
-		Assert.isTrue(!message.getRecipients().contains(principal));
+		//		Assert.isTrue(!message.getRecipients().contains(principal));
 
 		recipients = message.getRecipients();
 		boxes = message.getMessageBoxes();
