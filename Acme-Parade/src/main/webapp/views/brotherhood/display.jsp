@@ -145,4 +145,8 @@
 	
 </security:authorize>
 </jstl:if>
+
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
+	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
+</jstl:if>
 	

@@ -49,5 +49,9 @@
 
 <acme:button url="administrator/edit.do" code="administrator.edit"/>
 
+<jstl:if test="${actor.userAccount.username == pageContext.request.userPrincipal.name}">
+	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
+</jstl:if>
+
 </body>
 </html>

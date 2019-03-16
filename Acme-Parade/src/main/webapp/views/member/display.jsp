@@ -75,3 +75,6 @@
 	</jstl:choose>
 	</security:authorize>
 
+<jstl:if test="${member.userAccount.username == pageContext.request.userPrincipal.name}">
+	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
+</jstl:if>

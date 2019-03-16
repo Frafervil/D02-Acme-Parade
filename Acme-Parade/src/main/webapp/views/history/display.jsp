@@ -17,6 +17,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+	<b><spring:message code="history.brotherhood.title" /></b>:
+	<jstl:out value="${history.brotherhood.title}"/><br/>
+
 <!-- Inception record -->
 
 	<b><spring:message code="history.inceptionRecord.title" /></b>:
