@@ -59,7 +59,9 @@
 					<li><a href="brotherhood/list.do"><spring:message code="master.page.customer.list.brotherhoods" /></a></li>
 					<li><a href="member/list.do"><spring:message code="master.page.members" /></a></li>	
 					<li><a href="request/brotherhood/list.do"><spring:message code="master.page.brotherhood.request" /></a></li>
-					<li><a href="area/brotherhood/list.do"><spring:message code="master.page.brotherhood.area" /></a></li>					
+					<li><a href="area/brotherhood/list.do"><spring:message code="master.page.brotherhood.area" /></a></li>
+					<li><a href="history/brotherhood/display.do"><spring:message code="master.page.brotherhood.history" /></a></li>					
+				
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message code="master.page.terms" /></a>
