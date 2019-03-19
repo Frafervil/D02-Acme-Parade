@@ -33,9 +33,17 @@
 	<a href="float/brotherhood/list.do?brotherhoodId=${row.id }"> <spring:message code="brotherhood.floats" /></a>
 	</display:column>
 	
+	<security:authorize access="hasAnyRole('MEMBER', 'BROTHERHOOD', 'ADMIN')">
 	<display:column>
 	<a href="parade/brotherhood/list.do?brotherhoodId=${row.id }"> <spring:message code="brotherhood.parades" /></a>
 	</display:column>
+	</security:authorize>
+	
+	<security:authorize access="isAnonymous()">
+	<display:column>
+	<a href="parade/brotherhood/listAnonymous.do?brotherhoodId=${row.id }"> <spring:message code="brotherhood.parades" /></a>
+	</display:column>
+	</security:authorize>
 	
 	
 

@@ -203,6 +203,7 @@ public class BrotherhoodService {
 			result = brotherhood;
 		else
 			result = this.brotherhoodRepository.findOne(brotherhood.getId());
+		result.setTitle(brotherhood.getTitle());
 		result.setAddress(brotherhood.getAddress());
 		result.setEmail(brotherhood.getEmail());
 		result.setMessageBoxes(brotherhood.getMessageBoxes());

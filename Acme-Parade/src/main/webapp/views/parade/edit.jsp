@@ -33,11 +33,7 @@
 		
 		<acme:textbox code="parade.maxColumn" path="maxColumn"/>	
 		
-		<jstl:if test="${parade.isDraft == true}">
-		
 		<acme:submit name="saveDraft" code="parade.saveDraft"/>
-		
-		</jstl:if>
 		
 		<acme:submit name="saveFinal" code="parade.saveFinal"/>
 		
@@ -45,6 +41,6 @@
 			<acme:submit name="delete" code="parade.delete"/>
 		</jstl:if>
 		
-		<acme:cancel url="welcome/index" code="parade.cancel"/>
+		<acme:cancel url="welcome/index.do" code="parade.cancel"/>
 		
 </form:form>

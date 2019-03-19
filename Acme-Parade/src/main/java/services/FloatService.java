@@ -81,8 +81,6 @@ public class FloatService {
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
 
-		Assert.isTrue(floatB.getBrotherhood().equals(principal));
-
 		this.floatRepository.delete(floatB);
 	}
 

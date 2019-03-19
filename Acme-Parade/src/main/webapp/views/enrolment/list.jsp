@@ -22,5 +22,13 @@ class="displaytag">
 		
 	<spring:message code="enrolment.dropOutMoment" var="dropOutMomentHeader" />
 	<display:column property="dropOutMoment" title="${dropOutMomentHeader }"/>
+	
+	<display:column>
+	<security:authorize access="hasRole('MEMBER')">
+	<jstl:if test="${row.dropOutMoment == null}">
+		<a href="brotherhood/member/dropOut.do?brotherhoodId=${row.brotherhood.id}"><spring:message code="brotherhood.dropOut"/></a><br/>
+	</jstl:if>
+</security:authorize>
+	</display:column>
 		
 </display:table>

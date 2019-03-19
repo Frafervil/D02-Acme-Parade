@@ -119,7 +119,7 @@ public class ParadeService {
 				if (f.getParade().getId() == parade.getId())
 					f.setParade(null);
 
-		this.paradeRepository.delete(parade);
+		this.paradeRepository.delete(parade.getId());
 	}
 
 	// Business Methods
@@ -195,13 +195,13 @@ public class ParadeService {
 		Brotherhood principal;
 
 		Assert.notNull(parade);
-		Assert.isTrue(parade.getIsDraft());
 
 		principal = this.brotherhoodService.findByPrincipal();
 
 		Assert.notNull(principal);
 
 		parade.setIsDraft(true);
+		Assert.isTrue(parade.getIsDraft());
 		result = this.paradeRepository.save(parade);
 		Assert.notNull(result);
 		return result;
