@@ -32,4 +32,112 @@
 	
 	<!-- Other domain beans come here -->	
 	
+	<!-- Administrators -->
+
+	<bean class="domain.Administrator" id="administrator1">
+		<property name="name" value="Lorenzo" />
+		<property name="middleName" value="Rondan" />
+		<property name="surname" value="Dominguez" />
+		<property name="photo" value="http://mifoto.com" />
+		<property name="email" value="loren@" />
+		<property name="phone" value="+34912123123" />
+		<property name="address" value="C/ A nº1 Sevilla" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<!-- Customisation -->
+
+	<bean id="customisation" class="domain.Customisation">
+		<property name="systemName" value="Acme Parade" />
+		<property name="welcomeBanner" value="https://tinyurl.com/acme-parade-banner" />
+		<property name="welcomeMessageEn" value="Welcome to Acme Parade, the site to organise your parades." />
+		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Parade! Tu sitio para organizar desfiles." />
+		<property name="countryCode" value="+34" />
+	</bean>
+	
+	<!-- Positions -->
+
+	<bean class="domain.Position" id="position1">
+		<property name="englishName" value="President"/>
+		<property name="spanishName" value="Presidente"/>
+	</bean>
+
+	<bean class="domain.Position" id="position2">
+		<property name="englishName" value="Vice President"/>
+		<property name="spanishName" value="Vicepresidente"/>
+	</bean>
+
+	<bean class="domain.Position" id="position3">
+		<property name="englishName" value="Secretary"/>
+		<property name="spanishName" value="Secretario"/>
+	</bean>
+
+	<bean class="domain.Position" id="position4">
+		<property name="englishName" value="Treasurer"/>
+		<property name="spanishName" value="Tesorero"/>
+	</bean>
+
+	<bean class="domain.Position" id="position5">
+		<property name="englishName" value="Historian"/>
+		<property name="spanishName" value="Historiador"/>
+	</bean>
+
+	<bean class="domain.Position" id="position6">
+		<property name="englishName" value="Fundraiser"/>
+		<property name="spanishName" value="Promotor"/>
+	</bean>
+
+	<bean class="domain.Position" id="position7">
+		<property name="englishName" value="Officer"/>
+		<property name="spanishName" value="Vocal"/>
+	</bean>
+	
+	<!-- Message Boxes -->
+	
+	<bean class="domain.MessageBox" id="messagebox1">
+		<property name="name" value="in box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+	<bean class="domain.MessageBox" id="messagebox2">
+		<property name="name" value="out box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+	<bean class="domain.MessageBox" id="messagebox3">
+		<property name="name" value="trash box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+	<bean class="domain.MessageBox" id="messagebox4">
+		<property name="name" value="spam box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+	<bean class="domain.MessageBox" id="messagebox5">
+		<property name="name" value="notification box" />
+		<property name="isSystemBox" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="administrator1" />
+	</bean>
+	
 </beans>
