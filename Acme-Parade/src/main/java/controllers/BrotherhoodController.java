@@ -143,16 +143,16 @@ public class BrotherhoodController extends AbstractController {
 		try {
 			brotherhood = this.brotherhoodService.reconstruct(brotherhoodForm, binding);
 			if (binding.hasErrors()) {
-				for (final ObjectError e : binding.getAllErrors())
+				for (final ObjectError e : binding.getAllErrors()){
 					System.out.println(e.getObjectName() + " error [" + e.getDefaultMessage() + "] " + Arrays.toString(e.getCodes()));
-				result = this.createEditModelAndView(brotherhoodForm);
-			} else
+				}
+					result = this.createEditModelAndView(brotherhoodForm);
+			} else{
 				brotherhood = this.brotherhoodService.save(brotherhood);
-			result = new ModelAndView("welcome/index");
-
+				result = new ModelAndView("welcome/index");
+			}
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(brotherhoodForm, "brotherhood.commit.error");
-
 		}
 
 		return result;

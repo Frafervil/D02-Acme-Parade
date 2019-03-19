@@ -50,9 +50,14 @@
 		
 		<acme:checkbox code="administrator.confirmTerms" path="checkBox"/>
 		
-			<a href="terms/terms.do"><spring:message code="administrator.terms"/></a>
+			<jstl:if test="${cookie['language'].getValue()=='en'}">
+			<a href="terms/englishTerms.do"><spring:message code="administrator.terms"/></a>
 			<br/>
 			<br/>	
+		</jstl:if>
+		<jstl:if test="${cookie['language'].getValue()=='es'}">
+			<a href="terms/terms.do"><spring:message code="administrator.terms"/></a>
+		</jstl:if>	
 				
 		<input type="submit" name="register" id="register"
 		value="<spring:message code="administrator.save" />" >&nbsp;

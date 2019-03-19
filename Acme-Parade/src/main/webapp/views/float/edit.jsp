@@ -34,6 +34,7 @@
 		
 		<acme:submit name="save" code="float.save"/>
 		
+		<acme:submit name="delete" code="float.delete"/>
 		
 		<acme:cancel url="welcome/index.do" code="float.cancel"/>
 		

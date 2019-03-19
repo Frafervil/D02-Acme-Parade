@@ -33,9 +33,7 @@
 		
 		<acme:textbox code="parade.maxColumn" path="maxColumn"/>	
 		
-		
 		<acme:submit name="save" code="parade.saveFinal"/>
-		
 		
 		<acme:cancel url="welcome/index.do" code="parade.cancel"/>
 		

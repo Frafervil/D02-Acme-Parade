@@ -35,7 +35,8 @@
 		<br/>
 	</jstl:if>
 	
-	
+	<b><spring:message code="float.parade" /></b>
+	<jstl:out value="${floatB.parade.title}"/><br/>
 	
 	<!-- Links de editar y borrar -->
 	<jstl:if test="${floatB.brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">

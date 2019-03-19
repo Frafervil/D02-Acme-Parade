@@ -114,7 +114,11 @@
 <spring:message code="brotherhood.parades.empty" /> 
 </jstl:otherwise>
 </jstl:choose>
+
+<security:authorize access="hasRole('BROTHERHOOD')">
 <acme:button url="parade/brotherhood/create.do" code="parade.create"/>
+</security:authorize>
+
 <!-- Floats -->
 <h3> <spring:message code="brotherhood.floats" /> </h3>
 <jstl:choose>
@@ -134,18 +138,23 @@
 <spring:message code="brotherhood.floats.empty" /> 
 </jstl:otherwise>
 </jstl:choose>
+
+<security:authorize access="hasRole('BROTHERHOOD')">
 <acme:button url="float/brotherhood/create.do" code="float.create"/>
+</security:authorize>
 
 <jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 	<security:authorize access="hasRole('BROTHERHOOD')">
-
+<br/>
+<br/>
 <input type="button" name="save" class="ui button"
 	value="<spring:message code="brotherhood.edit" />"
 	onclick="javascript: relativeRedir('brotherhood/edit.do');" />
 	
 </security:authorize>
 </jstl:if>
-
+<br/>
+<br/>
 <jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
 </jstl:if>

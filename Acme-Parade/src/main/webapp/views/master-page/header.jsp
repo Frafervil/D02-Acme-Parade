@@ -83,7 +83,6 @@
 					<li class="arrow"></li>
 					<li><a href="brotherhood/list.do"><spring:message code="master.page.customer.list.brotherhoods" /></a></li>
 					<li><a href="request/member/list.do"><spring:message code="master.page.member.request" /></a></li>
-					<li><a href="brotherhood/member/list.do"><spring:message code="master.page.member.brotherhood" /></a></li>
 					<li><a href="enrolment/member/list.do"><spring:message code="master.page.member.brotherhood" /></a></li>
 				</ul>
 			</li>

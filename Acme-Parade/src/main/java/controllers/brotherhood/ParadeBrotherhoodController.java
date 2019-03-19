@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
+import services.BrotherhoodService;
 import services.ParadeService;
 import controllers.AbstractController;
+import domain.Actor;
+import domain.Brotherhood;
 import domain.Parade;
 
 @Controller
@@ -25,17 +29,44 @@ public class ParadeBrotherhoodController extends AbstractController {
 
 	@Autowired
 	private ParadeService	paradeService;
+	
+	@Autowired
+	private BrotherhoodService	brotherhoodService;
 
+	@Autowired
+	private ActorService	actorService;
+	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int brotherhoodId) {
-		ModelAndView result;
-		final Collection<Parade> parades = this.paradeService.findAllFinalOfOneBrotherhood(brotherhoodId);
+		final ModelAndView result;
+		Brotherhood brotherhood;
+		brotherhood = this.brotherhoodService.findOne(brotherhoodId);
+		Collection<Parade> parades;
+		//Comprobar que si el principal coincide con el brotherhoodId que se le pasa al list, hacer el findVisibleProcessions
+		//En caso contrario, hacer el método findAllProcessionsOfOneBrotherhood
+		final Actor principal = this.actorService.findByPrincipal();
+		if (principal.getUserAccount().getUsername().equals(brotherhood.getUserAccount().getUsername()))
+			parades = this.paradeService.findVisibleParades(brotherhood);
+		else
+			parades = this.paradeService.findAllFinalOfOneBrotherhood(brotherhoodId);
 
 		result = new ModelAndView("parade/list");
 		result.addObject("parades", parades);
 		result.addObject("requestURI", "parade/brotherhood/list.do");
 
+		return result;
+	}
+
+	@RequestMapping(value = "/listAnonymous", method = RequestMethod.GET)
+	public ModelAndView listAnonymous(@RequestParam final int brotherhoodId) {
+		ModelAndView result;
+		Collection<Parade> parades;
+		parades = this.paradeService.findAllFinalOfOneBrotherhood(brotherhoodId);
+
+		result = new ModelAndView("parade/list");
+		result.addObject("parades", parades);
+		result.addObject("requestURI", "parade/brotherhood/list.do");
 		return result;
 	}
 
