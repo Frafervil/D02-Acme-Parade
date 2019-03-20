@@ -88,9 +88,7 @@
 		<security:intercept-url pattern="/area/administrator/create.do" access="hasRole('ADMIN')"/> 
 		<security:intercept-url pattern="/area/administrator/delete.do" access="hasRole('ADMIN')"/> 
 		<security:intercept-url pattern="/area/administrator/edit.do" access="hasRole('ADMIN')"/> 
-
-		<security:intercept-url pattern="/history/brotherhood/display.do" access="hasRole('BROTHERHOOD')" />
-	
+		
 		<security:intercept-url pattern="/request/member/list.do" access="hasRole('MEMBER')" />
 		<security:intercept-url pattern="/request/brotherhood/list.do" access="hasRole('BROTHERHOOD')" />					
 		<security:intercept-url pattern="/request/member/display.do" access="hasRole('MEMBER')" />

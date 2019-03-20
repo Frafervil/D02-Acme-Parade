@@ -13,7 +13,7 @@ import domain.History;
 @Repository
 public interface HistoryRepository extends JpaRepository<History, Integer> {
 
-	@Query("select h from History h where h.brotherhood.id = ?1")
+	@Query("select h from History h where h.brotherhood = ?1")
 	History findByBrotherhoodId(int brotherhoodId);
 
 	@Query("select avg(h.legalRecords.size + h.periodRecords.size + h.linkRecords.size + h.miscellaneousRecords.size) + 1 from History h")
