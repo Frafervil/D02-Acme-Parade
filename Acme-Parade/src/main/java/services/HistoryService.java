@@ -27,6 +27,9 @@ public class HistoryService {
 	@Autowired
 	private ActorService		actorService;
 
+	@Autowired
+	private BrotherhoodService	brotherhoodService;
+
 
 	// Simple CRUD Methods
 
@@ -46,13 +49,22 @@ public class HistoryService {
 		return result;
 	}
 
+	public void delete(final History history) {
+		Brotherhood principal;
+
+		principal = this.brotherhoodService.findByPrincipal();
+		Assert.notNull(principal);
+		Assert.isTrue(history.getBrotherhood().getId() == principal.getId());
+
+		this.historyRepository.delete(history);
+	}
+
 	// Other business methods
 
 	public History findByBrotherhoodId(final int brotherhoodId) {
 		History result;
 
 		result = this.historyRepository.findByBrotherhoodId(brotherhoodId);
-		Assert.notNull(result);
 		return result;
 	}
 

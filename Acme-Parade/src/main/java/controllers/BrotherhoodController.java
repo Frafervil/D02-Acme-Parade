@@ -38,7 +38,7 @@ public class BrotherhoodController extends AbstractController {
 	private BrotherhoodService		brotherhoodService;
 
 	@Autowired
-	private ParadeService		paradeService;
+	private ParadeService			paradeService;
 
 	@Autowired
 	private FloatService			floatService;
@@ -143,11 +143,10 @@ public class BrotherhoodController extends AbstractController {
 		try {
 			brotherhood = this.brotherhoodService.reconstruct(brotherhoodForm, binding);
 			if (binding.hasErrors()) {
-				for (final ObjectError e : binding.getAllErrors()){
+				for (final ObjectError e : binding.getAllErrors())
 					System.out.println(e.getObjectName() + " error [" + e.getDefaultMessage() + "] " + Arrays.toString(e.getCodes()));
-				}
-					result = this.createEditModelAndView(brotherhoodForm);
-			} else{
+				result = this.createEditModelAndView(brotherhoodForm);
+			} else {
 				brotherhood = this.brotherhoodService.save(brotherhood);
 				result = new ModelAndView("welcome/index");
 			}
@@ -166,6 +165,21 @@ public class BrotherhoodController extends AbstractController {
 		brotherhood = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(brotherhood);
 		result = this.editModelAndView(brotherhood);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete() {
+		ModelAndView result;
+
+		try {
+			this.brotherhoodService.delete();
+
+			result = new ModelAndView("redirect:/j_spring_security_logout");
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/brotherhood/display.do");
+		}
 
 		return result;
 	}

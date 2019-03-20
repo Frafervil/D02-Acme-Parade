@@ -78,3 +78,9 @@
 <jstl:if test="${member.userAccount.username == pageContext.request.userPrincipal.name}">
 	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
 </jstl:if>
+
+<br/>
+<br/>
+<jstl:if test="${member.userAccount.username == pageContext.request.userPrincipal.name}">
+	<acme:button url="member/delete.do" code="actor.delete"/>
+</jstl:if>

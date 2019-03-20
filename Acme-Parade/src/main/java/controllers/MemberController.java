@@ -158,6 +158,21 @@ public class MemberController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete() {
+		ModelAndView result;
+
+		try {
+			this.memberService.delete();
+
+			result = new ModelAndView("redirect:/j_spring_security_logout");
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/member/display.do");
+		}
+
+		return result;
+	}
+
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(final MemberForm memberForm) {

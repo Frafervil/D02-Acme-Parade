@@ -20,6 +20,8 @@ import security.UserAccountRepository;
 import domain.Administrator;
 import domain.Brotherhood;
 import domain.Enrolment;
+import domain.History;
+import domain.Parade;
 import forms.BrotherhoodForm;
 
 @Service
@@ -42,6 +44,15 @@ public class BrotherhoodService {
 
 	@Autowired
 	private EnrolmentService		enrolmentService;
+
+	@Autowired
+	private HistoryService			historyService;
+
+	@Autowired
+	private FloatService			floatService;
+
+	@Autowired
+	private ParadeService			paradeService;
 
 	@Autowired
 	private Validator				validator;
@@ -97,6 +108,35 @@ public class BrotherhoodService {
 		result = this.brotherhoodRepository.save(brotherhood);
 
 		return result;
+	}
+
+	public void delete() {
+		Brotherhood principal;
+		History history;
+		Collection<domain.Float> floats;
+		final Collection<Parade> parades;
+		final Collection<Enrolment> enrolments;
+
+		principal = this.findByPrincipal();
+		Assert.notNull(principal);
+
+		history = this.historyService.findByBrotherhoodId(principal.getId());
+		if (history != null)
+			this.historyService.delete(history);
+
+		floats = this.floatService.findByBrotherhoodId(principal.getId());
+		for (final domain.Float f : floats)
+			this.floatService.delete(f);
+
+		parades = this.paradeService.findAllParadesOfOneBrotherhood(principal.getId());
+		for (final Parade p : parades)
+			this.paradeService.delete(p);
+
+		enrolments = this.enrolmentService.findByBrotherhoodId(principal.getId());
+		for (final Enrolment e : enrolments)
+			this.enrolmentService.deleteEnroll(e);
+
+		this.brotherhoodRepository.delete(principal);
 	}
 
 	public Brotherhood findOne(final int brotherhoodId) {
