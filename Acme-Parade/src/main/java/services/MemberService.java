@@ -98,6 +98,25 @@ public class MemberService {
 		return result;
 	}
 
+	public void delete() {
+		Member principal;
+		final Collection<Enrolment> enrolments;
+		final Collection<Request> requests;
+
+		principal = this.findByPrincipal();
+		Assert.notNull(principal);
+
+		enrolments = this.enrolmentService.findByBrotherhoodId(principal.getId());
+		for (final Enrolment e : enrolments)
+			this.enrolmentService.deleteEnroll(e);
+
+		requests = this.requestService.findAllByMember(principal.getId());
+		for (final Request r : requests)
+			this.requestService.delete(r);
+
+		this.memberRepository.delete(principal);
+	}
+
 	public Member findOne(final int memberId) {
 		Member result;
 

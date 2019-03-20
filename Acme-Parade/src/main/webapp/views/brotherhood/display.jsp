@@ -159,3 +159,8 @@
 	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
 </jstl:if>
 	
+<br/>
+<br/>
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
+	<acme:button url="brotherhood/delete.do" code="actor.delete"/>
+</jstl:if>

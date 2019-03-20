@@ -53,5 +53,11 @@
 	<acme:button url="message/actor/exportData.do" code="actor.exportData"/>
 </jstl:if>
 
+<jstl:if test="${actor.userAccount.username == pageContext.request.userPrincipal.name}">
+<br/>
+<br/>
+	<acme:button url="administrator/delete.do" code="actor.delete"/>
+</jstl:if>
+
 </body>
 </html>

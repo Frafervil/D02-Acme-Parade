@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -94,6 +96,17 @@ public class AdministratorService {
 
 	}
 
+	public void delete() {
+		Administrator principal;
+
+		principal = this.findByPrincipal();
+		Assert.notNull(principal);
+		//Debería de quedar al menos un administrador
+		Assert.isTrue(this.findAll().size() > 1);
+
+		this.administratorRepository.delete(principal);
+	}
+
 	public Administrator findOne(final int adminId) {
 		Administrator result;
 
@@ -101,6 +114,14 @@ public class AdministratorService {
 		Assert.notNull(result);
 		return result;
 
+	}
+
+	public Collection<Administrator> findAll() {
+		Collection<Administrator> result;
+
+		result = this.administratorRepository.findAll();
+		Assert.notNull(result);
+		return result;
 	}
 
 	public AdministratorForm construct(final Administrator administrator) {

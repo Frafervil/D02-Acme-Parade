@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.Collection;
@@ -21,18 +22,19 @@ public class EnrolmentService {
 
 	// Managed repository -----------------------------------------------------
 	@Autowired
-	private EnrolmentRepository enrolmentRepository;
+	private EnrolmentRepository	enrolmentRepository;
 
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private BrotherhoodService brotherhoodService;
+	private BrotherhoodService	brotherhoodService;
 
 	@Autowired
-	private MemberService memberService;
-	
+	private MemberService		memberService;
+
 	@Autowired
-	private Validator				validator;
+	private Validator			validator;
+
 
 	// Simple CRUD Methods
 
@@ -89,6 +91,19 @@ public class EnrolmentService {
 		this.enrolmentRepository.save(enrolment);
 	}
 
+	public void deleteEnroll(final Enrolment enrolment) {
+
+		Brotherhood principal;
+
+		Assert.notNull(enrolment);
+
+		principal = this.brotherhoodService.findByPrincipal();
+		Assert.notNull(principal);
+		Assert.isTrue(enrolment.getBrotherhood().getId() == principal.getId() || enrolment.getMember().getId() == principal.getId());
+
+		this.enrolmentRepository.delete(enrolment);
+	}
+
 	public Enrolment findOne(final int enrolmentId) {
 		Enrolment result;
 
@@ -123,22 +138,18 @@ public class EnrolmentService {
 		return result;
 	}
 
-	public Collection<Enrolment> findByBrotherhoodIdAndMemberId(
-			final int brotherhoodId, final int memberId) {
+	public Collection<Enrolment> findByBrotherhoodIdAndMemberId(final int brotherhoodId, final int memberId) {
 		Collection<Enrolment> result;
 
-		result = this.enrolmentRepository.findByBrotherhoodIdAndMemberId(
-				brotherhoodId, memberId);
+		result = this.enrolmentRepository.findByBrotherhoodIdAndMemberId(brotherhoodId, memberId);
 		Assert.notNull(result);
 		return result;
 	}
 
-	public Collection<Enrolment> findAllActiveEnrolmentsByBrotherhoodId(
-			final int brotherhoodId) {
+	public Collection<Enrolment> findAllActiveEnrolmentsByBrotherhoodId(final int brotherhoodId) {
 		Collection<Enrolment> result;
 
-		result = this.enrolmentRepository
-				.findAllActiveEnrolmentsByBrotherhoodId(brotherhoodId);
+		result = this.enrolmentRepository.findAllActiveEnrolmentsByBrotherhoodId(brotherhoodId);
 		Assert.notNull(result);
 		return result;
 	}
@@ -151,13 +162,10 @@ public class EnrolmentService {
 		return result;
 	}
 
-	public Enrolment findActiveEnrolmentByBrotherhoodIdAndMemberId(
-			final int brotherhoodId, final int memberId) {
+	public Enrolment findActiveEnrolmentByBrotherhoodIdAndMemberId(final int brotherhoodId, final int memberId) {
 		Enrolment result;
 
-		result = this.enrolmentRepository
-				.findActiveEnrolmentByBrotherhoodIdAndMemberId(brotherhoodId,
-						memberId);
+		result = this.enrolmentRepository.findActiveEnrolmentByBrotherhoodIdAndMemberId(brotherhoodId, memberId);
 		return result;
 	}
 
@@ -169,14 +177,12 @@ public class EnrolmentService {
 		principal = this.memberService.findByPrincipal();
 		Assert.notNull(principal);
 
-		enrolment = this.findActiveEnrolmentByBrotherhoodIdAndMemberId(
-				brotherhoodId, principal.getId());
+		enrolment = this.findActiveEnrolmentByBrotherhoodIdAndMemberId(brotherhoodId, principal.getId());
 
 		enrolment.setDropOutMoment(new Date(System.currentTimeMillis() - 1000));
 	}
 
-	public Enrolment reconstruct(final Enrolment enrolment, final Member member,
-			final BindingResult binding) {
+	public Enrolment reconstruct(final Enrolment enrolment, final Member member, final BindingResult binding) {
 		Enrolment result;
 		if (enrolment.getId() == 0) {
 			result = enrolment;

@@ -101,6 +101,21 @@ public class AdministratorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete() {
+		ModelAndView result;
+
+		try {
+			this.administratorservice.delete();
+
+			result = new ModelAndView("redirect:/j_spring_security_logout");
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/administrator/viewProfile.do");
+		}
+
+		return result;
+	}
+
 	private ModelAndView editModelAndView(final Administrator administrator) {
 		ModelAndView result;
 		result = this.editModelAndView(administrator, null);
