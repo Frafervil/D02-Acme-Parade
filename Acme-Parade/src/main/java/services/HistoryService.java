@@ -13,6 +13,7 @@ import security.Authority;
 import domain.Actor;
 import domain.Brotherhood;
 import domain.History;
+import domain.InceptionRecord;
 
 @Service
 @Transactional
@@ -21,14 +22,17 @@ public class HistoryService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private HistoryRepository	historyRepository;
+	private HistoryRepository		historyRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private BrotherhoodService	brotherhoodService;
+	private BrotherhoodService		brotherhoodService;
+
+	@Autowired
+	private InceptionRecordService	inceptionRecordService;
 
 
 	// Simple CRUD Methods
@@ -65,6 +69,7 @@ public class HistoryService {
 		History result;
 
 		result = this.historyRepository.findByBrotherhoodId(brotherhoodId);
+
 		return result;
 	}
 
@@ -141,4 +146,29 @@ public class HistoryService {
 		return this.historyRepository.brotherhoodsMoreThanAverage();
 	}
 
+	public History create() {
+		History result;
+		InceptionRecord inceptionR;
+		Brotherhood principal;
+
+		principal = this.brotherhoodService.findByPrincipal();
+		Assert.notNull(principal);
+
+		result = new History();
+		result.setBrotherhood(principal);
+
+		inceptionR = this.inceptionRecordService.create();
+
+		result.setInceptionRecord(inceptionR);
+
+		return result;
+	}
+
+	public void save(final History history) {
+
+		History result;
+		result = this.historyRepository.save(history);
+		Assert.notNull(result);
+
+	}
 }

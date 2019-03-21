@@ -16,6 +16,8 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<jstl:choose>
+<jstl:when test="${(history!=null)}">
 
 	<b><spring:message code="history.brotherhood.title" /></b>:
 	<jstl:out value="${history.brotherhood.title}"/><br/>
@@ -31,16 +33,20 @@
 	<jstl:if test="${history.inceptionRecord.pictures != null && (not empty history.inceptionRecord.pictures)}">
 	<b><spring:message code="inceptionRecord.pictures" /></b>:
 	<br/>
+		<div class="row">
 		<jstl:forEach items="${history.inceptionRecord.pictures}" var="picture" >
 			<jstl:if test="${picture != null}">
-	        	<acme:image src="${picture}" cssClass="external-image-landscape"/>
+	        	<div class="column">
+					<img src="${picture }" style="width:100%">
+				</div>
 	        </jstl:if>
 		</jstl:forEach>
+		</div>
 		<br/>
 	</jstl:if>
 	
 	<jstl:if test="${history.brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
-		<acme:button url="inceptionRecord/brotherhood/edit.do?inceptionRecordId=${history.inceptionRecord.id}" code="inceptionRecord.edit"/>
+		<acme:button url="history/brotherhood/edit.do" code="inceptionRecord.edit"/>
 	</jstl:if>
 	
 	<!-- Period records -->
@@ -154,3 +160,10 @@
 	<jstl:if test="${history.brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 		<acme:button url="miscellaneousRecord/brotherhood/create.do" code="miscellaneousRecord.create"/>
 	</jstl:if>
+	</jstl:when>
+	<jstl:otherwise>
+	<security:authorize access="hasRole('BROTHERHOOD')">
+	<a href="history/brotherhood/create.do"><spring:message code="history.create"/></a>
+	</security:authorize>
+	</jstl:otherwise>
+	</jstl:choose>

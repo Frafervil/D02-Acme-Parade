@@ -42,3 +42,9 @@
 	</ul> 
  	</td>
 	</tr>
+	<br />
+	<security:authorize access="hasRole('BROTHERHOOD')">
+	<a href="legalRecord/brotherhood/edit.do?legalRecordId=${legalRecord.id}"><spring:message code="legalRecord.edit"/></a>
+	<br />
+	<a href="legalRecord/brotherhood/delete.do?legalRecordId=${legalRecord.id}"><spring:message code="legalRecord.delete"/></a>
+	</security:authorize>

@@ -25,3 +25,10 @@
 	
 	<b><spring:message code="linkRecord.linkBrotherhood" /></b>:
 	<jstl:out value="${linkRecord.linkBrotherhood}"/><br/>
+
+	<br />
+	<security:authorize access="hasRole('BROTHERHOOD')">
+	<a href="linkRecord/brotherhood/edit.do?linkRecordId=${linkRecord.id}"><spring:message code="linkRecord.edit"/></a>
+	<br />
+	<a href="linkRecord/brotherhood/delete.do?linkRecordId=${linkRecord.id}"><spring:message code="linkRecord.delete"/></a>
+	</security:authorize>

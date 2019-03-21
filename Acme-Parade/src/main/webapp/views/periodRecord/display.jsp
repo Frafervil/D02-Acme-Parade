@@ -26,11 +26,15 @@
 	<jstl:if test="${periodRecord.pictures != null && (not empty periodRecord.pictures)}">
 	<b><spring:message code="periodRecord.pictures" /></b>:
 	<br/>
+		<div class="row">
 		<jstl:forEach items="${periodRecord.pictures}" var="picture" >
 			<jstl:if test="${picture != null}">
-	        	<acme:image src="${picture}" cssClass="external-image-landscape"/>
+				<div class="column">
+					<img src="${picture }" style="width:100%">
+				</div>
 	        </jstl:if>
 		</jstl:forEach>
+		</div>
 		<br/>
 	</jstl:if>
 	
@@ -39,3 +43,9 @@
 	
 	<b><spring:message code="periodRecord.endYear" /></b>:
 	<jstl:out value="${periodRecord.endYear}"/><br/>
+	<br />
+	<security:authorize access="hasRole('BROTHERHOOD')">
+	<a href="periodRecord/brotherhood/edit.do?periodRecordId=${periodRecord.id}"><spring:message code="periodRecord.edit"/></a>
+	<br />
+	<a href="periodRecord/brotherhood/delete.do?periodRecordId=${periodRecord.id}"><spring:message code="periodRecord.delete"/></a>
+	</security:authorize>
