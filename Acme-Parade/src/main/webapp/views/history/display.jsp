@@ -33,11 +33,15 @@
 	<jstl:if test="${history.inceptionRecord.pictures != null && (not empty history.inceptionRecord.pictures)}">
 	<b><spring:message code="inceptionRecord.pictures" /></b>:
 	<br/>
+		<div class="row">
 		<jstl:forEach items="${history.inceptionRecord.pictures}" var="picture" >
 			<jstl:if test="${picture != null}">
-	        	<acme:image src="${picture}" cssClass="external-image-landscape"/>
+	        	<div class="column">
+					<img src="${picture }" style="width:100%">
+				</div>
 	        </jstl:if>
 		</jstl:forEach>
+		</div>
 		<br/>
 	</jstl:if>
 	

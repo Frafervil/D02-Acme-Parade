@@ -21,4 +21,10 @@
 	<jstl:out value="${miscellaneousRecord.title}"/><br/>
 	
 	<b><spring:message code="miscellaneousRecord.description" /></b>:
-	<jstl:out value="${miscellaneousRecord.description }"/><br/>	
+	<jstl:out value="${miscellaneousRecord.description }"/><br/>
+		<br />
+	<security:authorize access="hasRole('BROTHERHOOD')">
+	<a href="miscellaneousRecord/brotherhood/edit.do?miscellaneousRecordId=${miscellaneousRecord.id}"><spring:message code="miscellaneousRecord.edit"/></a>
+	<br />
+	<a href="miscellaneousRecord/brotherhood/delete.do?miscellaneousRecordId=${miscellaneousRecord.id}"><spring:message code="miscellaneousRecord.delete"/></a>
+	</security:authorize>
