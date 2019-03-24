@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,18 +63,31 @@ public class PeriodRecordService {
 		History history;
 		Brotherhood principal;
 		Collection<PeriodRecord> periodRecords;
-
+		final Integer startYear = periodRecord.getStartYear();
+		final Integer endYear = periodRecord.getEndYear();
+		
+		final Calendar calendar = Calendar.getInstance();
+		final Integer actualYear = calendar.get(Calendar.YEAR);
+		
 		principal = this.brotherhoodService.findByPrincipal();
-		history = this.historyService.findByBrotherhoodId(principal.getId());
+		Assert.notNull(principal);
 
-		result = this.periodRecordRepository.save(periodRecord);
-		Assert.notNull(result);
+		history = this.historyService.findByBrotherhoodId(principal.getId());
 		periodRecords = history.getPeriodRecords();
 
 		if (!periodRecords.contains(periodRecord)) {
 			periodRecords.add(periodRecord);
 			history.setPeriodRecords(periodRecords);
 		}
+		if (startYear != null && endYear != null){
+			Assert.isTrue(startYear <= actualYear, "Start year must be past");
+			Assert.isTrue(endYear <= actualYear, "End year must be past");
+			Assert.isTrue(startYear<=endYear, "Start year must be before than end year");
+		}
+		
+		result = this.periodRecordRepository.save(periodRecord);
+		Assert.notNull(result);
+		
 		this.historyService.save(history);
 	}
 
@@ -101,4 +115,8 @@ public class PeriodRecordService {
 	}
 
 	// Other business method ------------------------------------------------
+	
+	public void flush(){
+		this.periodRecordRepository.flush();
+	}
 }

@@ -154,6 +154,8 @@ public class HistoryService {
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
 
+		Assert.isNull(this.historyRepository.findByBrotherhoodId(principal.getId()));
+
 		result = new History();
 		result.setBrotherhood(principal);
 
