@@ -105,4 +105,8 @@ public class MiscellaneousRecordService {
 		this.historyService.save(history);
 	}
 	// Other business methods
+
+	public void flush() {
+		this.miscellaneousRecordRepository.flush();
+	}
 }

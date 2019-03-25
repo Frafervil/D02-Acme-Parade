@@ -49,7 +49,7 @@
 	</form:select>
 	<form:errors path="area" cssClass="error" />
 		</div>
-		
+		</fieldset>
 		<fieldset>
     	<legend><spring:message code="brotherhood.fieldset.userAccount"/></legend>
 		<acme:textbox code="brotherhood.username" path="username" placeholder="HomerS"/>

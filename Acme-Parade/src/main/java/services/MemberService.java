@@ -255,7 +255,11 @@ public class MemberService {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
 		}
-		result = (double) (total / (brotherhoods.size()));
+		if(brotherhoods.size() == 0)
+			result = 0.0;
+		else
+			result = (double) (total / (brotherhoods.size()));
+		
 		return result;
 	}
 	public Double minMemberPerBrotherhood() {

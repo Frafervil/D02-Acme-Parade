@@ -98,4 +98,8 @@ public class LinkRecordService {
 		this.historyService.save(history);
 	}
 	// Other business method ------------------------------------------------
+
+	public void flush() {
+		this.linkRecordRepository.flush();
+	}
 }
