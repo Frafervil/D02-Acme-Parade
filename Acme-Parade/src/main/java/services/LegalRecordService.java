@@ -100,4 +100,8 @@ public class LegalRecordService {
 		this.historyService.save(history);
 	}
 	// Other business method ------------------------------------------------
+
+	public void flush() {
+		this.legalRecordRepository.flush();
+	}
 }

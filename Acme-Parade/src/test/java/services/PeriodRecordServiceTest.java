@@ -39,7 +39,7 @@ public class PeriodRecordServiceTest extends AbstractTest {
 	 * 3- An actor who is authenticated as a brotherhood must be able to manage their history, which includes listing,
 	 * displaying, creating, updating, and deleting its records.
 	 * 
-	 * Code coverage: 84%
+	 * Code coverage PeriodRecordService: 84%
 	 * 
 	 */
 
