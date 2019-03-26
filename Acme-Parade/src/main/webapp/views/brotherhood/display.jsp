@@ -11,19 +11,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <h3> <jstl:out value="${brotherhood.title}"> </jstl:out> </h3>
-<br />
+
+<div class="content">
+	<img src="${brotherhood.photo}" class="ui mini rounded image" >
+</div>
 
 <table class="ui celled table">
-	<thead>
-		<tr>
-			<img src="${brotherhood.photo}" class="ui mini rounded image" >
-			<div class="content">
-				<spring:message code="brotherhood.profile.title" />
-				<jstl:out value="${brotherhood.name}" />
-			</div>
-
-		</tr>
-	</thead>
 	<tbody>
 		<tr>
 			<td><spring:message code="brotherhood.name" />

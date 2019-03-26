@@ -19,17 +19,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<table class="ui celled table">
-	<thead>
-		<tr>
-			<img src="${member.photo}" class="ui mini rounded image">
-			<div class="content">
-				<spring:message code="member.profile.title" />
-				<jstl:out value="${member.name}" />
-			</div>
+<div class="content">
+	<img src="${member.photo}" class="ui mini rounded image">
+</div>
 
-		</tr>
-	</thead>
+<table class="ui celled table">
 	<tbody>
 		<tr>
 			<td><spring:message code="member.name" />
