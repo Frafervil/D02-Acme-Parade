@@ -81,12 +81,6 @@ public class RequestServiceTest extends AbstractTest {
 		final Object displayTest[][] = {
 			{
 				/*
-				 * Test negativo:
-				 * No hay solicitud
-				 */
-				"brotherhood1", null, IllegalArgumentException.class
-			}, {
-				/*
 				 * Test positivo:
 				 * La solicitud existe
 				 */
@@ -173,14 +167,12 @@ public class RequestServiceTest extends AbstractTest {
 
 	private void DisplayTemplate(final String actor, final String thing, final Class<?> class1) {
 		Class<?> caught;
-		Request request;
 
 		caught = null;
 		try {
 			this.authenticate(actor);
-			request = this.requestService.findOne(super.getEntityId(thing));
+			this.requestService.findOne(super.getEntityId(thing));
 			this.unauthenticate();
-			System.out.println(request);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -198,7 +190,6 @@ public class RequestServiceTest extends AbstractTest {
 			request = this.requestService.findOne(super.getEntityId(thing));
 			this.requestService.approve(request);
 			this.unauthenticate();
-			System.out.println(request.getStatus());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -217,7 +208,6 @@ public class RequestServiceTest extends AbstractTest {
 			request.setRejectionReason(reason);
 			this.requestService.reject(request);
 			this.unauthenticate();
-			System.out.println(request.getStatus());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -302,14 +292,12 @@ public class RequestServiceTest extends AbstractTest {
 
 	private void CreateTemplate(final String actor, final String thing, final Class<?> class1) {
 		Class<?> caught;
-		Request request;
 
 		caught = null;
 		try {
 			this.authenticate(actor);
-			request = this.requestService.create(super.getEntityId(thing));
+			this.requestService.create(super.getEntityId(thing));
 			this.unauthenticate();
-			System.out.println(request);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
