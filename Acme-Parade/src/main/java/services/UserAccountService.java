@@ -34,11 +34,6 @@ public class UserAccountService {
 		result = this.useraccountRepository.findOne(administratorForm.getIdAdministrator());
 		Assert.isTrue(administratorForm.getPasswordChecker().equals(administratorForm.getPassword()), "administrator.validation.passwordsNotMatch");
 
-		//		final Authority authority = new Authority();
-		//		authority.setAuthority(Authority.ADMIN);
-		//		final Collection<Authority> authorities = new ArrayList<>();
-		//		authorities.add(authority);
-
 		result.setPassword(administratorForm.getPassword());
 		result.setUsername(administratorForm.getUsername());
 		this.validator.validate(result, binding);

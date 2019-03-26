@@ -29,13 +29,6 @@ public class MessageBoxService {
 	@Autowired
 	private ActorService			actorService;
 
-
-	// Constructors
-
-	public MessageBoxService() {
-		super();
-	}
-
 	// Simple CRUD methods
 
 	public MessageBox create() {
@@ -245,16 +238,4 @@ public class MessageBoxService {
 	public void flush() {
 		this.messageBoxRepository.flush();
 	}
-
-	//	public MessageBox findInBoxMessageBoxActor(final Actor a) {
-	//		MessageBox result = null;
-	//		final String sas = "in box";
-	//		Assert.notNull(a);
-	//		Assert.isTrue(a.getId() != 0);
-	//		for (final MessageBox m : a.getMessageBoxes())
-	//			if (m.getName().equals(sas))
-	//				result = m;
-	//		Assert.notNull(result);
-	//		return result;
-	//	}
 }
