@@ -822,7 +822,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox2" />
@@ -855,7 +855,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox2" />
@@ -888,7 +888,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox27" />

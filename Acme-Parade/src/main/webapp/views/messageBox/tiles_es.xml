@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="messageBox/list" extends="master.page">	
-		<put-attribute name="title" value="Correo" />
+		<put-attribute name="title" value="Buzón de correo" />
 		<put-attribute name="body" value="/views/messageBox/list.jsp" />
 	</definition>
 	
 	<definition name="messageBox/edit" extends="master.page">	
-		<put-attribute name="title" value="Editar Caja de mensaje" />
+		<put-attribute name="title" value="Editar buzón de correo" />
 		<put-attribute name="body" value="/views/messageBox/edit.jsp"/>
 	</definition>
 	

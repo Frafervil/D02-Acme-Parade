@@ -61,7 +61,7 @@
 
 <h3> <spring:message code="messageBox.current.messageBox" /> : <jstl:out value="${currentMessageBox.name}" /> </h3>
 
-<%-- La lista de mensajes de la caja de mensaje seleccionada: --%>
+<%-- La lista de mensajes del buzón de correo seleccionado: --%>
 
 <h3> <spring:message code="messageBox.listMessages" /> <jstl:out value="${currentMessageBox.name}" /></h3>
 
