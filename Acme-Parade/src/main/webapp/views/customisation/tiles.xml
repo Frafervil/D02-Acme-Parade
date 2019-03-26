@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="customisation/display" extends="master.page">	
-		<put-attribute name="title" value="Customisation parameters" />
+		<put-attribute name="title" value="Customisation's parameters" />
 		<put-attribute name="body" value="/views/customisation/display.jsp" />
 	</definition>
 	
 	<definition name="customisation/edit" extends="master.page">	
-		<put-attribute name="title" value="Edit customisation parameters " />
+		<put-attribute name="title" value="Edit customisation's parameters " />
 		<put-attribute name="body" value="/views/customisation/edit.jsp" />
 	</definition>
 	

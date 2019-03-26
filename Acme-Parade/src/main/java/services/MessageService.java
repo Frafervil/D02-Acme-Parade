@@ -214,7 +214,7 @@ public class MessageService {
 		principal = this.actorService.findByPrincipal();
 		Assert.notNull(principal);
 
-		//¿En qué caja de mensaje está el mensaje que queremos mover?
+		//¿En qué buzón de correo está el mensaje que queremos mover?
 		boxes = principal.getMessageBoxes();
 		for (final MessageBox box : boxes)
 			if (box.getMessages().contains(message)) {

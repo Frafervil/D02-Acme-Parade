@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="member/display" extends="master.page">	
-		<put-attribute name="title" value="Mi Perfil" />
+		<put-attribute name="title" value="Mi perfil" />
 		<put-attribute name="body" value="/views/member/display.jsp" />
 	</definition>
 	
@@ -27,12 +27,12 @@
 	</definition>
 	
 	<definition name="member/edit" extends="master.page">	
-		<put-attribute name="title" value="Modificar Perfil" />
+		<put-attribute name="title" value="Modificar perfil" />
 		<put-attribute name="body" value="/views/member/edit.jsp" />
 	</definition>
 	
 	<definition name="member/register" extends="master.page">	
-		<put-attribute name="title" value="Registrar nuevo miembro" />
+		<put-attribute name="title" value="Registrar miembro" />
 		<put-attribute name="body" value="/views/member/register.jsp" />
 	</definition>
 	
@@ -42,7 +42,7 @@
 	</definition>
 	
 	<definition name="member/brotherhood/list" extends="master.page">	
-		<put-attribute name="title" value="Lista de mis miembros" />
+		<put-attribute name="title" value="Lista de miembros" />
 		<put-attribute name="body" value="/views/member/list.jsp" />
 	</definition>
 	
