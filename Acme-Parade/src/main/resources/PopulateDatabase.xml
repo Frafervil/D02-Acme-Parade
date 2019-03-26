@@ -372,7 +372,7 @@
 
 	<!-- Requests -->
 	<bean class="domain.Request" id="request1">
-		<property name="member" ref="member1" />
+		<property name="member" ref="member3" />
 		<property name="status" value="PENDING" />
 		<property name="place" ref="place1" />
 		<property name="parade" ref="parade1" />
