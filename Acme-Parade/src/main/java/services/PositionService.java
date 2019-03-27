@@ -115,4 +115,8 @@ public class PositionService {
 		return result;
 
 	}
+	
+	public void flush(){
+		this.positionRepository.flush();
+	}
 }

@@ -352,4 +352,8 @@ public class MemberService {
 		return result;
 	}
 
+	public void flush() {
+		this.memberRepository.flush();
+	}
+
 }

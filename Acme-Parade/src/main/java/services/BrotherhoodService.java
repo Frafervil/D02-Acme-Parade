@@ -324,4 +324,8 @@ public class BrotherhoodService {
 
 	}
 
+	public void flush() {
+		this.brotherhoodRepository.flush();
+	}
+
 }
