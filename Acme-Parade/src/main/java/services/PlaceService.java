@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.PlaceRepository;
-import domain.Place;
 import domain.Parade;
+import domain.Place;
 
 @Service
 @Transactional
@@ -19,11 +19,11 @@ public class PlaceService {
 	// Managed Repository
 
 	@Autowired
-	PlaceRepository		placeRepository;
+	PlaceRepository	placeRepository;
 
 	// Services
 	@Autowired
-	RequestService		requestService;
+	RequestService	requestService;
 	@Autowired
 	ParadeService	paradeService;
 
@@ -62,11 +62,18 @@ public class PlaceService {
 		result = this.placeRepository.findPlacesByParade(paradeId);
 		return result;
 	}
-	public void save(final Place place) {
+	public void save(final int paradeId, final Place place) {
 		Place result;
 		result = this.placeRepository.save(place);
 		Assert.notNull(result);
 
+	}
+
+	public Integer findRepeated(final int paradeId, final int rowP, final int columnP) {
+		Integer result;
+		result = this.placeRepository.findRepeatedPlace(paradeId, rowP, columnP);
+
+		return result;
 	}
 
 	public void flushPlace() {

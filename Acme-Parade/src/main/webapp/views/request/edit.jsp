@@ -10,22 +10,24 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%> 
 
 <security:authorize access="hasRole('MEMBER')">
 
-<form:form action="request/member/edit.do" modelAttribute="request">
+<form:form action="request/member/edit.do?paradeId=${request.parade.id }" modelAttribute="request">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="status" />
-	<form:hidden path="rejectionReason" />
-	<form:hidden path="parade" />
-	<form:hidden path="member" />
 	
 	
 	<spring:message code="request.parade.title" />: <jstl:out value="${request.parade.title} "></jstl:out>
 	<br />
-	<br />	
+	
+	<spring:message code = "request.parade.place.maxRow"/>: <jstl:out value="${request.parade.maxRow} " /> 
+	<br/> 
+	<spring:message code = "request.parade.place.maxColumn"/>: <jstl:out value="${request.parade.maxColumn} " /> 
+	<br/> 
+	
 	<form:label path="place">
 		<spring:message code="request.parade.place" />:<br />
 	</form:label>
@@ -54,17 +56,8 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="status" />
-	<form:hidden path="parade" />
-	<form:hidden path="member" />
-	<form:hidden path="place" />
-	
-	<form:label path="rejectionReason">
-	<spring:message code="request.parade.rejection" />:
-	</form:label>
-	<br />
-	<form:textarea path="rejectionReason" />
-	<form:errors cssClass="error" path="rejectionReason" />
+
+	<acme:textarea code="request.parade.rejection" path="rejectionReason"/>
 	<br />
 	<br />
 	
@@ -88,15 +81,17 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="status" />
-	<form:hidden path="parade" />
-	<form:hidden path="member" />
-	<form:hidden path="place" />
-	<form:hidden path="rejectionReason" />
+	
 	
 	<form:label path="place">
 		<spring:message code="request.parade.place" />:<br />
 	</form:label>
+	
+	<spring:message code = "request.parade.place.maxRow"/>: <jstl:out value="${request.parade.maxRow} " /> 
+	<br/> 
+	<spring:message code = "request.parade.place.maxColumn"/>: <jstl:out value="${request.parade.maxColumn} " /> 
+	<br/> 
+	
 	<spring:message code="request.parade.place.row" />: <form:input path="place.rowP" placeholder="${request.place.rowP }"/>
 	<spring:message code="request.parade.place.column" />: <form:input path="place.columnP" placeholder="${request.place.columnP }"/>
 	<form:errors cssClass="error" path="place" />

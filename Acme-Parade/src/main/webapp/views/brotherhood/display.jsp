@@ -83,11 +83,7 @@
 </jstl:otherwise>
 </jstl:choose>
 
-<security:authorize access="hasRole('MEMBER')">
-	<jstl:if test="${enrolment != null}">
-		<a href="brotherhood/member/dropOut.do?brotherhoodId=${brotherhood.id}"><spring:message code="brotherhood.dropOut"/></a><br/>
-	</jstl:if>
-</security:authorize>
+
 
 <!-- Parades -->
 <h3> <spring:message code="brotherhood.parades" /> </h3>
