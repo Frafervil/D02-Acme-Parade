@@ -124,14 +124,14 @@
 		<security:intercept-url pattern="/request/member/edit.do" access="hasRole('MEMBER')" />		
 		
 		<security:intercept-url pattern="/request/brotherhood/reject.do" access="hasRole('BROTHERHOOD')" />					
-		<security:intercept-url pattern="/request/brotherhood/approve.do" access="hasRole('BROTHERHOOD')" />					
+		<security:intercept-url pattern="/request/brotherhood/approve.do" access="hasRole('BROTHERHOOD')" />	
+						
 		<security:intercept-url pattern="/parade/display.do" access="hasRole('BROTHERHOOD')" />	
 		<security:intercept-url pattern="/parade/brotherhood/display.do" access="hasRole('BROTHERHOOD')" />	
 		<security:intercept-url pattern="/parade/brotherhood/list.do" access="permitAll"  />	
 		<security:intercept-url pattern="/parade/brotherhood/delete.do" access="hasRole('BROTHERHOOD')" />	
 		<security:intercept-url pattern="/parade/brotherhood/create.do" access="hasRole('BROTHERHOOD')" />	
 		<security:intercept-url pattern="/parade/brotherhood/edit.do" access="hasRole('BROTHERHOOD')" />
-		
 		<security:intercept-url pattern="/parade/brotherhood/listAnonymous.do" access="isAnonymous()"/>
 		
 		<security:intercept-url pattern="/messageBox/**" access="isAuthenticated()" />

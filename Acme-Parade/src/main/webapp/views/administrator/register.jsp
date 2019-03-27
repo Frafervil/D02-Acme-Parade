@@ -24,7 +24,6 @@
 	<form:form action="${formURI}" modelAttribute="administratorForm">
 		
 		<form:hidden path="idAdministrator" />
-		<form:hidden path="version"/>
 		
 		<fieldset>
     	<legend><spring:message code="administrator.fieldset.personalInformation"/></legend>

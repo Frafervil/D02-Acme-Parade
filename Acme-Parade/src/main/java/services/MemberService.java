@@ -140,7 +140,7 @@ public class MemberService {
 
 		userAccount = LoginService.getPrincipal();
 		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
+		result = this.memberRepository.findByUserAccountId(userAccount.getId());
 		Assert.notNull(result);
 
 		return result;
@@ -255,11 +255,11 @@ public class MemberService {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
 		}
-		if(brotherhoods.size() == 0)
+		if (brotherhoods.size() == 0)
 			result = 0.0;
 		else
 			result = (double) (total / (brotherhoods.size()));
-		
+
 		return result;
 	}
 	public Double minMemberPerBrotherhood() {

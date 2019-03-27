@@ -160,6 +160,13 @@ public class ParadeService {
 		return result;
 	}
 
+	public Parade findOneByRequestId(final int requestId) {
+		Parade result;
+		result = this.paradeRepository.findOneByRequestId(requestId);
+		Assert.notNull(result);
+		return result;
+	}
+
 	public Collection<Parade> findVisibleParades(final Brotherhood brotherhood) {
 		final Collection<Parade> result = this.findAllFinalOfOneBrotherhood(brotherhood.getId());
 		Collection<Parade> allParades;
@@ -192,13 +199,9 @@ public class ParadeService {
 
 	public Parade saveAsDraft(final Parade parade) {
 		Parade result;
-		Brotherhood principal;
+		final Brotherhood principal;
 
 		Assert.notNull(parade);
-
-		principal = this.brotherhoodService.findByPrincipal();
-
-		Assert.notNull(principal);
 
 		parade.setIsDraft(true);
 		Assert.isTrue(parade.getIsDraft());

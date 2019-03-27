@@ -28,8 +28,7 @@
 
 	<acme:textarea code="float.description" path="description" />
 
-	<spring:message code="float.pictures.placeholder"
-		var="picturePlaceholder" />
+	<spring:message code="float.pictures.placeholder" var="picturePlaceholder" />
 	<acme:textarea code="float.pictures" path="pictures" />
 
 	<div>
@@ -45,6 +44,6 @@
 
 	<acme:submit name="save" code="float.save" />
 
-	<acme:cancel url="float/brotherhood/list.do" code="float.cancel" />
+	<acme:cancel url="welcome/index.do" code="float.cancel" />
 
 </form:form>

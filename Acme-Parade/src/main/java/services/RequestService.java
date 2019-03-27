@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
+import repositories.PlaceRepository;
 import repositories.RequestRepository;
 import domain.Brotherhood;
 import domain.Member;
-import domain.Place;
 import domain.Parade;
+import domain.Place;
 import domain.Request;
 
 @Service
@@ -28,6 +31,12 @@ public class RequestService {
 	@Autowired
 	private RequestRepository	requestRepository;
 
+	@Autowired
+	private PlaceRepository		placeRepository;
+
+	@Autowired
+	private Validator			validator;
+
 	// Supporting services
 
 	@Autowired
@@ -37,7 +46,7 @@ public class RequestService {
 	private PlaceService		placeService;
 
 	@Autowired
-	private ParadeService	paradeService;
+	private ParadeService		paradeService;
 
 	@Autowired
 	private BrotherhoodService	brotherhoodService;
@@ -59,14 +68,14 @@ public class RequestService {
 		Place place;
 		Parade parade;
 
-		result = new Request();
-
 		principal = this.memberService.findByPrincipal();
 		Assert.notNull(principal);
-		result.setMember(principal);
 
 		parade = this.paradeService.findOne(paradeId);
 		Assert.notNull(parade);
+
+		result = new Request();
+		result.setMember(principal);
 		result.setParade(parade);
 
 		place = this.placeService.create(paradeId);
@@ -128,10 +137,11 @@ public class RequestService {
 		return result;
 
 	}
-	public void save(final Request request) {
+	public Request save(final Request request) {
 		Request result;
 		result = this.requestRepository.save(request);
 		Assert.notNull(result);
+		return result;
 	}
 
 	// Other business methods
@@ -165,6 +175,13 @@ public class RequestService {
 		result = this.requestRepository.findAllByParade(paradeId);
 		Assert.notNull(result);
 
+		return result;
+	}
+
+	public Request findByParade(final int paradeId) {
+		Request result;
+		result = this.requestRepository.findByParade(paradeId);
+		Assert.notNull(result);
 		return result;
 	}
 
@@ -232,7 +249,7 @@ public class RequestService {
 		Assert.isTrue(!reason.isEmpty());
 		r.setStatus("REJECTED");
 
-		this.placeService.delete(r.getPlace());
+		this.placeRepository.delete(r.getPlace().getId());
 	}
 
 	// Brotherhood must be able to change the status of a request they manage from "PENDING" to "APPROVED"
@@ -250,6 +267,7 @@ public class RequestService {
 
 		r.setStatus("APPROVED");
 
+		this.placeService.save(r.getParade().getId(), r.getPlace());
 		this.requestRepository.save(r);
 	}
 
@@ -261,6 +279,40 @@ public class RequestService {
 		Integer result;
 		result = this.requestRepository.findRepeated(memberId, paradeId);
 
+		return result;
+	}
+
+	public Request reconstruct(final Request request, final Parade parade, final BindingResult binding) {
+		Request result;
+		result = request;
+		result.setMember(this.memberService.findByPrincipal());
+		result.setStatus("PENDING");
+		result.setPlace(request.getPlace());
+		result.setParade(request.getParade());
+
+		this.validator.validate(result, binding);
+		this.requestRepository.flush();
+		return result;
+	}
+
+	public Request reconstructApprove(final Request request, final BindingResult binding) {
+		Request result;
+		result = this.requestRepository.findOne(request.getId());
+		result.getPlace().setcolumnP(request.getPlace().getcolumnP());
+		result.getPlace().setrowP(request.getPlace().getrowP());
+
+		this.validator.validate(result, binding);
+		this.requestRepository.flush();
+		return result;
+	}
+
+	public Request reconstructReject(final Request request, final BindingResult binding) {
+		final Request result;
+		result = this.requestRepository.findOne(request.getId());
+		result.setRejectionReason(request.getRejectionReason());
+
+		this.validator.validate(result, binding);
+		this.requestRepository.flush();
 		return result;
 	}
 

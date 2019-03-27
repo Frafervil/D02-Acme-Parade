@@ -18,6 +18,9 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 	@Query("select r from Request r where r.parade.id = ?1")
 	Collection<Request> findAllByParade(int paradeId);
 
+	@Query("select r from Request r where r.parade.id = ?1")
+	Request findByParade(int paradeId);
+
 	@Query("select 1.0*count(a) / (select count(n) from Request n) from Request a where a.status='APPROVED'")
 	Double ratioapprovedRequest();
 
