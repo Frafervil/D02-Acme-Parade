@@ -112,7 +112,7 @@ public class MemberService {
 
 		requests = this.requestService.findAllByMember(principal.getId());
 		for (final Request r : requests)
-			this.requestService.delete(r);
+			this.requestService.deleteRequestDeletingProfile(r);
 
 		this.memberRepository.delete(principal);
 	}

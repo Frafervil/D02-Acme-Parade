@@ -105,9 +105,9 @@ public class RequestService {
 
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
-		
+
 		Assert.isTrue(parade.getBrotherhood().equals(principal));
-		
+
 		Collection<Request> result;
 		result = this.requestRepository.findAllByParade(parade.getId());
 		Assert.notNull(result);
@@ -129,6 +129,20 @@ public class RequestService {
 		this.requestRepository.delete(request);
 
 	}
+	public void deleteRequestDeletingProfile(final Request request) {
+		final Place place;
+
+		Assert.notNull(request);
+		Assert.isTrue(request.getId() != 0);
+		place = request.getPlace();
+
+		if (place != null)
+			this.placeService.delete(place);
+
+		this.requestRepository.delete(request);
+
+	}
+
 	public Request findOne(final int requestId) {
 		Request result;
 

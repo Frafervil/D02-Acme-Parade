@@ -111,7 +111,7 @@ public class ParadeService {
 		requests = this.requestService.findAllByParade(parade.getId());
 
 		for (final Request r : requests)
-			this.requestService.delete(r);
+			this.requestService.deleteRequestDeletingProfile(r);
 
 		floats = this.floatService.findAll();
 		for (final domain.Float f : floats)
