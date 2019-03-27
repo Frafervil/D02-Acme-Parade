@@ -29,13 +29,6 @@ public class MiscellaneousRecordService {
 	@Autowired
 	private HistoryService					historyService;
 
-
-	// Constructors
-
-	public MiscellaneousRecordService() {
-		super();
-	}
-
 	// Simple CRUD methods
 
 	public MiscellaneousRecord findOne(final int id) {

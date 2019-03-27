@@ -31,15 +31,6 @@ public class MessageAdministratorController extends AbstractController {
 	@Autowired
 	private ActorService	actorService;
 
-
-	// Constructors
-
-	public MessageAdministratorController() {
-		super();
-	}
-
-	// Listing
-
 	// Creation ---------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
