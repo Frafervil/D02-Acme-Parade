@@ -78,13 +78,13 @@ public class AdministratorServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Un miembro intenta modificar el perfil del administrador
 				 */
-				"member1", "admin", "other name", IllegalArgumentException.class
+				"member1", "administrator1", "other name", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Pone otro nombre
 				 */
-				"admin", "admin", "other name", null
+				"admin", "administrator1", "other name", null
 			}
 		};
 		for (int i = 0; i < updateTest.length; i++)

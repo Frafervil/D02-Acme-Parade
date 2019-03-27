@@ -25,9 +25,7 @@ public class PositionServiceTest extends AbstractTest {
 	private PositionService			positionService;
 	// --------------------------------------------------
 
-	@Autowired
-	private AdministratorService	administratorService;
-
+	
 
 	/*
 	 * Requirement Tested:

@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,7 +48,7 @@ public class MemberServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Falta introducir un nombre
 				 */
-				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", IllegalArgumentException.class
+				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:

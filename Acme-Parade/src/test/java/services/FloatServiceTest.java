@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,13 +48,13 @@ public class FloatServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Falta introducit un título
 				 */
-				"brotherhood1", null, "new description", "http://www.fotolog1994.com", IllegalArgumentException.class
+				"brotherhood1", null, "new description", "http://www.fotolog1994.com", ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Los campos están completos y cumplen con los requisitos
 				 */
-				"brotherhood1", "new title", "new description", "http://www.fotolog1994.com", null
+				"brotherhood1", "title", "new description", "http://www.fotolog1994.com", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
@@ -73,7 +74,7 @@ public class FloatServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Dejar el campo de descripción vacío
 				 */
-				"brotherhood1", "float1", null, IllegalArgumentException.class
+				"brotherhood1", "float1", null, ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:
@@ -120,8 +121,9 @@ public class FloatServiceTest extends AbstractTest {
 			f.setTitle(title);
 			f.setDescription(description);
 			f.getPictures().add(picture);
+			this.floatService.save(f);
+			this.floatService.flush();
 			this.unauthenticate();
-			System.out.println(f.getTitle());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -132,16 +134,15 @@ public class FloatServiceTest extends AbstractTest {
 	private void UpdateTemplate(final String actor, final String thing, final String description, final Class<?> class1) {
 		Class<?> caught;
 		domain.Float f;
-		domain.Float savedFloat;
 
 		caught = null;
 		try {
 			this.authenticate(actor);
 			f = this.floatService.findOne(super.getEntityId(thing));
 			f.setDescription(description);
-			savedFloat = this.floatService.save(f);
+			this.floatService.save(f);
+			this.floatService.flush();
 			this.unauthenticate();
-			System.out.println(savedFloat.getDescription());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}

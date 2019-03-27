@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,7 +67,7 @@ public class ParadeServiceTest extends AbstractTest {
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
-			this.CreateTemplate((String) createTest[i][0], (Class<?>) createTest[i][6]);
+			this.CreateTemplate((String) createTest[i][0], (Class<?>) createTest[i][1]);
 	}
 
 	/*
@@ -82,7 +83,7 @@ public class ParadeServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Dejar el campo de descripción vacío
 				 */
-				"brotherhood1", "parade1", null, IllegalArgumentException.class
+				"brotherhood1", "parade1", null, ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:

@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.Collection;
-
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -107,12 +105,6 @@ public class EnrolmentServiceTest extends AbstractTest {
 		final Object displayTest[][] = {
 			{
 				/*
-				 * Test negativo:
-				 * No hay miembro
-				 */
-				"brotherhood1", null, IllegalArgumentException.class
-			}, {
-				/*
 				 * Test positivo:
 				 * El miembro existe
 				 */
@@ -192,15 +184,13 @@ public class EnrolmentServiceTest extends AbstractTest {
 
 	private void CreateTemplate(final String actor1, final String actor2, final Class<?> class1) {
 		Class<?> caught;
-		Enrolment enrolment;
 
 		caught = null;
 		try {
 			this.authenticate(actor1);
 			final Member member = this.memberService.findOne(super.getEntityId(actor2));
-			enrolment = this.enrolmentService.create(member);
+			this.enrolmentService.create(member);
 			this.unauthenticate();
-			System.out.println(enrolment);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -210,16 +200,13 @@ public class EnrolmentServiceTest extends AbstractTest {
 
 	private void ListTemplate(final String actor1, final String actor2, final Class<?> class1) {
 		Class<?> caught;
-		Collection<Member> members;
 
 		caught = null;
 		try {
 			this.authenticate(actor1);
-			members = this.memberService.findAllActiveMembersOfOneBrotherhood(super.getEntityId(actor2));
+			this.memberService.findAllActiveMembersOfOneBrotherhood(super.getEntityId(actor2));
 			this.unauthenticate();
 
-			for (final Member m : members)
-				System.out.println(m);
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -230,14 +217,12 @@ public class EnrolmentServiceTest extends AbstractTest {
 
 	private void DisplayTemplate(final String actor1, final String actor2, final Class<?> class1) {
 		Class<?> caught;
-		Member member;
 
 		caught = null;
 		try {
 			this.authenticate(actor1);
-			member = this.memberService.findOne(super.getEntityId(actor2));
+			this.memberService.findOne(super.getEntityId(actor2));
 			this.unauthenticate();
-			System.out.println(member);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -255,7 +240,6 @@ public class EnrolmentServiceTest extends AbstractTest {
 			enrolment = this.enrolmentService.findActiveEnrolmentByBrotherhoodIdAndMemberId(super.getEntityId(actor1), super.getEntityId(actor2));
 			this.enrolmentService.delete(enrolment);
 			this.unauthenticate();
-			System.out.println(enrolment.getDropOutMoment());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
@@ -265,15 +249,13 @@ public class EnrolmentServiceTest extends AbstractTest {
 
 	private void DropOutAsMemberTemplate(final String actor1, final String actor2, final Class<?> class1) {
 		Class<?> caught;
-		Enrolment enrolment;
 
 		caught = null;
 		try {
 			this.authenticate(actor1);
 			this.enrolmentService.dropOut(super.getEntityId(actor2));
-			enrolment = this.enrolmentService.findActiveEnrolmentByBrotherhoodIdAndMemberId(super.getEntityId(actor2), super.getEntityId(actor1));
+			this.enrolmentService.findActiveEnrolmentByBrotherhoodIdAndMemberId(super.getEntityId(actor2), super.getEntityId(actor1));
 			this.unauthenticate();
-			System.out.println(enrolment.getDropOutMoment());
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}

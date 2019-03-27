@@ -54,6 +54,10 @@ public class AdministratorService {
 	}
 
 	public Administrator create() {
+		Administrator principal;
+		principal = this.findByPrincipal();
+		Assert.notNull(principal);
+		
 		Administrator result;
 		UserAccount userAccount;
 		Authority authority;
