@@ -30,16 +30,16 @@ public class ParadeService {
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private BrotherhoodService		brotherhoodService;
+	private BrotherhoodService	brotherhoodService;
 
 	@Autowired
-	private RequestService			requestService;
+	private RequestService		requestService;
 
 	@Autowired
-	private FloatService			floatService;
+	private FloatService		floatService;
 
 	@Autowired
-	private Validator				validator;
+	private Validator			validator;
 
 
 	// Additional functions
@@ -238,5 +238,9 @@ public class ParadeService {
 			if ((this.requestService.findRepeated(memberId, p.getId())) > 0)
 				result.remove(p);
 		return result;
+	}
+
+	public void flush() {
+		this.paradeRepository.flush();
 	}
 }
