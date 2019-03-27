@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.MemberService;
 import services.ParadeService;
-import services.PlaceService;
 import services.RequestService;
 import controllers.AbstractController;
 import domain.Member;
@@ -40,9 +39,6 @@ public class RequestMemberController extends AbstractController {
 
 	@Autowired
 	private ParadeService	paradeService;
-
-	@Autowired
-	private PlaceService	placeService;
 
 
 	// Listing

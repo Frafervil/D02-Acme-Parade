@@ -22,12 +22,10 @@ public class ParadeServiceTest extends AbstractTest {
 	// Service under test
 
 	@Autowired
-	private ParadeService		paradeService;
+	private ParadeService	paradeService;
+
+
 	// --------------------------------------------------
-
-	@Autowired
-	private BrotherhoodService	brotherhoodService;
-
 
 	/*
 	 * Requirement Tested:
@@ -143,14 +141,13 @@ public class ParadeServiceTest extends AbstractTest {
 	private void UpdateTemplate(final String actor, final String thing, final String description, final Class<?> class1) {
 		Class<?> caught;
 		Parade parade;
-		Parade savedParade;
 
 		caught = null;
 		try {
 			this.authenticate(actor);
 			parade = this.paradeService.findOne(super.getEntityId(thing));
 			parade.setDescription(description);
-			savedParade = this.paradeService.save(parade);
+			this.paradeService.save(parade);
 			this.unauthenticate();
 			this.paradeService.flush();
 		} catch (final Throwable oops) {

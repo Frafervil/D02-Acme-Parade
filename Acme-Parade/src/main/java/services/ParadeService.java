@@ -199,8 +199,6 @@ public class ParadeService {
 
 	public Parade saveAsDraft(final Parade parade) {
 		Parade result;
-		final Brotherhood principal;
-
 		Assert.notNull(parade);
 
 		parade.setIsDraft(true);
@@ -225,9 +223,7 @@ public class ParadeService {
 		result.setMoment(parade.getMoment());
 		result.setTitle(parade.getTitle());
 		result.setBrotherhood(this.brotherhoodService.findByPrincipal());
-		//result.setTicker(parade.getTicker());
 		this.validator.validate(result, binding);
-		//this.paradeRepository.flush();
 		return result;
 	}
 
