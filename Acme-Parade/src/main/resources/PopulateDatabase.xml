@@ -1388,19 +1388,19 @@
 	<bean class="domain.LinkRecord" id="linkRecord1">
 		<property name="title" value="Link title 1" />
 		<property name="description" value="Link description 1" />
-		<property name="linkBrotherhood" value="http://www.linkBrotherhood1.com" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3364" />
 	</bean>
 	
 	<bean class="domain.LinkRecord" id="linkRecord2">
 		<property name="title" value="Link title 2" />
 		<property name="description" value="Link description 2" />
-		<property name="linkBrotherhood" value="http://www.linkBrotherhood2.com" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3366" />
 	</bean>
 	
 	<bean class="domain.LinkRecord" id="linkRecord3">
 		<property name="title" value="Link title 3" />
 		<property name="description" value="Link description 3" />
-		<property name="linkBrotherhood" value="http://www.linkBrotherhood3.com" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3363" />
 	</bean>
 	
 	<!-- Miscellaneous Records -->
