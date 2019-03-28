@@ -222,7 +222,6 @@ public class BrotherhoodService {
 		result.setEmail(brotherhoodForm.getEmail());
 		result.setMiddleName(brotherhoodForm.getMiddleName());
 		result.setName(brotherhoodForm.getName());
-		result.setPhone(brotherhoodForm.getPhone());
 		result.setPhoto(brotherhoodForm.getPhoto());
 		result.setPictures(brotherhoodForm.getPictures());
 		result.setSurname(brotherhoodForm.getSurname());
@@ -235,6 +234,7 @@ public class BrotherhoodService {
 			if (matcher.matches())
 				brotherhoodForm.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + brotherhoodForm.getPhone());
 		}
+		result.setPhone(brotherhoodForm.getPhone());
 
 		if (!brotherhoodForm.getPassword().equals(brotherhoodForm.getPasswordChecker()))
 			binding.rejectValue("passwordChecker", "brotherhood.validation.passwordsNotMatch", "Passwords doesnt match");
@@ -262,11 +262,19 @@ public class BrotherhoodService {
 		result.setMessageBoxes(brotherhood.getMessageBoxes());
 		result.setMiddleName(brotherhood.getMiddleName());
 		result.setName(brotherhood.getName());
-		result.setPhone(brotherhood.getPhone());
 		result.setPhoto(brotherhood.getPhoto());
 		result.setSurname(brotherhood.getSurname());
 		result.setPictures(brotherhood.getPictures());
 		result.setTitle(brotherhood.getTitle());
+
+		if (!StringUtils.isEmpty(brotherhood.getPhone())) {
+			final Pattern pattern = Pattern.compile("^\\d{4,}$", Pattern.CASE_INSENSITIVE);
+			final Matcher matcher = pattern.matcher(brotherhood.getPhone());
+			if (matcher.matches())
+				brotherhood.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + brotherhood.getPhone());
+		}
+		result.setPhone(brotherhood.getPhone());
+
 		this.validator.validate(result, binding);
 		this.brotherhoodRepository.flush();
 		return result;

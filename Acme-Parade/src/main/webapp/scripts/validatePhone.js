@@ -1,5 +1,5 @@
 function validatePhone(message, countryCode) {
-	var pattern = /^\+[1-9]\d{0,2}\([1-9]\d{0,2}\)\d{4,}|\+[1-9]\d{0,2} \([1-9]\d{0,2}\) \d{4,}|\+[1-9]\d{0,2}\d{4,}|\+[1-9]\d{0,2} \d{4,}$/;
+	var pattern = /^(\+[0-9]{1,3}[ ]{0,1}(\([0-9]{1,3}\)[ ]{0,1}){0,1}){0,1}[0-9]{1}[0-9 ]{3,}$/;
 	if (document.getElementById("phone").value != "") {
 		if (document.getElementById("phone").value.match(pattern)) {
 			document.getElementById("form").submit();
