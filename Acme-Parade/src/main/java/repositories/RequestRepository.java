@@ -32,4 +32,7 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
 	@Query("select count(a) from Request a where a.member.id = ?1 AND a.parade.id = ?2 AND (a.status='APPROVED' OR a.status='PENDING')")
 	Integer findRepeated(int memberId, int paradeId);
+
+	@Query("select r from Request r where r.place.id = ?1")
+	Collection<Request> findAllByPlace(int placeId);
 }

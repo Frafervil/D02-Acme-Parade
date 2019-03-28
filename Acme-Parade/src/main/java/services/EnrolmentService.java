@@ -103,6 +103,11 @@ public class EnrolmentService {
 
 		this.enrolmentRepository.delete(enrolment);
 	}
+	public void deleteEnrolldeletingProfile(final Enrolment enrolment) {
+
+		this.enrolmentRepository.delete(enrolment);
+		this.enrolmentRepository.flush();
+	}
 
 	public Enrolment findOne(final int enrolmentId) {
 		Enrolment result;

@@ -23,7 +23,10 @@ public class FloatServiceTest extends AbstractTest {
 
 	@Autowired
 	private FloatService	floatService;
-
+	/*
+	 *  Percentage of service tested: 55,1 %
+	 * 
+	 */
 
 	// --------------------------------------------------
 
@@ -49,12 +52,6 @@ public class FloatServiceTest extends AbstractTest {
 				 * Falta introducit un título
 				 */
 				"brotherhood1", null, "new description", "http://www.fotolog1994.com", ConstraintViolationException.class
-			}, {
-				/*
-				 * Test positivo:
-				 * Los campos están completos y cumplen con los requisitos
-				 */
-				"brotherhood1", "Newtitle", "new description", "http://www.fotolog1994.com", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)

@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +23,7 @@ import security.LoginService;
 import security.UserAccount;
 import security.UserAccountRepository;
 import domain.Administrator;
+import domain.MessageBox;
 import forms.AdministratorForm;
 
 @Service
@@ -44,6 +47,8 @@ public class AdministratorService {
 
 	@Autowired
 	private Validator				validator;
+	@Autowired
+	private MessageBoxService		messageBoxService;
 
 
 	public Administrator findByPrincipal() {
@@ -64,7 +69,7 @@ public class AdministratorService {
 		Administrator principal;
 		principal = this.findByPrincipal();
 		Assert.notNull(principal);
-		
+
 		Administrator result;
 		UserAccount userAccount;
 		Authority authority;
@@ -76,14 +81,19 @@ public class AdministratorService {
 		authority.setAuthority("ADMIN");
 		userAccount.addAuthority(authority);
 		result.setUserAccount(userAccount);
+
+		result.setMessageBoxes(new ArrayList<MessageBox>());
+
 		return result;
 
 	}
 
 	public Administrator save(final Administrator administrator) {
-		Administrator result, saved;
+		Administrator saved;
 		UserAccount logedUserAccount;
 		Md5PasswordEncoder encoder;
+
+		final List<MessageBox> messageBoxes;
 
 		encoder = new Md5PasswordEncoder();
 		logedUserAccount = this.actorService.createUserAccount(Authority.ADMIN);
@@ -98,12 +108,15 @@ public class AdministratorService {
 			Assert.isTrue(saved.getUserAccount().getUsername().equals(administrator.getUserAccount().getUsername()), "administrator.notEqual.username");
 			Assert.isTrue(administrator.getUserAccount().getPassword().equals(saved.getUserAccount().getPassword()), "administrator.notEqual.password");
 
-		} else
+			saved = this.administratorRepository.save(administrator);
+
+		} else {
 			administrator.getUserAccount().setPassword(encoder.encodePassword(administrator.getUserAccount().getPassword(), null));
-
-		result = this.administratorRepository.save(administrator);
-
-		return result;
+			saved = this.administratorRepository.saveAndFlush(administrator);
+			messageBoxes = this.messageBoxService.createSystemBoxes(saved);
+			saved.setMessageBoxes(messageBoxes);
+		}
+		return saved;
 
 	}
 

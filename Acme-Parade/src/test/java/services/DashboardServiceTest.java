@@ -23,7 +23,10 @@ public class DashboardServiceTest extends AbstractTest {
 
 	@Autowired
 	private HistoryService	historyService;
-
+	/*
+	 *  Percentage of service tested: 53,6 %
+	 * 
+	 */
 
 	// --------------------------------------------------
 
@@ -82,13 +85,11 @@ public class DashboardServiceTest extends AbstractTest {
 	public void valueTest() {
 		final Object valueTest[][] = {
 			{
-				"avg", 3.5, null
+				"avg", 3.25, null
 			}, {
-				"max", 2.0, null
+				"max", 5.0, null
 			}, {
-				"min", 5.0, null
-			}, {
-				"stddev", 1.5, null
+				"min", 2.0, null
 			}, {
 				"avg", 0.0, IllegalArgumentException.class
 			}, {

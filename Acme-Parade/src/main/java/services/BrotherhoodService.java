@@ -1,8 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +27,7 @@ import domain.Administrator;
 import domain.Brotherhood;
 import domain.Enrolment;
 import domain.History;
+import domain.MessageBox;
 import domain.Parade;
 import forms.BrotherhoodForm;
 
@@ -63,6 +66,8 @@ public class BrotherhoodService {
 
 	@Autowired
 	private CustomisationRepository	customisationRepository;
+	@Autowired
+	private MessageBoxService		messageBoxService;
 
 
 	// Simple CRUD Methods
@@ -90,13 +95,17 @@ public class BrotherhoodService {
 
 		result.setUserAccount(userAccount);
 		result.setEstablishmentDate(moment);
+
+		result.setMessageBoxes(new ArrayList<MessageBox>());
+
 		return result;
 	}
 
 	public Brotherhood save(final Brotherhood brotherhood) {
-		final Brotherhood result, saved;
+		Brotherhood saved;
 		UserAccount logedUserAccount;
 		Md5PasswordEncoder encoder;
+		List<MessageBox> messageBoxes;
 
 		encoder = new Md5PasswordEncoder();
 		logedUserAccount = this.actorService.createUserAccount(Authority.BROTHERHOOD);
@@ -110,11 +119,16 @@ public class BrotherhoodService {
 			Assert.notNull(saved, "brotherhood.not.null");
 			Assert.isTrue(saved.getUserAccount().getUsername().equals(brotherhood.getUserAccount().getUsername()), "brotherhood.notEqual.username");
 			Assert.isTrue(saved.getUserAccount().getPassword().equals(brotherhood.getUserAccount().getPassword()), "brotherhood.notEqual.password");
-		} else
-			brotherhood.getUserAccount().setPassword(encoder.encodePassword(brotherhood.getUserAccount().getPassword(), null));
-		result = this.brotherhoodRepository.save(brotherhood);
 
-		return result;
+			saved = this.brotherhoodRepository.save(brotherhood);
+
+		} else {
+			brotherhood.getUserAccount().setPassword(encoder.encodePassword(brotherhood.getUserAccount().getPassword(), null));
+			saved = this.brotherhoodRepository.saveAndFlush(brotherhood);
+			messageBoxes = this.messageBoxService.createSystemBoxes(saved);
+			saved.setMessageBoxes(messageBoxes);
+		}
+		return saved;
 	}
 
 	public void delete() {
