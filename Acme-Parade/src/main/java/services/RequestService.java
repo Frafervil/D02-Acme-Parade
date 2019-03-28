@@ -252,6 +252,8 @@ public class RequestService {
 		Assert.isTrue(r.getId() != 0);
 
 		final String reason = r.getRejectionReason();
+		Assert.notNull(reason);
+		Assert.isTrue(!reason.isEmpty());
 
 		principal = this.brotherhoodService.findByPrincipal();
 		Assert.notNull(principal);
@@ -259,8 +261,6 @@ public class RequestService {
 		Assert.isTrue(this.findByPrincipalBrotherhood(r.getParade()).contains(r));
 		Assert.isTrue(r.getStatus().equals("PENDING"));
 
-		Assert.notNull(reason);
-		Assert.isTrue(!reason.isEmpty());
 		r.setStatus("REJECTED");
 
 		this.placeRepository.delete(r.getPlace().getId());

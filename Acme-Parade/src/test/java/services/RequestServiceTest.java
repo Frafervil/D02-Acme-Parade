@@ -104,13 +104,13 @@ public class RequestServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Esta solicitud no puede ser aprobada por la hermandad logueada
 				 */
-				"brotherhood1", "request2", IllegalArgumentException.class
+				"brotherhood2", "request10", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Esta solicitud puede ser aprobada por la hermandad logueada
 				 */
-				"brotherhood1", "request1", null
+				"brotherhood1", "request10", null
 			}
 		};
 		for (int i = 0; i < approveTest.length; i++)
@@ -130,13 +130,13 @@ public class RequestServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * No da una razón para el rechazo
 				 */
-				"brotherhood1", "request1", null, IllegalArgumentException.class
+				"brotherhood1", "request10", null, IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Da una razón para el rechazo
 				 */
-				"brotherhood1", "request1", "Lamentamos decirle que...", null
+				"brotherhood1", "request10", "Lamentamos decirle que...", null
 			}
 		};
 		for (int i = 0; i < rejectTest.length; i++)
@@ -275,13 +275,13 @@ public class RequestServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Esta solicitud ya ha sido aceptada
 				 */
-				"member3", "request3", IllegalArgumentException.class
+				"member1", "request3", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Esta solicitud está en estado "pendiente"
 				 */
-				"member1", "request1", null
+				"member2", "request10", null
 			}
 		};
 		for (int i = 0; i < deleteTest.length; i++)

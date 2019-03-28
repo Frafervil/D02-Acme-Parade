@@ -48,18 +48,18 @@ public class MemberServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Falta introducir un nombre
 				 */
-				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", ConstraintViolationException.class
+				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "http://www.profile.com", ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Los campos están completos y cumplen con los requisitos
 				 */
-				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", null
+				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "http://www.profile.com", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
 			this.CreateTemplate((String) createTest[i][0], (String) createTest[i][1], (String) createTest[i][2], (String) createTest[i][3], (String) createTest[i][4], (String) createTest[i][5], (String) createTest[i][6], (String) createTest[i][7],
-				(Class<?>) createTest[i][8]);
+				(String) createTest[i][8], (String) createTest[i][9], (Class<?>) createTest[i][10]);
 	}
 
 	/*
@@ -119,7 +119,8 @@ public class MemberServiceTest extends AbstractTest {
 
 	// Ancillary methods ------------------------------------------------------
 
-	private void CreateTemplate(final String actor, final String name, final String middleName, final String surname, final String address, final String email, final String username, final String password, final Class<?> class1) {
+	private void CreateTemplate(final String actor, final String name, final String middleName, final String surname, final String address, final String email, final String username, final String password, final String phone, final String photo,
+		final Class<?> class1) {
 		Class<?> caught;
 		Member member;
 
@@ -134,6 +135,8 @@ public class MemberServiceTest extends AbstractTest {
 			member.setEmail(email);
 			member.getUserAccount().setUsername(username);
 			member.getUserAccount().setPassword(password);
+			member.setPhone(phone);
+			member.setPhoto(photo);
 			this.memberService.save(member);
 			this.unauthenticate();
 			this.memberService.flush();

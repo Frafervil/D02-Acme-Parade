@@ -83,7 +83,7 @@ public class EnrolmentServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Busca una lista que no existe
 				 */
-				"brotherhood1", null, IllegalArgumentException.class
+				"brotherhood1", "member1", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
@@ -127,19 +127,19 @@ public class EnrolmentServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Probamos como administrador
 				 */
-				"admin", "member1", IllegalArgumentException.class
+				"administrator1", "member2", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test negativo:
 				 * Probamos como miembro
 				 */
-				"member2", "member1", IllegalArgumentException.class
+				"member2", "member2", IllegalArgumentException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Probamos como hermandad
 				 */
-				"brotherhood1", "member1", null
+				"brotherhood1", "member2", null
 			}
 		};
 		for (int i = 0; i < deleteTest.length; i++)
@@ -206,7 +206,6 @@ public class EnrolmentServiceTest extends AbstractTest {
 			this.authenticate(actor1);
 			this.memberService.findAllActiveMembersOfOneBrotherhood(super.getEntityId(actor2));
 			this.unauthenticate();
-
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();

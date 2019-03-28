@@ -253,6 +253,10 @@ public class MemberService {
 
 	public Collection<Member> findAllActiveMembersOfOneBrotherhood(final int brotherhoodId) {
 		Collection<Member> result;
+		Brotherhood brotherhood;
+
+		brotherhood = this.brotherhoodService.findOne(brotherhoodId);
+		Assert.notNull(brotherhood);
 
 		result = this.memberRepository.findAllActiveMembersOfOneBrotherhood(brotherhoodId);
 		Assert.notNull(result);

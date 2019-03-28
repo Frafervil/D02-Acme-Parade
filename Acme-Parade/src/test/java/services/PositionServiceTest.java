@@ -22,10 +22,10 @@ public class PositionServiceTest extends AbstractTest {
 	// Service under test
 
 	@Autowired
-	private PositionService			positionService;
-	// --------------------------------------------------
+	private PositionService	positionService;
 
-	
+
+	// --------------------------------------------------
 
 	/*
 	 * Requirement Tested:
@@ -113,7 +113,7 @@ public class PositionServiceTest extends AbstractTest {
 				 * Test positivo:
 				 * Intentar eliminar una posición no usada
 				 */
-				"admin", "position4", null
+				"admin", "position9", null
 			}
 		};
 		for (int i = 0; i < deleteTest.length; i++)

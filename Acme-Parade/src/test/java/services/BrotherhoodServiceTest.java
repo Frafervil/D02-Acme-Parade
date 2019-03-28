@@ -1,7 +1,11 @@
 
 package services;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,26 +47,29 @@ public class BrotherhoodServiceTest extends AbstractTest {
 	 * registrarse como brotherhood
 	 */
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void createTest() {
+		final Collection<String> photosPeriodRecord = this.photosPeriodRecordOK();
+
 		final Object createTest[][] = {
 			{
 				/*
 				 * Test negativo:
 				 * Falta introducir un nombre
 				 */
-				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", "fraelefer", "fraelefer", "area1", IllegalArgumentException.class
+				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", photosPeriodRecord, "fraelefer", "fraelefer", "area1", ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Los campos están completos y cumplen con los requisitos
 				 */
-				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", "fraelefer", "fraelefer", "area1", null
+				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", photosPeriodRecord, "fraelefer", "fraelefer", "area1", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
 			this.CreateTemplate((String) createTest[i][0], (String) createTest[i][1], (String) createTest[i][2], (String) createTest[i][3], (String) createTest[i][4], (String) createTest[i][5], (String) createTest[i][6], (String) createTest[i][7],
-				(String) createTest[i][8], (String) createTest[i][9], (String) createTest[i][10], (Class<?>) createTest[i][11]);
+				(Collection<String>) createTest[i][8], (String) createTest[i][9], (String) createTest[i][10], (String) createTest[i][11], (Class<?>) createTest[i][12]);
 	}
 
 	/*
@@ -122,8 +129,8 @@ public class BrotherhoodServiceTest extends AbstractTest {
 
 	// Ancillary methods ------------------------------------------------------
 
-	private void CreateTemplate(final String actor, final String name, final String middleName, final String surname, final String address, final String email, final String title, final String picture, final String username, final String password,
-		final String areaName, final Class<?> class1) {
+	private void CreateTemplate(final String actor, final String name, final String middleName, final String surname, final String address, final String email, final String title, final String photo, final Collection<String> pictures,
+		final String username, final String password, final String areaName, final Class<?> class1) {
 		Class<?> caught;
 		Brotherhood brotherhood;
 
@@ -137,7 +144,8 @@ public class BrotherhoodServiceTest extends AbstractTest {
 			brotherhood.setAddress(address);
 			brotherhood.setEmail(email);
 			brotherhood.setTitle(title);
-			brotherhood.getPictures().add(picture);
+			brotherhood.setPhoto(photo);
+			brotherhood.setPictures(pictures);
 
 			final Area area = this.areaService.findOne(super.getEntityId(areaName));
 			brotherhood.setArea(area);
@@ -186,5 +194,17 @@ public class BrotherhoodServiceTest extends AbstractTest {
 		}
 
 		this.checkExceptions(class1, caught);
+	}
+
+	// Ancillary methods ------------------------------------------------------
+
+	private Collection<String> photosPeriodRecordOK() {
+		final Collection<String> photosPeriodRecord = new HashSet<>();
+
+		photosPeriodRecord.add("http://www.test1.com");
+		photosPeriodRecord.add("http://www.test2.com");
+		photosPeriodRecord.add("http://www.test3.com");
+
+		return photosPeriodRecord;
 	}
 }
