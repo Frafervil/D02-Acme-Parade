@@ -2,16 +2,20 @@
 package services;
 
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.AdministratorRepository;
+import repositories.CustomisationRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
@@ -30,6 +34,9 @@ public class AdministratorService {
 
 	@Autowired
 	private UserAccountRepository	useraccountRepository;
+
+	@Autowired
+	private CustomisationRepository	customisationRepository;
 
 	// Supporting services-------------------------------------------
 	@Autowired
@@ -154,9 +161,16 @@ public class AdministratorService {
 		result.setEmail(administratorForm.getEmail());
 		result.setMiddleName(administratorForm.getMiddleName());
 		result.setName(administratorForm.getName());
-		result.setPhone(administratorForm.getPhone());
 		result.setPhoto(administratorForm.getPhoto());
 		result.setSurname(administratorForm.getSurname());
+
+		if (!StringUtils.isEmpty(administratorForm.getPhone())) {
+			final Pattern pattern = Pattern.compile("^\\d{4,}$", Pattern.CASE_INSENSITIVE);
+			final Matcher matcher = pattern.matcher(administratorForm.getPhone());
+			if (matcher.matches())
+				administratorForm.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + administratorForm.getPhone());
+		}
+		result.setPhone(administratorForm.getPhone());
 
 		if (!administratorForm.getPassword().equals(administratorForm.getPasswordChecker()))
 			binding.rejectValue("passwordChecker", "administrator.validation.passwordsNotMatch", "Passwords doesnt match");
@@ -182,9 +196,17 @@ public class AdministratorService {
 		result.setMessageBoxes(administrator.getMessageBoxes());
 		result.setMiddleName(administrator.getMiddleName());
 		result.setName(administrator.getName());
-		result.setPhone(administrator.getPhone());
 		result.setPhoto(administrator.getPhoto());
 		result.setSurname(administrator.getSurname());
+
+		if (!StringUtils.isEmpty(administrator.getPhone())) {
+			final Pattern pattern = Pattern.compile("^\\d{4,}$", Pattern.CASE_INSENSITIVE);
+			final Matcher matcher = pattern.matcher(administrator.getPhone());
+			if (matcher.matches())
+				administrator.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + administrator.getPhone());
+		}
+		result.setPhone(administrator.getPhone());
+
 		this.validator.validate(result, binding);
 		this.administratorRepository.flush();
 		return result;
