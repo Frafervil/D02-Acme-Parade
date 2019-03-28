@@ -126,7 +126,6 @@ public class MemberServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			this.authenticate(actor);
 			member = this.memberService.create();
 			member.setName(name);
 			member.setMiddleName(middleName);
@@ -138,7 +137,6 @@ public class MemberServiceTest extends AbstractTest {
 			member.setPhone(phone);
 			member.setPhoto(photo);
 			this.memberService.save(member);
-			this.unauthenticate();
 			this.memberService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -153,7 +151,7 @@ public class MemberServiceTest extends AbstractTest {
 
 		caught = null;
 		try {
-			this.authenticate(actor);
+			super.authenticate(actor);
 			member = this.memberService.findOne(super.getEntityId(thing));
 			member.setName(name);
 			this.memberService.save(member);

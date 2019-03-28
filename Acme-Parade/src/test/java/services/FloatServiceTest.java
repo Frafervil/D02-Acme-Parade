@@ -54,7 +54,7 @@ public class FloatServiceTest extends AbstractTest {
 				 * Test positivo:
 				 * Los campos están completos y cumplen con los requisitos
 				 */
-				"brotherhood1", "title", "new description", "http://www.fotolog1994.com", null
+				"brotherhood1", "Newtitle", "new description", "http://www.fotolog1994.com", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)

@@ -348,7 +348,6 @@
 	</bean>
 
 	<!-- Enrolments -->
-
 	<bean id="enrolment1" class="domain.Enrolment">
 		<property name="enrolmentMoment" value="01/11/2017 15:31" />
 		<property name="dropOutMoment" value="01/12/2017 17:34" />
@@ -389,7 +388,6 @@
 		<property name="position" ref="position5" />
 
 	</bean>
-
 	<!-- Floats -->
 
 	<bean id="float1" class="domain.Float">
@@ -654,7 +652,7 @@
 	<bean class="domain.Parade" id="parade1">
 		<property name="title" value="title parade 1" />
 		<property name="description" value="description parade1" />
-		<property name="moment" value="01/03/2018 12:00" />
+		<property name="moment" value="2018/03/01" />
 		<property name="ticker" value="180301-AAAAAA" />
 		<property name="isDraft" value="false" />
 		<property name="maxRow" value="50" />
@@ -665,7 +663,7 @@
 	<bean class="domain.Parade" id="parade2">
 		<property name="title" value="title parade 2" />
 		<property name="description" value="description parade2" />
-		<property name="moment" value="02/03/2018 12:00" />
+		<property name="moment" value="2018/03/02" />
 		<property name="ticker" value="180302-AAABBB" />
 		<property name="isDraft" value="false" />
 		<property name="maxRow" value="40" />
@@ -676,7 +674,7 @@
 	<bean class="domain.Parade" id="parade3">
 		<property name="title" value="title parade 3" />
 		<property name="description" value="description parade3" />
-		<property name="moment" value="01/06/2019 12:00" />
+		<property name="moment" value="2019/06/01" />
 		<property name="ticker" value="180303-CCCBBB" />
 		<property name="isDraft" value="true" />
 		<property name="maxRow" value="122" />
@@ -687,7 +685,7 @@
 	<bean class="domain.Parade" id="parade4">
 		<property name="title" value="title parade 4" />
 		<property name="description" value="description parade4" />
-		<property name="moment" value="01/05/2019 12:00" />
+		<property name="moment" value="2019/05/01" />
 		<property name="ticker" value="190501-ZZZYYY" />
 		<property name="isDraft" value="true" />
 		<property name="maxRow" value="87" />
@@ -698,7 +696,7 @@
 	<bean class="domain.Parade" id="parade5">
 		<property name="title" value="title parade 5" />
 		<property name="description" value="description parade5" />
-		<property name="moment" value="01/04/2019 11:15" />
+		<property name="moment" value="2019/04/01" />
 		<property name="ticker" value="190403-VVVHHH" />
 		<property name="isDraft" value="false" />
 		<property name="maxRow" value="95" />
@@ -1416,5 +1414,5 @@
 		<property name="title" value="Miscellaneous title 2" />
 		<property name="description" value="Miscellaneous description 2" />
 	</bean>
-	
+
 </beans>

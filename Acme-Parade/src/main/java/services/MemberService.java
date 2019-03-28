@@ -276,7 +276,7 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
+
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
@@ -322,7 +322,7 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
+
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			if (i == 1)
@@ -345,12 +345,16 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
 		}
-		result = (double) (total / (brotherhoods.size()));
+
+		if (brotherhoods.size() == 0)
+			result = 0.0;
+		else
+			result = (double) (total / (brotherhoods.size()));
+
 		return result;
 	}
 
@@ -368,7 +372,7 @@ public class MemberService {
 			p = 0.0;
 			for (final Request r : requests) {
 				i++;
-				if (r.getStatus().toString() == "APPROVED")
+				if (r.getStatus().equals("APPROVED"))
 					p = p + 1;
 			}
 			if (p / i > 0.1)
