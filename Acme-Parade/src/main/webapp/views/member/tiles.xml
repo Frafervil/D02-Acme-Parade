@@ -32,17 +32,17 @@
 	</definition>
 	
 	<definition name="member/register" extends="master.page">	
-		<put-attribute name="title" value="New member registration" />
+		<put-attribute name="title" value="Register member" />
 		<put-attribute name="body" value="/views/member/register.jsp" />
 	</definition>
 	
 	<definition name="member/list" extends="master.page">	
-		<put-attribute name="title" value="Member list" />
+		<put-attribute name="title" value="Members' list" />
 		<put-attribute name="body" value="/views/member/list.jsp" />
 	</definition>
 	
 	<definition name="member/brotherhood/list" extends="master.page">	
-		<put-attribute name="title" value="My member list" />
+		<put-attribute name="title" value="My members' list" />
 		<put-attribute name="body" value="/views/member/list.jsp" />
 	</definition>
 	

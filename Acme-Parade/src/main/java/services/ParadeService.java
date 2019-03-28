@@ -30,16 +30,16 @@ public class ParadeService {
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
-	private BrotherhoodService		brotherhoodService;
+	private BrotherhoodService	brotherhoodService;
 
 	@Autowired
-	private RequestService			requestService;
+	private RequestService		requestService;
 
 	@Autowired
-	private FloatService			floatService;
+	private FloatService		floatService;
 
 	@Autowired
-	private Validator				validator;
+	private Validator			validator;
 
 
 	// Additional functions
@@ -111,7 +111,7 @@ public class ParadeService {
 		requests = this.requestService.findAllByParade(parade.getId());
 
 		for (final Request r : requests)
-			this.requestService.delete(r);
+			this.requestService.deleteRequestDeletingProfile(r);
 
 		floats = this.floatService.findAll();
 		for (final domain.Float f : floats)
@@ -160,6 +160,13 @@ public class ParadeService {
 		return result;
 	}
 
+	public Parade findOneByRequestId(final int requestId) {
+		Parade result;
+		result = this.paradeRepository.findOneByRequestId(requestId);
+		Assert.notNull(result);
+		return result;
+	}
+
 	public Collection<Parade> findVisibleParades(final Brotherhood brotherhood) {
 		final Collection<Parade> result = this.findAllFinalOfOneBrotherhood(brotherhood.getId());
 		Collection<Parade> allParades;
@@ -192,13 +199,7 @@ public class ParadeService {
 
 	public Parade saveAsDraft(final Parade parade) {
 		Parade result;
-		Brotherhood principal;
-
 		Assert.notNull(parade);
-
-		principal = this.brotherhoodService.findByPrincipal();
-
-		Assert.notNull(principal);
 
 		parade.setIsDraft(true);
 		Assert.isTrue(parade.getIsDraft());
@@ -222,9 +223,7 @@ public class ParadeService {
 		result.setMoment(parade.getMoment());
 		result.setTitle(parade.getTitle());
 		result.setBrotherhood(this.brotherhoodService.findByPrincipal());
-		//result.setTicker(parade.getTicker());
 		this.validator.validate(result, binding);
-		//this.paradeRepository.flush();
 		return result;
 	}
 
@@ -238,5 +237,9 @@ public class ParadeService {
 			if ((this.requestService.findRepeated(memberId, p.getId())) > 0)
 				result.remove(p);
 		return result;
+	}
+
+	public void flush() {
+		this.paradeRepository.flush();
 	}
 }

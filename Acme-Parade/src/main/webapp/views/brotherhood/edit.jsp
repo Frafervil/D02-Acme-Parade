@@ -87,9 +87,10 @@
 	<br />
 	<br />
 	
-
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 	<input type="submit" name="save" id="save"
 		value="<spring:message code="brotherhood.save" />" />
+</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="brotherhood.cancel" />"
 		onclick="javascript: relativeRedir('${redirectURI}');" />
@@ -97,10 +98,10 @@
 
 </form:form>
 
-
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 <script type="text/javascript">
 $("#save").on("click",function(){validatePhone("<spring:message code='brotherhood.confirmationPhone'/>","${countryCode}");});
 </script>
-
+</jstl:if>
 
 

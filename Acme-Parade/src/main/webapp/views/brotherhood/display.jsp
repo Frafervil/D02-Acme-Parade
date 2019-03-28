@@ -11,19 +11,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <h3> <jstl:out value="${brotherhood.title}"> </jstl:out> </h3>
-<br />
+
+<div class="content">
+	<img src="${brotherhood.photo}" class="ui mini rounded image" >
+</div>
 
 <table class="ui celled table">
-	<thead>
-		<tr>
-			<img src="${brotherhood.photo}" class="ui mini rounded image" >
-			<div class="content">
-				<spring:message code="brotherhood.profile.title" />
-				<jstl:out value="${brotherhood.name}" />
-			</div>
-
-		</tr>
-	</thead>
 	<tbody>
 		<tr>
 			<td><spring:message code="brotherhood.name" />
@@ -90,11 +83,7 @@
 </jstl:otherwise>
 </jstl:choose>
 
-<security:authorize access="hasRole('MEMBER')">
-	<jstl:if test="${enrolment != null}">
-		<a href="brotherhood/member/dropOut.do?brotherhoodId=${brotherhood.id}"><spring:message code="brotherhood.dropOut"/></a><br/>
-	</jstl:if>
-</security:authorize>
+
 
 <!-- Parades -->
 <h3> <spring:message code="brotherhood.parades" /> </h3>
@@ -116,7 +105,9 @@
 </jstl:choose>
 
 <security:authorize access="hasRole('BROTHERHOOD')">
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 <acme:button url="parade/brotherhood/create.do" code="parade.create"/>
+</jstl:if>
 </security:authorize>
 
 <!-- Floats -->
@@ -140,7 +131,9 @@
 </jstl:choose>
 
 <security:authorize access="hasRole('BROTHERHOOD')">
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 <acme:button url="float/brotherhood/create.do" code="float.create"/>
+</jstl:if>
 </security:authorize>
 
 <jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">

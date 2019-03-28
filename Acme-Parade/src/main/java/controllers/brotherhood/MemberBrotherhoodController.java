@@ -79,13 +79,13 @@ public class MemberBrotherhoodController extends AbstractController {
 				.findActiveEnrolmentByBrotherhoodIdAndMemberId(
 						principal.getId(), memberId);
 
-		// Crea y aï¿½ade objetos a la vista
+		// Crea y añade objetos a la vista
 		result = new ModelAndView("member/display");
 		result.addObject("requestURI", "member/display.do");
 		result.addObject("enrolment", enrolment);
 		result.addObject("member", member);
 
-		// Envï¿½a la vista
+		// Envía la vista
 		return result;
 	}
 

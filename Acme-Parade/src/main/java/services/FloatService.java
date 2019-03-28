@@ -127,4 +127,8 @@ public class FloatService {
 		this.floatRepository.flush();
 		return result;
 	}
+	
+	public void flush(){
+		this.floatRepository.flush();
+	}
 }

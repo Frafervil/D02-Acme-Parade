@@ -97,7 +97,7 @@ public class PositionAdministratorController extends AbstractController {
 			this.positionService.delete(position);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(position, "position.commit.error");
+			result = this.editModelAndView(position, "position.delete.error");
 		}
 
 		return result;
@@ -120,6 +120,17 @@ public class PositionAdministratorController extends AbstractController {
 		result.addObject("position", position);
 		result.addObject("message", message);
 
+		return result;
+	}
+
+	private ModelAndView editModelAndView(final Position position, final String messageCode) {
+		ModelAndView result;
+		final Collection<Position> positions;
+		positions = this.positionService.findAll();
+
+		result = new ModelAndView("position/list");
+		result.addObject("positions", positions);
+		result.addObject("message", messageCode);
 		return result;
 	}
 }

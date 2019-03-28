@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="messageBox/list" extends="master.page">	
-		<put-attribute name="title" value="Mail" />
+		<put-attribute name="title" value="Message boxes' list" />
 		<put-attribute name="body" value="/views/messageBox/list.jsp"/>
 	</definition>
 	

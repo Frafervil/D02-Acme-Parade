@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomisationService;
@@ -137,11 +138,17 @@ public class MemberController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView view() {
+	public ModelAndView view(@RequestParam(required = false) final Integer memberId) {
 		ModelAndView result;
+		Member member = new Member();
+
+		if (memberId == null)
+			member = this.memberService.findByPrincipal();
+		else
+			member = this.memberService.findOne(memberId);
 
 		result = new ModelAndView("member/display");
-		result.addObject("member", this.memberService.findByPrincipal());
+		result.addObject("member", member);
 
 		return result;
 	}

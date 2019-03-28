@@ -23,6 +23,18 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="member1" />
@@ -58,6 +70,28 @@
 		</property>
 	</bean>
 	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="member4" />
+		<property name="password" value="a998123003066ac9fa7de4b100e7c4bc" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="MEMBER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="member5" />
+		<property name="password" value="d2515df72fadf7066556b3a4253afcdc" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="MEMBER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount7" class="security.UserAccount">
 		<property name="username" value="brotherhood1" />
 		<property name="password" value="479e3180a45b21ea8e88beb0c45aa8ed" />
 		<property name="authorities">
@@ -68,7 +102,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="userAccount6" class="security.UserAccount">
+	<bean id="userAccount8" class="security.UserAccount">
 		<property name="username" value="brotherhood2" />
 		<property name="password" value="88f1b810c40cd63107fb758fef4d77db" />
 		<property name="authorities">
@@ -79,9 +113,31 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="userAccount7" class="security.UserAccount">
+	<bean id="userAccount9" class="security.UserAccount">
 		<property name="username" value="brotherhood3" />
 		<property name="password" value="cb8f36c7d5bbbc6aa5798a0e5796ebd5" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="BROTHERHOOD" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="brotherhood4" />
+		<property name="password" value="ddeb3302b54a2e0dbc83f2bd3c866124" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="BROTHERHOOD" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="brotherhood5" />
+		<property name="password" value="07f9d88d27b71fbcbe0edffa7b731dd6" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -104,6 +160,17 @@
 		<property name="address" value="C/ A nº1 Sevilla" />
 		<property name="userAccount" ref="userAccount1" />
 	</bean>
+	
+	<bean class="domain.Administrator" id="administrator2">
+		<property name="name" value="Sergio" />
+		<property name="middleName" value="Adebayors" />
+		<property name="surname" value="Amorebieta" />
+		<property name="photo" value="http://fotogyazo.com" />
+		<property name="email" value="adebayors@" />
+		<property name="phone" value="+34912126453" />
+		<property name="address" value="C/ H nº3 Granada" />
+		<property name="userAccount" ref="userAccount12" />
+	</bean>
 
 	<!-- Brotherhoods -->
 
@@ -115,7 +182,7 @@
 		<property name="email" value="fran@gmail.com" />
 		<property name="phone" value="612123234" />
 		<property name="address" value="Calle A 20 Sevilla" />
-		<property name="userAccount" ref="userAccount5" />
+		<property name="userAccount" ref="userAccount7" />
 
 		<property name="title" value="title1" />
 		<property name="establishmentDate" value="01/10/2017" />
@@ -137,7 +204,7 @@
 		<property name="email" value="antonio@gmail.com" />
 		<property name="phone" value="+34678123456" />
 		<property name="address" value="Calle Musica, 1, Cadiz" />
-		<property name="userAccount" ref="userAccount6" />
+		<property name="userAccount" ref="userAccount8" />
 
 		<property name="title" value="title2" />
 		<property name="establishmentDate" value="01/01/2016" />
@@ -158,7 +225,7 @@
 		<property name="email" value="maria@gmail.com" />
 		<property name="phone" value="+33923680976" />
 		<property name="address" value="Calle Musica, 1, CP: 32123, Cadiz" />
-		<property name="userAccount" ref="userAccount7" />
+		<property name="userAccount" ref="userAccount9" />
 
 		<property name="title" value="title3" />
 		<property name="establishmentDate" value="11/03/2016" />
@@ -168,6 +235,48 @@
 			</list>
 		</property>
 		<property name="area" ref="area3" />
+		
+	</bean>
+	
+	<bean class="domain.Brotherhood" id="brotherhood4">
+		<property name="name" value="Pepe" />
+		<property name="middleName" value="Morato" />
+		<property name="surname" value="López" />
+		<property name="photo" value="http://www.facebook.com" />
+		<property name="email" value="pepem@gmail.com" />
+		<property name="phone" value="+34923683246" />
+		<property name="address" value="Calle Clarín, 16" />
+		<property name="userAccount" ref="userAccount10" />
+
+		<property name="title" value="title4" />
+		<property name="establishmentDate" value="02/12/2010" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog4.com</value>
+			</list>
+		</property>
+		<property name="area" ref="area4" />
+		
+	</bean>
+	
+	<bean class="domain.Brotherhood" id="brotherhood5">
+		<property name="name" value="Luis" />
+		<property name="middleName" value="Mateos" />
+		<property name="surname" value="Pérez" />
+		<property name="photo" value="http://www.instagram.com" />
+		<property name="email" value="mateos20@gmail.com" />
+		<property name="phone" value="+34635214235" />
+		<property name="address" value="Calle Duque de Abrahantes, 3" />
+		<property name="userAccount" ref="userAccount11" />
+
+		<property name="title" value="title5" />
+		<property name="establishmentDate" value="13/07/2017" />
+		<property name="pictures">
+			<list>
+
+			</list>
+		</property>
+		<property name="area" ref="area5" />
 		
 	</bean>
 
@@ -205,6 +314,28 @@
 		<property name="address" value="Calle Napoleon, 10, CP: 32123, Madrid" />
 		<property name="userAccount" ref="userAccount4" />
 	</bean>
+	
+	<bean class="domain.Member" id="member4">
+		<property name="name" value="Javier" />
+		<property name="middleName" value="Amancio" />
+		<property name="surname" value="Ortega" />
+		<property name="photo" value="http://www.mifotito.com/perfilnuevo" />
+		<property name="email" value="javisito@hotmail.com" />
+		<property name="phone" value="+33678201234" />
+		<property name="address" value="Calle Nueva, 12, CP: 18339, Granada" />
+		<property name="userAccount" ref="userAccount5" />
+	</bean>
+	
+	<bean class="domain.Member" id="member5">
+		<property name="name" value="Carlos" />
+		<property name="middleName" value="Manuel" />
+		<property name="surname" value="Williams" />
+		<property name="photo" value="http://www.fotos4ever.com/28392dh2ud3n" />
+		<property name="email" value="Willy@gmail.com" />
+		<property name="phone" value="+34672401234" />
+		<property name="address" value="Calle Cuarta, 4" />
+		<property name="userAccount" ref="userAccount6" />
+	</bean>
 
 	<!-- Customisation -->
 
@@ -217,7 +348,6 @@
 	</bean>
 
 	<!-- Enrolments -->
-
 	<bean id="enrolment1" class="domain.Enrolment">
 		<property name="enrolmentMoment" value="01/11/2017 15:31" />
 		<property name="dropOutMoment" value="01/12/2017 17:34" />
@@ -242,7 +372,22 @@
 		<property name="position" ref="position3" />
 
 	</bean>
+	
+	<bean id="enrolment4" class="domain.Enrolment">
+		<property name="enrolmentMoment" value="03/05/2018 12:29" />
+		<property name="brotherhood" ref="brotherhood4" />
+		<property name="member" ref="member3" />
+		<property name="position" ref="position4" />
 
+	</bean>
+
+	<bean id="enrolment5" class="domain.Enrolment">
+		<property name="enrolmentMoment" value="02/04/2019 19:11" />
+		<property name="brotherhood" ref="brotherhood5" />
+		<property name="member" ref="member5" />
+		<property name="position" ref="position5" />
+
+	</bean>
 	<!-- Floats -->
 
 	<bean id="float1" class="domain.Float">
@@ -309,7 +454,27 @@
 		<property name="parade" ref="parade3" />
 	</bean>
 
+	<bean id="float6" class="domain.Float">
+		<property name="title" value="title float 6" />
+		<property name="description" value="description float 6" />
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="brotherhood" ref="brotherhood3" />
+	</bean>
 
+	<bean id="float7" class="domain.Float">
+		<property name="title" value="title float 7" />
+		<property name="description" value="description float 7" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog19.com</value>
+			</list>
+		</property>
+		<property name="brotherhood" ref="brotherhood5" />
+		<property name="parade" ref="parade5" />
+	</bean>
 
 	<!-- Places -->
 
@@ -331,6 +496,16 @@
 	<bean class="domain.Place" id="place4">
 		<property name="rowP" value="2" />
 		<property name="columnP" value="2" />
+	</bean>
+	
+	<bean class="domain.Place" id="place5">
+		<property name="rowP" value="5" />
+		<property name="columnP" value="8" />
+	</bean>
+
+	<bean class="domain.Place" id="place6">
+		<property name="rowP" value="11" />
+		<property name="columnP" value="11" />
 	</bean>
 
 	<!-- Positions -->
@@ -369,11 +544,21 @@
 		<property name="englishName" value="Officer"/>
 		<property name="spanishName" value="Vocal"/>
 	</bean>
+	
+	<bean class="domain.Position" id="position8">
+		<property name="englishName" value="Journalist"/>
+		<property name="spanishName" value="Periodista"/>
+	</bean>
+	
+	<bean class="domain.Position" id="position9">
+		<property name="englishName" value="Photographer"/>
+		<property name="spanishName" value="Fotógrafo"/>
+	</bean>
 
 	<!-- Requests -->
 	<bean class="domain.Request" id="request1">
-		<property name="member" ref="member1" />
-		<property name="status" value="PENDING" />
+		<property name="member" ref="member3" />
+		<property name="status" value="APPROVED" />
 		<property name="place" ref="place1" />
 		<property name="parade" ref="parade1" />
 	</bean>
@@ -391,13 +576,83 @@
 		<property name="place" ref="place3" />
 		<property name="parade" ref="parade1" />
 	</bean>
+	
+	<bean class="domain.Request" id="request4">
+		<property name="member" ref="member2" />
+		<property name="status" value="APPROVED" />
+		<property name="place" ref="place4" />
+		<property name="parade" ref="parade4" />
+	</bean>
+
+	<bean class="domain.Request" id="request5">
+		<property name="member" ref="member5" />
+		<property name="status" value="REJECTED" />
+		<property name="rejectionReason" value="No podemos aceptarla" />
+		<property name="parade" ref="parade5" />
+	</bean>
+	
+	<bean class="domain.Request" id="request6">
+		<property name="member" ref="member2" />
+		<property name="status" value="REJECTED" />
+		<property name="rejectionReason" value="Reason 1" />
+		<property name="parade" ref="parade1" />
+	</bean>
+	
+	<bean class="domain.Request" id="request7">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place5" />
+		<property name="parade" ref="parade2" />
+	</bean>
+	
+	<bean class="domain.Request" id="request8">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place4" />
+		<property name="parade" ref="parade3" />
+	</bean>
+	
+	<bean class="domain.Request" id="request9">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place2" />
+		<property name="parade" ref="parade1" />
+	</bean>
+	
+	<bean class="domain.Request" id="request10">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place3" />
+		<property name="parade" ref="parade1" />
+	</bean>
+	
+	<bean class="domain.Request" id="request11">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place3" />
+		<property name="parade" ref="parade5" />
+	</bean>
+
+	<bean class="domain.Request" id="request12">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place1" />
+		<property name="parade" ref="parade5" />
+	</bean>
+	
+	<bean class="domain.Request" id="request13">
+		<property name="member" ref="member2" />
+		<property name="status" value="PENDING" />
+		<property name="place" ref="place4" />
+		<property name="parade" ref="parade5" />
+	</bean>
 
 	<!-- Parades -->
 
 	<bean class="domain.Parade" id="parade1">
 		<property name="title" value="title parade 1" />
 		<property name="description" value="description parade1" />
-		<property name="moment" value="01/03/2018 12:00" />
+		<property name="moment" value="2018/03/01" />
 		<property name="ticker" value="180301-AAAAAA" />
 		<property name="isDraft" value="false" />
 		<property name="maxRow" value="50" />
@@ -408,7 +663,7 @@
 	<bean class="domain.Parade" id="parade2">
 		<property name="title" value="title parade 2" />
 		<property name="description" value="description parade2" />
-		<property name="moment" value="02/03/2018 12:00" />
+		<property name="moment" value="2018/03/02" />
 		<property name="ticker" value="180302-AAABBB" />
 		<property name="isDraft" value="false" />
 		<property name="maxRow" value="40" />
@@ -419,7 +674,7 @@
 	<bean class="domain.Parade" id="parade3">
 		<property name="title" value="title parade 3" />
 		<property name="description" value="description parade3" />
-		<property name="moment" value="03/03/2018 12:00" />
+		<property name="moment" value="2019/06/01" />
 		<property name="ticker" value="180303-CCCBBB" />
 		<property name="isDraft" value="true" />
 		<property name="maxRow" value="122" />
@@ -427,6 +682,27 @@
 		<property name="brotherhood" ref="brotherhood3" />
 	</bean>
 	
+	<bean class="domain.Parade" id="parade4">
+		<property name="title" value="title parade 4" />
+		<property name="description" value="description parade4" />
+		<property name="moment" value="2019/05/01" />
+		<property name="ticker" value="190501-ZZZYYY" />
+		<property name="isDraft" value="true" />
+		<property name="maxRow" value="87" />
+		<property name="maxColumn" value="88" />
+		<property name="brotherhood" ref="brotherhood3" />
+	</bean>
+	
+	<bean class="domain.Parade" id="parade5">
+		<property name="title" value="title parade 5" />
+		<property name="description" value="description parade5" />
+		<property name="moment" value="2019/04/01" />
+		<property name="ticker" value="190403-VVVHHH" />
+		<property name="isDraft" value="false" />
+		<property name="maxRow" value="95" />
+		<property name="maxColumn" value="102" />
+		<property name="brotherhood" ref="brotherhood5" />
+	</bean>
 	
 	<!-- Area -->
 	
@@ -458,10 +734,19 @@
 	</bean>
 	
 	<bean class="domain.Area" id="area4">
-		<property name="name" value="Area sin brotherhood" />
+		<property name="name" value="Area" />
 		<property name="pictures">
 			<list>
-				<value>http://catedraldegranada.com/wp-content/uploads/2015/12/32.jpg</value>
+				<value>http://area.com/wp-content/uploads/2015/12/32.jpg</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.Area" id="area5">
+		<property name="name" value="Area 5" />
+		<property name="pictures">
+			<list>
+				<value>http://area5.com/uploads/2018/11/23.jpg</value>
 			</list>
 		</property>
 	</bean>
@@ -822,7 +1107,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox2" />
@@ -855,7 +1140,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox2" />
@@ -888,7 +1173,7 @@
 			</list>
 		</property>
 
-		<!-- Cajas de mensaje -->
+		<!-- Buzones de correo -->
 		<property name="messageBoxes">
 			<list>
 				<ref bean="messagebox27" />
@@ -952,6 +1237,54 @@
 		</property>
 	</bean>
 	
+	<bean class="domain.History" id="history3">
+		<property name="brotherhood" ref="brotherhood4" />
+		<property name="inceptionRecord" ref="inceptionRecord3">
+		</property>
+		<property name="periodRecords">
+			<list>
+			</list>
+		</property>
+		<property name="legalRecords">
+			<list>
+			</list>
+		</property>
+		<property name="linkRecords">
+			<list>
+				<ref bean="linkRecord3" />
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+				<ref bean="miscellaneousRecord2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.History" id="history4">
+		<property name="brotherhood" ref="brotherhood5" />
+		<property name="inceptionRecord" ref="inceptionRecord4">
+		</property>
+		<property name="periodRecords">
+			<list>
+				<ref bean="periodRecord2" />
+			</list>
+		</property>
+		<property name="legalRecords">
+			<list>
+				<ref bean="legalRecord2" />
+			</list>
+		</property>
+		<property name="linkRecords">
+			<list>
+			</list>
+		</property>
+		<property name="miscellaneousRecords">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Inception Records -->
 	
 	<bean class="domain.InceptionRecord" id="inceptionRecord1">
@@ -976,6 +1309,28 @@
 		</property>
 	</bean>
 	
+	<bean class="domain.InceptionRecord" id="inceptionRecord3">
+		<property name="title" value="Inception title 3" />
+		<property name="description" value="Inception description 3" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog70.com</value>
+				<value>http://www.fotolog71.com</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="domain.InceptionRecord" id="inceptionRecord4">
+		<property name="title" value="Inception title 4" />
+		<property name="description" value="Inception description 4" />
+		<property name="pictures">
+			<list>
+				<value>http://www.fotolog75.com</value>
+				<value>http://www.fotolog76.com</value>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Period Records -->
 	
 	<bean class="domain.PeriodRecord" id="periodRecord1">
@@ -989,6 +1344,17 @@
 		</property>
 		<property name="startYear" value="2015" />
 		<property name="endYear" value="2018" />
+	</bean>
+	
+	<bean class="domain.PeriodRecord" id="periodRecord2">
+		<property name="title" value="Period title 2" />
+		<property name="description" value="Period description 2" />
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="startYear" value="2014" />
+		<property name="endYear" value="2017" />
 	</bean>
 	
 	<!-- Legal Records -->
@@ -1006,18 +1372,35 @@
 		</property>
 	</bean>
 	
+	<bean class="domain.LegalRecord" id="legalRecord2">
+		<property name="title" value="Legal title 2" />
+		<property name="description" value="Legal description 2" />
+		<property name="legalName" value="Legal name 2" />
+		<property name="vatNumber" value="9" />
+		<property name="applicableLaws">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Link Records -->
 	
 	<bean class="domain.LinkRecord" id="linkRecord1">
 		<property name="title" value="Link title 1" />
 		<property name="description" value="Link description 1" />
-		<property name="linkBrotherhood" value="http://www.linkBrotherhood1.com" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3364" />
 	</bean>
 	
 	<bean class="domain.LinkRecord" id="linkRecord2">
 		<property name="title" value="Link title 2" />
 		<property name="description" value="Link description 2" />
-		<property name="linkBrotherhood" value="http://www.linkBrotherhood2.com" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3366" />
+	</bean>
+	
+	<bean class="domain.LinkRecord" id="linkRecord3">
+		<property name="title" value="Link title 3" />
+		<property name="description" value="Link description 3" />
+		<property name="linkBrotherhood" value="https://localhost:8443/Acme-Parade/brotherhood/display.do?brotherhoodId=3363" />
 	</bean>
 	
 	<!-- Miscellaneous Records -->
@@ -1027,4 +1410,9 @@
 		<property name="description" value="Miscellaneous description 1" />
 	</bean>
 	
+	<bean class="domain.MiscellaneousRecord" id="miscellaneousRecord2">
+		<property name="title" value="Miscellaneous title 2" />
+		<property name="description" value="Miscellaneous description 2" />
+	</bean>
+
 </beans>

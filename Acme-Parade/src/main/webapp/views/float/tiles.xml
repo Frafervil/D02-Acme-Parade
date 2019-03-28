@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="float/list" extends="master.page">	
-		<put-attribute name="title" value="Float list" />
+		<put-attribute name="title" value="Floats' list" />
 		<put-attribute name="body" value="/views/float/list.jsp" />
 	</definition>
 	

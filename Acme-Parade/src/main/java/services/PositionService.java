@@ -90,10 +90,9 @@ public class PositionService {
 
 		Assert.notNull(principal);
 
-		if (positions == 0)
-			this.positionRepository.delete(position);
-		else
-			Assert.notNull(positions);
+		Assert.notNull(positions);
+		Assert.isTrue(positions == 0, "There are members with this position");
+		this.positionRepository.delete(position);
 
 	}
 
@@ -115,5 +114,9 @@ public class PositionService {
 		}
 		return result;
 
+	}
+	
+	public void flush(){
+		this.positionRepository.flush();
 	}
 }

@@ -13,6 +13,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(name = "`Float`")
@@ -40,8 +43,9 @@ public class Float extends DomainEntity {
 		this.description = description;
 	}
 
-	@NotNull
 	@ElementCollection
+	@EachNotBlank
+	@EachURL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}

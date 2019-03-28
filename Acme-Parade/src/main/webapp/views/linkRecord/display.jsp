@@ -24,7 +24,8 @@
 	<jstl:out value="${linkRecord.description }"/><br/>	
 	
 	<b><spring:message code="linkRecord.linkBrotherhood" /></b>:
-	<jstl:out value="${linkRecord.linkBrotherhood}"/><br/>
+	<jstl:set var="enlace" value="${linkRecord.linkBrotherhood}" /> 
+	<a href="${enlace}">${enlace}</a>
 
 	<br />
 	<security:authorize access="hasRole('BROTHERHOOD')">

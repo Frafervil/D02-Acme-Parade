@@ -98,7 +98,7 @@
 
 <jstl:if test="${permission }">
 
-<%-- Formulario para la edición de mensajes que incluye: borrar un mensaje y moverlo a una caja de mensaje diferente --%>
+<%-- Formulario para la edición de mensajes que incluye: borrar un mensaje y moverlo a un buzón de correo diferente --%>
 <jstl:if test="${mensaje.id!=0}">
 <form:form action="message/actor/edit.do" modelAttribute="mensaje">
 

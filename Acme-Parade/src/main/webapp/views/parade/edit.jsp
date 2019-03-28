@@ -20,7 +20,6 @@
 
 <form:form action="parade/brotherhood/edit.do" modelAttribute="parade">
 		<form:hidden path="id"/>
-		<form:hidden path="version"/>
 		
 		
 		<acme:textbox code="parade.title" path="title"/>
@@ -37,9 +36,7 @@
 		
 		<acme:submit name="saveFinal" code="parade.saveFinal"/>
 		
-		<jstl:if test="${parade.id != 0 }">
-			<acme:submit name="delete" code="parade.delete"/>
-		</jstl:if>
+		<acme:submit name="delete" code="parade.delete"/>
 		
 		<acme:cancel url="welcome/index.do" code="parade.cancel"/>
 		

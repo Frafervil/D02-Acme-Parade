@@ -19,6 +19,9 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = { @Index(columnList = "area") })
@@ -50,6 +53,8 @@ public class Brotherhood extends Actor {
 	}
 
 	@ElementCollection
+	@EachNotBlank
+	@EachURL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}

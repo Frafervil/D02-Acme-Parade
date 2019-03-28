@@ -33,16 +33,6 @@ public class MessageService {
 	@Autowired
 	private ActorService		actorService;
 
-
-	//	@Autowired
-	//	private CustomisationService	customisationService;
-
-	// Constructor
-
-	public MessageService() {
-		super();
-	}
-
 	// Simple CRUD methods
 
 	public Message create() {
@@ -80,7 +70,6 @@ public class MessageService {
 		Actor principal;
 		Date moment;
 		boolean isSpam;
-		//		Collection<String> spamWords;
 		List<MessageBox> boxes;
 		Collection<Actor> recipients;
 		MessageBox box1;
@@ -96,21 +85,9 @@ public class MessageService {
 		moment = new Date(System.currentTimeMillis() - 1);
 		isSpam = false;
 
-		//		spamWords = this.customisationService.find().getSpamWords();
-		//		for (final String spam : spamWords)
-		//			if (message.getSubject().toLowerCase().contains(spam.toLowerCase())) {
-		//				isSpam = true;
-		//				break;
-		//			} else if (message.getBody().toLowerCase().contains(spam.toLowerCase())) {
-		//				isSpam = true;
-		//				break;
-		//			}
-
 		message.setMoment(moment);
 		message.setIsSpam(isSpam);
 		message.setSender(principal);
-
-		//		Assert.isTrue(!message.getRecipients().contains(principal));
 
 		recipients = message.getRecipients();
 		boxes = message.getMessageBoxes();
@@ -130,7 +107,6 @@ public class MessageService {
 				box1.setMessages(messages);
 				this.messageBoxService.save2(box1, a);
 			}
-			//			principal.setIsSuspicious(true);
 			this.actorService.save(principal);
 
 		} else
@@ -214,7 +190,7 @@ public class MessageService {
 		principal = this.actorService.findByPrincipal();
 		Assert.notNull(principal);
 
-		//¿En qué caja de mensaje está el mensaje que queremos mover?
+		//¿En qué buzón de correo está el mensaje que queremos mover?
 		boxes = principal.getMessageBoxes();
 		for (final MessageBox box : boxes)
 			if (box.getMessages().contains(message)) {
@@ -260,7 +236,6 @@ public class MessageService {
 		Actor principal;
 		Date moment;
 		boolean isSpam;
-		//		Collection<String> spamWords;
 		List<MessageBox> boxes;
 		Collection<Actor> recipients;
 		MessageBox box1;
@@ -275,16 +250,6 @@ public class MessageService {
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		isSpam = false;
-
-		//		spamWords = this.customisationService.find().getSpamWords();
-		//		for (final String spam : spamWords)
-		//			if (message.getSubject().toLowerCase().contains(spam.toLowerCase())) {
-		//				isSpam = true;
-		//				break;
-		//			} else if (message.getBody().toLowerCase().contains(spam.toLowerCase())) {
-		//				isSpam = true;
-		//				break;
-		//			}
 
 		message.setMoment(moment);
 		message.setIsSpam(isSpam);
@@ -310,7 +275,6 @@ public class MessageService {
 				box1.setMessages(messages);
 				this.messageBoxService.save2(box1, a);
 			}
-			//			principal.setIsSuspicious(true);
 			this.actorService.save(principal);
 
 		} else

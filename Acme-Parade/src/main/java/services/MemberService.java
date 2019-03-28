@@ -3,15 +3,19 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import repositories.CustomisationRepository;
 import repositories.MemberRepository;
 import security.Authority;
 import security.LoginService;
@@ -34,6 +38,9 @@ public class MemberService {
 
 	@Autowired
 	private UserAccountRepository	useraccountRepository;
+
+	@Autowired
+	private CustomisationRepository	customisationRepository;
 
 	// Supporting services ----------------------------------------------------
 
@@ -112,7 +119,7 @@ public class MemberService {
 
 		requests = this.requestService.findAllByMember(principal.getId());
 		for (final Request r : requests)
-			this.requestService.delete(r);
+			this.requestService.deleteRequestDeletingProfile(r);
 
 		this.memberRepository.delete(principal);
 	}
@@ -140,7 +147,7 @@ public class MemberService {
 
 		userAccount = LoginService.getPrincipal();
 		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
+		result = this.memberRepository.findByUserAccountId(userAccount.getId());
 		Assert.notNull(result);
 
 		return result;
@@ -183,9 +190,16 @@ public class MemberService {
 		result.setEmail(memberForm.getEmail());
 		result.setMiddleName(memberForm.getMiddleName());
 		result.setName(memberForm.getName());
-		result.setPhone(memberForm.getPhone());
 		result.setPhoto(memberForm.getPhoto());
 		result.setSurname(memberForm.getSurname());
+
+		if (!StringUtils.isEmpty(memberForm.getPhone())) {
+			final Pattern pattern = Pattern.compile("^\\d{4,}$", Pattern.CASE_INSENSITIVE);
+			final Matcher matcher = pattern.matcher(memberForm.getPhone());
+			if (matcher.matches())
+				memberForm.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + memberForm.getPhone());
+		}
+		result.setPhone(memberForm.getPhone());
 
 		if (!memberForm.getPassword().equals(memberForm.getPasswordChecker()))
 			binding.rejectValue("passwordChecker", "member.validation.passwordsNotMatch", "Passwords doesnt match");
@@ -212,9 +226,17 @@ public class MemberService {
 		result.setMessageBoxes(member.getMessageBoxes());
 		result.setMiddleName(member.getMiddleName());
 		result.setName(member.getName());
-		result.setPhone(member.getPhone());
 		result.setPhoto(member.getPhoto());
 		result.setSurname(member.getSurname());
+
+		if (!StringUtils.isEmpty(member.getPhone())) {
+			final Pattern pattern = Pattern.compile("^\\d{4,}$", Pattern.CASE_INSENSITIVE);
+			final Matcher matcher = pattern.matcher(member.getPhone());
+			if (matcher.matches())
+				member.setPhone(this.customisationRepository.findAll().iterator().next().getCountryCode() + member.getPhone());
+		}
+		result.setPhone(member.getPhone());
+
 		this.validator.validate(result, binding);
 		this.memberRepository.flush();
 		return result;
@@ -231,6 +253,10 @@ public class MemberService {
 
 	public Collection<Member> findAllActiveMembersOfOneBrotherhood(final int brotherhoodId) {
 		Collection<Member> result;
+		Brotherhood brotherhood;
+
+		brotherhood = this.brotherhoodService.findOne(brotherhoodId);
+		Assert.notNull(brotherhood);
 
 		result = this.memberRepository.findAllActiveMembersOfOneBrotherhood(brotherhoodId);
 		Assert.notNull(result);
@@ -250,12 +276,16 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
+
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
 		}
-		result = (double) (total / (brotherhoods.size()));
+		if (brotherhoods.size() == 0)
+			result = 0.0;
+		else
+			result = (double) (total / (brotherhoods.size()));
+
 		return result;
 	}
 	public Double minMemberPerBrotherhood() {
@@ -292,7 +322,7 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
+
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			if (i == 1)
@@ -315,12 +345,16 @@ public class MemberService {
 		Assert.notNull(principal);
 
 		brotherhoods = this.brotherhoodService.findAll();
-		Assert.notNull(brotherhoods);
 		for (final Brotherhood b : brotherhoods) {
 			enrolments = this.enrolmentService.findAllActiveEnrolmentsByBrotherhoodId(b.getId());
 			total = total + enrolments.size();
 		}
-		result = (double) (total / (brotherhoods.size()));
+
+		if (brotherhoods.size() == 0)
+			result = 0.0;
+		else
+			result = (double) (total / (brotherhoods.size()));
+
 		return result;
 	}
 
@@ -338,7 +372,7 @@ public class MemberService {
 			p = 0.0;
 			for (final Request r : requests) {
 				i++;
-				if (r.getStatus().toString() == "APPROVED")
+				if (r.getStatus().equals("APPROVED"))
 					p = p + 1;
 			}
 			if (p / i > 0.1)
@@ -346,6 +380,10 @@ public class MemberService {
 		}
 
 		return result;
+	}
+
+	public void flush() {
+		this.memberRepository.flush();
 	}
 
 }

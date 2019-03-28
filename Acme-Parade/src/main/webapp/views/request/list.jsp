@@ -132,7 +132,7 @@
 		var="memberHeader" />
 		
 	<display:column title="${memberHeader}" sortable="false" >
-	<div><a href="actor/display.do?actorId=${row.member.id}"> <jstl:out value="${row.member.userAccount.username}"> </jstl:out>  </a>  </div>
+	<div><a href="member/display.do?memberId=${row.member.id}"> <jstl:out value="${row.member.userAccount.username}"> </jstl:out>  </a>  </div>
 	</display:column>
 	</security:authorize>
 	

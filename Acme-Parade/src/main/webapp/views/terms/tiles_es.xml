@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="terms/terms" extends="master.page">	
-		<put-attribute name="title" value="Terminos y condiciones" />
+		<put-attribute name="title" value="Términos y condiciones" />
 		<put-attribute name="body" value="/views/terms/terms.jsp" />
 	</definition>
 	
 	<definition name="terms/englishTerms" extends="master.page">	
-		<put-attribute name="title" value="Términos y condiciones" />
+		<put-attribute name="title" value="Terms and conditions" />
 		<put-attribute name="body" value="/views/terms/englishTerms.jsp" />
 	</definition>
 	
