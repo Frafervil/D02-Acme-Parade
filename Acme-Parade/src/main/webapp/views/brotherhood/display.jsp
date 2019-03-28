@@ -105,7 +105,9 @@
 </jstl:choose>
 
 <security:authorize access="hasRole('BROTHERHOOD')">
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 <acme:button url="parade/brotherhood/create.do" code="parade.create"/>
+</jstl:if>
 </security:authorize>
 
 <!-- Floats -->
@@ -129,7 +131,9 @@
 </jstl:choose>
 
 <security:authorize access="hasRole('BROTHERHOOD')">
+<jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
 <acme:button url="float/brotherhood/create.do" code="float.create"/>
+</jstl:if>
 </security:authorize>
 
 <jstl:if test="${brotherhood.userAccount.username == pageContext.request.userPrincipal.name}">
