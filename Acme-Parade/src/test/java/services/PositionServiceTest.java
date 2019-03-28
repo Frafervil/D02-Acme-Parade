@@ -23,6 +23,10 @@ public class PositionServiceTest extends AbstractTest {
 
 	@Autowired
 	private PositionService	positionService;
+	/*
+	 *  Percentage of service tested: 58,6 %
+	 * 
+	 */
 
 
 	// --------------------------------------------------

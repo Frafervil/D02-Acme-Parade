@@ -24,11 +24,14 @@ public class EnrolmentServiceTest extends AbstractTest {
 
 	@Autowired
 	private EnrolmentService	enrolmentService;
+	/*
+	 *  Percentage of service tested: 34,1 %
+	 * 
+	 */
 	// --------------------------------------------------
 
 	@Autowired
 	private MemberService		memberService;
-
 
 	/*
 	 * Requirement Tested:

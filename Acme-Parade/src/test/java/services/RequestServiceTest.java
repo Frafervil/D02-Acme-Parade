@@ -26,6 +26,11 @@ public class RequestServiceTest extends AbstractTest {
 
 	@Autowired
 	private RequestService	requestService;
+	/*
+	 *  Percentage of service tested: 47,8 %
+	 * 
+	 */
+
 	// --------------------------------------------------
 
 	@Autowired
