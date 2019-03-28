@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Member;
@@ -48,13 +49,13 @@ public class MemberServiceTest extends AbstractTest {
 				 * Test negativo:
 				 * Falta introducir un nombre
 				 */
-				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "http://www.profile.com", ConstraintViolationException.class
+				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "https://www.informatica.us.es/docs/imagen-etsii/MarcaUS.png", ConstraintViolationException.class
 			}, {
 				/*
 				 * Test positivo:
 				 * Los campos están completos y cumplen con los requisitos
 				 */
-				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "http://www.profile.com", null
+				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "https://www.informatica.us.es/docs/imagen-etsii/MarcaUS.png", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
@@ -137,7 +138,9 @@ public class MemberServiceTest extends AbstractTest {
 			member.setPhone(phone);
 			member.setPhoto(photo);
 			this.memberService.save(member);
+			final Member saved = this.memberService.save(member);
 			this.memberService.flush();
+			Assert.notNull(this.memberService.findOne(saved.getId()));
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}

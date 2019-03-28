@@ -66,6 +66,11 @@ public class ParadeService {
 	}
 
 	// Simple CRUD Methods
+
+	public boolean exist(final Integer paradeId) {
+		return this.paradeRepository.exists(paradeId);
+	}
+
 	public Parade create() {
 		Parade result;
 		final Brotherhood principal;

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Parade;
@@ -119,7 +120,7 @@ public class ParadeServiceTest extends AbstractTest {
 			}
 		};
 		for (int i = 0; i < deleteTest.length; i++)
-			this.DeleteTemplate((String) deleteTest[i][0], (String) deleteTest[i][1], (Class<?>) deleteTest[i][2]);
+			this.DeleteTemplate((String) deleteTest[i][0], super.getEntityId((String) deleteTest[i][1]), (Class<?>) deleteTest[i][2]);
 	}
 
 	// Ancillary methods ------------------------------------------------------
@@ -158,16 +159,18 @@ public class ParadeServiceTest extends AbstractTest {
 		this.checkExceptions(class1, caught);
 	}
 
-	private void DeleteTemplate(final String actor, final String thing, final Class<?> class1) {
+	private void DeleteTemplate(final String actor, final int thing, final Class<?> class1) {
 		Class<?> caught;
 		Parade parade;
 
 		caught = null;
 		try {
 			this.authenticate(actor);
-			parade = this.paradeService.findOne(super.getEntityId(thing));
+			parade = this.paradeService.findOne(thing);
 			this.paradeService.delete(parade);
-			this.unauthenticate();
+			//this.unauthenticate();
+			this.paradeService.flush();
+			Assert.isTrue(!this.paradeService.exist(parade.getId()));
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
