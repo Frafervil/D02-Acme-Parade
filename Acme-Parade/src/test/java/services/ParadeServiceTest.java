@@ -25,6 +25,10 @@ public class ParadeServiceTest extends AbstractTest {
 
 	@Autowired
 	private ParadeService	paradeService;
+	/*
+	 *  Percentage of service tested: 56,3 %
+	 * 
+	 */
 
 
 	// --------------------------------------------------

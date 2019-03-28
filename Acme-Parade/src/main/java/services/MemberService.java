@@ -3,6 +3,8 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +27,8 @@ import domain.Administrator;
 import domain.Brotherhood;
 import domain.Enrolment;
 import domain.Member;
+import domain.Message;
+import domain.MessageBox;
 import domain.Request;
 import forms.MemberForm;
 
@@ -60,11 +64,10 @@ public class MemberService {
 	private ActorService			actorService;
 
 	@Autowired
-	private MessageBoxService		messageBoxService;
-
-	@Autowired
 	private Validator				validator;
-
+	
+	@Autowired
+	private MessageBoxService				messageBoxService;
 
 	// Additional functions
 
@@ -102,34 +105,36 @@ public class MemberService {
 			Assert.isTrue(saved.getUserAccount().getUsername().equals(member.getUserAccount().getUsername()));
 			Assert.isTrue(saved.getUserAccount().getPassword().equals(member.getUserAccount().getPassword()));
 
-			//			final Collection<Message> messages = new LinkedList<>();
-			//			final MessageBox inbox = new MessageBox();
-			//			inbox.setName("InBox");
-			//			inbox.setIsSystemBox(true);
-			//			inbox.setMessages(messages);
-			//			final MessageBox outbox = new MessageBox();
-			//			outbox.setName("OutBox");
-			//			outbox.setIsSystemBox(true);
-			//			outbox.setMessages(messages);
-			//			final MessageBox trashbox = new MessageBox();
-			//			trashbox.setName("TrashBox");
-			//			trashbox.setIsSystemBox(true);
-			//			trashbox.setMessages(messages);
-			//			final MessageBox spambox = new MessageBox();
-			//			spambox.setName("SpamBox");
-			//			spambox.setIsSystemBox(true);
-			//			spambox.setMessages(messages);
-			//			final MessageBox notificationbox = new MessageBox();
-			//			notificationbox.setName("NotificationBox");
-			//			notificationbox.setIsSystemBox(true);
-			//			notificationbox.setMessages(messages);
-			//			final List<MessageBox> boxes = new ArrayList<MessageBox>();
-			//			boxes.add(this.messageBoxService.save(inbox));
-			//			boxes.add(this.messageBoxService.save(outbox));
-			//			boxes.add(this.messageBoxService.save(trashbox));
-			//			boxes.add(this.messageBoxService.save(spambox));
-			//			boxes.add(this.messageBoxService.save(notificationbox));
-			//			member.setMessageBoxes(boxes);
+			final Collection<Message> messages = new LinkedList<>();
+			final MessageBox inbox = new MessageBox();
+			
+			inbox.setName("InBox");
+			inbox.setIsSystemBox(true);
+			inbox.setMessages(messages);
+			
+			final MessageBox outbox = new MessageBox();
+			outbox.setName("OutBox");
+			outbox.setIsSystemBox(true);
+			outbox.setMessages(messages);
+			final MessageBox trashbox = new MessageBox();
+			trashbox.setName("TrashBox");
+			trashbox.setIsSystemBox(true);
+			trashbox.setMessages(messages);
+			final MessageBox spambox = new MessageBox();
+			spambox.setName("SpamBox");
+			spambox.setIsSystemBox(true);
+			spambox.setMessages(messages);
+			final MessageBox notificationbox = new MessageBox();
+			notificationbox.setName("NotificationBox");
+			notificationbox.setIsSystemBox(true);
+			notificationbox.setMessages(messages);
+			final List<MessageBox> boxes = new ArrayList<MessageBox>();
+			boxes.add(this.messageBoxService.save(inbox));
+			boxes.add(this.messageBoxService.save(outbox));
+			boxes.add(this.messageBoxService.save(trashbox));
+			boxes.add(this.messageBoxService.save(spambox));
+			boxes.add(this.messageBoxService.save(notificationbox));
+			member.setMessageBoxes(boxes);
 		}
 
 		result = this.memberRepository.save(member);

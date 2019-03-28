@@ -23,6 +23,11 @@ public class AdministratorServiceTest extends AbstractTest {
 
 	@Autowired
 	private AdministratorService	administratorService;
+	/*
+	 *  Percentage of service tested: 39,3 %
+	 * 
+	 */
+	
 
 
 	// --------------------------------------------------

@@ -28,10 +28,18 @@ public class BrotherhoodServiceTest extends AbstractTest {
 
 	@Autowired
 	private BrotherhoodService	brotherhoodService;
-
+	/*
+	 *  Percentage of service tested: 35,9 %
+	 * 
+	 */
+	
 	@Autowired
 	private AreaService			areaService;
-
+	/*
+	 *  Percentage of service tested: 28 %
+	 * 
+	 */
+	
 
 	// --------------------------------------------------
 
@@ -59,12 +67,6 @@ public class BrotherhoodServiceTest extends AbstractTest {
 				 * Falta introducir un nombre
 				 */
 				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", photosPeriodRecord, "fraelefer", "fraelefer", "area1", ConstraintViolationException.class
-			}, {
-				/*
-				 * Test positivo:
-				 * Los campos están completos y cumplen con los requisitos
-				 */
-				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "new brotherhood", "http://www.fotolog626.com", photosPeriodRecord, "fraelefer", "fraelefer", "area1", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)

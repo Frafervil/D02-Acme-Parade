@@ -22,7 +22,10 @@ public class HistoryServiceTest extends AbstractTest {
 
 	@Autowired
 	private HistoryService	historyService;
-
+	/*
+	 *  Percentage of service tested: 11,1 %
+	 * 
+	 */
 
 	// --------------------------------------------------
 

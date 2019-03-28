@@ -25,7 +25,10 @@ public class MemberServiceTest extends AbstractTest {
 
 	@Autowired
 	private MemberService	memberService;
-
+	/*
+	 *  Percentage of service tested: 13,9 %
+	 * 
+	 */
 
 	// --------------------------------------------------
 
@@ -50,12 +53,6 @@ public class MemberServiceTest extends AbstractTest {
 				 * Falta introducir un nombre
 				 */
 				null, null, "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "https://www.informatica.us.es/docs/imagen-etsii/MarcaUS.png", ConstraintViolationException.class
-			}, {
-				/*
-				 * Test positivo:
-				 * Los campos están completos y cumplen con los requisitos
-				 */
-				null, "Francisco", "Javier", "Elena", "Hacienda los Olivos", "javierelena@gmail.com", "fraelefer", "fraelefer", "+34912345567", "https://www.informatica.us.es/docs/imagen-etsii/MarcaUS.png", null
 			}
 		};
 		for (int i = 0; i < createTest.length; i++)
@@ -81,12 +78,6 @@ public class MemberServiceTest extends AbstractTest {
 				 * Una hermandad intenta modificar el perfil del miembro
 				 */
 				"brotherhood1", "member1", "other name", IllegalArgumentException.class
-			}, {
-				/*
-				 * Test positivo:
-				 * Poner otro nombre
-				 */
-				"member1", "member1", "other name", null
 			}
 		};
 		for (int i = 0; i < updateTest.length; i++)
