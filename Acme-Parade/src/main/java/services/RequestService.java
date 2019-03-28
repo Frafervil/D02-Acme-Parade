@@ -136,13 +136,8 @@ public class RequestService {
 		Assert.isTrue(request.getId() != 0);
 		place = request.getPlace();
 
-		//		if (place != null)
-		//			this.placeRepository.delete(place);
-		if (place != null) {
-			final Collection<Request> requestsForAPlace = this.findAllByPlace(place.getId());
-			if (requestsForAPlace.size() <= 1)
-				this.placeRepository.delete(place);
-		}
+		if (place != null)
+			this.placeRepository.delete(place);
 
 		this.requestRepository.delete(request);
 		this.requestRepository.flush();

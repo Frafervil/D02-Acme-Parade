@@ -3,7 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +26,6 @@ import domain.Administrator;
 import domain.Brotherhood;
 import domain.Enrolment;
 import domain.Member;
-import domain.Message;
 import domain.MessageBox;
 import domain.Request;
 import forms.MemberForm;
@@ -65,9 +63,10 @@ public class MemberService {
 
 	@Autowired
 	private Validator				validator;
-	
+
 	@Autowired
-	private MessageBoxService				messageBoxService;
+	private MessageBoxService		messageBoxService;
+
 
 	// Additional functions
 
@@ -83,20 +82,27 @@ public class MemberService {
 
 		result.setUserAccount(userAccount);
 
+		result.setMessageBoxes(new ArrayList<MessageBox>());
+
 		return result;
 	}
 
 	public Member save(final Member member) {
-		Member result, saved;
+		Member saved;
 		UserAccount logedUserAccount;
+		List<MessageBox> messageBoxes;
 
 		final Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 		logedUserAccount = this.actorService.createUserAccount(Authority.MEMBER);
 		Assert.notNull(member, "member.not.null");
 
-		if (member.getId() == 0)
+		if (member.getId() == 0) {
 			member.getUserAccount().setPassword(passwordEncoder.encodePassword(member.getUserAccount().getPassword(), null));
-		else {
+			saved = this.memberRepository.saveAndFlush(member);
+			messageBoxes = this.messageBoxService.createSystemBoxes(saved);
+			saved.setMessageBoxes(messageBoxes);
+
+		} else {
 			logedUserAccount = LoginService.getPrincipal();
 			Assert.notNull(logedUserAccount, "member.notLogged");
 			Assert.isTrue(logedUserAccount.equals(member.getUserAccount()), "memer.notEqual.userAccount");
@@ -104,41 +110,11 @@ public class MemberService {
 			Assert.notNull(saved, "member.not.null");
 			Assert.isTrue(saved.getUserAccount().getUsername().equals(member.getUserAccount().getUsername()));
 			Assert.isTrue(saved.getUserAccount().getPassword().equals(member.getUserAccount().getPassword()));
+			saved = this.memberRepository.saveAndFlush(member);
 
-			final Collection<Message> messages = new LinkedList<>();
-			final MessageBox inbox = new MessageBox();
-			
-			inbox.setName("InBox");
-			inbox.setIsSystemBox(true);
-			inbox.setMessages(messages);
-			
-			final MessageBox outbox = new MessageBox();
-			outbox.setName("OutBox");
-			outbox.setIsSystemBox(true);
-			outbox.setMessages(messages);
-			final MessageBox trashbox = new MessageBox();
-			trashbox.setName("TrashBox");
-			trashbox.setIsSystemBox(true);
-			trashbox.setMessages(messages);
-			final MessageBox spambox = new MessageBox();
-			spambox.setName("SpamBox");
-			spambox.setIsSystemBox(true);
-			spambox.setMessages(messages);
-			final MessageBox notificationbox = new MessageBox();
-			notificationbox.setName("NotificationBox");
-			notificationbox.setIsSystemBox(true);
-			notificationbox.setMessages(messages);
-			final List<MessageBox> boxes = new ArrayList<MessageBox>();
-			boxes.add(this.messageBoxService.save(inbox));
-			boxes.add(this.messageBoxService.save(outbox));
-			boxes.add(this.messageBoxService.save(trashbox));
-			boxes.add(this.messageBoxService.save(spambox));
-			boxes.add(this.messageBoxService.save(notificationbox));
-			member.setMessageBoxes(boxes);
 		}
 
-		result = this.memberRepository.save(member);
-		return result;
+		return saved;
 	}
 
 	public void delete() {
@@ -149,9 +125,9 @@ public class MemberService {
 		principal = this.findByPrincipal();
 		Assert.notNull(principal);
 
-		enrolments = this.enrolmentService.findByBrotherhoodId(principal.getId());
+		enrolments = this.enrolmentService.findByMemberId(principal.getId());
 		for (final Enrolment e : enrolments)
-			this.enrolmentService.deleteEnroll(e);
+			this.enrolmentService.deleteEnrolldeletingProfile(e);
 
 		requests = this.requestService.findAllByMember(principal.getId());
 		for (final Request r : requests)
